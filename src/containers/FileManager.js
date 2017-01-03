@@ -31,10 +31,11 @@ export default function FileManager(Component) {
     }
     getCollectionFiles(options) {
       const key = getCollectionKey(options);
-      return this.props.files.collections[key] ?
-        this.props.files.collections[key].map(({ id }) => {
-          return this.props.files.archive[id];
-        }) : [];
+      if (this.props.files.collections[key]) {
+        return this.props.files.collections[key].map(({ id }) => this.props.files.archive[id]);
+      } else {
+        return [];
+      }
     }
     render() {
       return <Component {...this.props} {...{

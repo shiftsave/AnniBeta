@@ -7,6 +7,8 @@ import FileUploader from 'components/FileUploader';
 import Loader from 'components/Loader';
 import ImageList from './ImageList';
 import FileManager from 'containers/FileManager';
+import SortableList from 'components/SortableList';
+import ImageItem from 'components/Image';
 
 const { MOODBOARD } = constants.content;
 
@@ -47,7 +49,10 @@ class MoodboardViewer extends Component {
     const path = this.props.projectPath;
     const collectionId = MOODBOARD;
     const images = this.props.getCollectionFiles({ path, collectionId });
-    const list = images && images.length ? <ImageList content={images} />: null;
+    let list = images && images.length ? <ImageList content={images} />: null;
+    if (this.props.auth.isAuthenticated && images.length) {
+      list = <SortableList containerClass="ImageList" itemClass="ImageListItem" items={images}><ImageItem /></SortableList>;
+    }
     return (
       <div>
         <h1>Moodboard</h1>

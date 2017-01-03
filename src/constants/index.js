@@ -7,5 +7,6 @@ export default {
   project,
   auth,
   file,
-  content
+  content,
+  REORDER_ITEM: 'REORDER_ITEM'
 };
