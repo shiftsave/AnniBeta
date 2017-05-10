@@ -1,32 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Icon from 'components/Icon'
 
-import Typography from './components/Typography';
-import Buttons from './components/Buttons';
-import Icons from './components/Icons';
-import FormFields from './components/FormFields';
-import Panels from './components/Panels';
-import Alerts from './components/Alerts';
-
-export default class PatternLibrary extends Component {
-  render() {
-    return (
-      <div>
-        <div className='PatternLibrary'>
-
-          <Typography />
-
-          <Buttons />
-
-          <Icons />
-
-          <FormFields />
-
-          <Panels />
-
-          <Alerts />
-
-        </div>
+const Patterns = () => {
+  return (
+    <div className="Patterns">
+      <div className='projectList'>
+        <h3>Project List</h3>
       </div>
-    );
-  }
+      <div>
+        <h3>Icons</h3>
+        <Icon name='logo' width='48' height='48' className='svgOutline'/>
+      </div>
+    </div>
+  );
 }
+
+export default Patterns;
