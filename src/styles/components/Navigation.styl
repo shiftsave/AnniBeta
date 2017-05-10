@@ -3,24 +3,24 @@
   border-bottom 1px solid $concrete
   display flex
   justify-content space-between
-  padding $sm $md
+  padding $small $medium
   position relative
 
-  +above($break-md)
-    padding $md $lg
+  +above($mqMedium)
+    padding $medium $large
 
   a
     font-family $headlineFont
     letter-spacing 1px
     text-transform uppercase
-    padding 0 $md
+    padding 0 $medium
 
   a.icon
-    margin 0 $sm
+    margin 0 $small
     transition all 400ms $expo
 
-    +above($break-md)
-      margin 0 $md 0 $xs
+    +above($mqMedium)
+      margin 0 $medium 0 $tiny
 
     &:hover
       fill $copper
@@ -30,14 +30,14 @@
     display inline-block
     font-family $headlineFont
     letter-spacing 1px
-    margin 0 $md
-    padding $sm 0
+    margin 0 $medium
+    padding $small 0
     position relative
     text-transform uppercase
 
-    +above($break-md)
-      margin 0 $md
-      padding $md 0
+    +above($mqMedium)
+      margin 0 $medium
+      padding $medium 0
 
     &:link, &:visited
       text-decoration none

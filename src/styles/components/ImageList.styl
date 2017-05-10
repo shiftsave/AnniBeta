@@ -3,18 +3,18 @@
   column-gap 0
   padding 0
 
-  +above($break-sm)
+  +above($mqSmall)
     column-count 2
 
-  +above($break-md)
+  +above($mqMedium)
     column-count 3
 
-  +above($break-lg)
+  +above($mqLarge)
     column-count 4
 
 .ImageListItem
   break-inside avoid
-  padding $xs $sm
+  padding $tiny $small
   position relative
 
   & > img
