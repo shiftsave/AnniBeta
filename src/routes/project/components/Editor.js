@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
-import Editor from 'draft-js-plugins-editor';
+import TextEditor from 'draft-js-plugins-editor';
 
 import 'draft-js/dist/Draft.css';
 
-class Script extends Component {
+class Editor extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,7 +31,7 @@ class Script extends Component {
       <div className='Script'>
         <div className="content">
           <h1>Script</h1>
-          <Editor
+          <TextEditor
             editorState={editorState}
             onChange={this.onChange}
             ref={(element) => { this.editor = element; }}
@@ -44,4 +44,4 @@ class Script extends Component {
   }
 }
 
-export default Script;
+export default Editor;
