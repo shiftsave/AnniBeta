@@ -4,12 +4,18 @@ import TextEditor from 'draft-js-plugins-editor';
 
 import 'draft-js/dist/Draft.css';
 
+import EditorToolbar from './EditorToolbar';
+
 class Editor extends Component {
   constructor(props) {
     super(props);
     this.state = {
       editorState: EditorState.createEmpty()
     };
+
+    this.plugins = [
+      EditorToolbar
+    ];
   }
 
   ComponentDidMount() {
@@ -35,6 +41,7 @@ class Editor extends Component {
             editorState={editorState}
             onChange={this.onChange}
             ref={(element) => { this.editor = element; }}
+            plugins={this.plugins}
             placeholder="Start writing your script..."
             spellcheck
           />
