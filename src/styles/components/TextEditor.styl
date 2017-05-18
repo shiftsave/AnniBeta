@@ -1,37 +1,57 @@
 .TextEditor
+  center()
   background: $pebble
+  padding: $xxl 0
+  min-height: pxToRem(600)
 
   .content
-    width: 100%
 
   /*
    * Editor Styles
    */
 
-  .DraftEditor
+  .md-RichEditor
     &-root
+      background-color: $pebble
       border-bottom: pxToRem(1) solid $concrete
+      font-family: $bodyFont
       font-size: pxToRem(18)
       margin: 0 auto
       padding: $md 0
       position: relative
       text-align: left
-      width: 100%
 
       +above($break-md)
         width: pxToRem(720)
 
+    &-editor
+      min-height: 0
+
     &-editorContainer
+      background: transparent
       position: relative
       z-index: 1
 
+    &-styleButton
+      color: $copper
+      font-family: $headlineFont
+      line-height: 1
+      padding: $md
 
+    &-activeButton
+      background: $charcoal
+      color: $paper
+      font-family: $headlineFont
+      line-height: 1
+      padding: $md
 
-  // Required classes to make text editable, inherited from DraftJS
-  .public-DraftEditorPlaceholder-root
-    color: $concrete
-    position: absolute
-    z-index: 0
+  .md-editor-toolbar
+    background: $paper
+    border-radius: 0
+    box-shadow: pxToRem(2) pxToRem(4) pxToRem(12) rgba($charcoal, .2)
 
-  .public-DraftEditor-content[contenteditable=true]
-    -webkit-user-modify: read-write-plaintext-only
+    &:after
+      border-top-color: $paper
+
+.md-RichEditor-editor .public-DraftEditor-content
+  min-height: 0
