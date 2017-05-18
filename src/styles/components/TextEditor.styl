@@ -1,7 +1,8 @@
 .TextEditor
   background: $pebble
 
-
+  .content
+    width: 100%
 
   /*
    * Editor Styles
@@ -12,10 +13,13 @@
       border-bottom: pxToRem(1) solid $concrete
       font-size: pxToRem(18)
       margin: 0 auto
-      min-width: pxToRem(720)
       padding: $md 0
       position: relative
       text-align: left
+      width: 100%
+
+      +above($break-md)
+        width: pxToRem(720)
 
     &-editorContainer
       position: relative

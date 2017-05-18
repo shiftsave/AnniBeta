@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Editor, EditorState, RichUtils } from 'draft-js';
-import TextEditorToolbar from './TextEditorToolbar';
 
 class TextEditor extends Component {
   constructor(props) {
@@ -8,10 +7,6 @@ class TextEditor extends Component {
     this.state = {editorState: EditorState.createEmpty()};
     this.onChange = (editorState) => this.setState({editorState});
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
-
-    this.plugins = [
-      TextEditorToolbar
-    ];
   }
 
    // Key shortcuts for bold, italics and underline

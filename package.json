@@ -68,7 +68,8 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "draft-js": "^0.10.1",
-    "draft-js-plugins-editor": "^2.0.0-beta1",
+    "draft-js-inline-toolbar-plugin": "^2.0.0-beta11",
+    "draft-js-plugins-editor": "^2.0.0-beta11",
     "dropbox": "^2.1.0",
     "history": "^4.5.1",
     "normalize.css": "^5.0.0",
