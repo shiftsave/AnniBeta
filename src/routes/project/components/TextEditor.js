@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Editor, EditorState, RichUtils } from 'draft-js';
 import TextEditorToolbar from './TextEditorToolbar';
 
-import 'draft-js/dist/Draft.css';
-
-
 class TextEditor extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +40,6 @@ class TextEditor extends Component {
             handleKeyCommand={this.handleKeyCommand}
             placeholder="Start writing your script..."
             spellcheck
-            readOnly
           />
         </div>
       </div>

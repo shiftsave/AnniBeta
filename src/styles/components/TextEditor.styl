@@ -1,7 +1,32 @@
 .TextEditor
+  background: $pebble
+
+
+
+  /*
+   * Editor Styles
+   */
 
   .DraftEditor
     &-root
-      border: 1px solid black
-      width: 600px
+      font-size: pxToRem(18)
       margin: 0 auto
+      padding: $xl
+      position: relative
+      text-align: left
+      width: 600px
+
+    &-editorContainer
+      position: relative
+      z-index: 1
+
+
+
+  // Required classes to make text editable, inherited from DraftJS
+  .public-DraftEditorPlaceholder-root
+    color: lightness(black, 50%)
+    position: absolute
+    z-index: 0
+
+  .public-DraftEditor-content[contenteditable=true]
+    -webkit-user-modify: read-write-plaintext-only
