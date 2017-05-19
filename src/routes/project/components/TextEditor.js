@@ -92,9 +92,9 @@ export default class TextEditor extends Component {
     }
   }
 
-  customCountFunction(str) {
+  averageReadingTime(str) {
     const wordArray = str.match(/\S+/g);  // matches words according to whitespace
-    return wordArray ? wordArray.length : 0;
+    return wordArray ? (new Date((wordArray.length/3) * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0] : "00:00:00"
   }
 
   render() {
@@ -120,7 +120,7 @@ export default class TextEditor extends Component {
                 editorState={editorState}
                 handleKeyCommand={this.handleKeyCommand}
                 onChange={this.onChange}
-                placeholder="Tell a story..."
+                placeholder="Start writing here..."
                 plugins={plugins}
                 ref="editor"
                 spellCheck={true}
@@ -136,7 +136,7 @@ export default class TextEditor extends Component {
               <div><CharCounter /> characters</div>
               <div><WordCounter /> words</div>
               <div><LineCounter /> lines</div>
-              <div><CustomCounter countFunction={this.customCountFunction} /> words (custom function) </div>
+              <div><CustomCounter countFunction={this.averageReadingTime} /> </div>
             </div>
           </div>
         </div>
