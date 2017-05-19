@@ -136,7 +136,7 @@ export default class TextEditor extends Component {
               <div><CharCounter /> characters</div>
               <div><WordCounter /> words</div>
               <div><LineCounter /> lines</div>
-              <div><CustomCounter countFunction={this.averageReadingTime} /> </div>
+              <div>Reading time{" "}<CustomCounter countFunction={this.averageReadingTime} /></div>
             </div>
           </div>
         </div>
