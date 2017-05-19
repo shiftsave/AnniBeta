@@ -1,129 +1,72 @@
-.RichEditor-root {
-  background: #fff;
-  border: 1px solid #ddd;
-  font-family: 'Georgia', serif;
-  font-size: 14px;
-  padding: 15px;
-}
+.TextEditor
+  background: $pebble
+  min-height: 100vh
+  padding: $xxl 0
+  position: relative
 
-.RichEditor-editor {
-  border-top: 1px solid #ddd;
-  cursor: text;
-  font-size: 16px;
-  margin-top: 10px;
-}
+  .content
+    span
+      line-height: 1.6
 
-.RichEditor-editor .public-DraftEditorPlaceholder-root,
-.RichEditor-editor .public-DraftEditor-content {
-  margin: 0 -15px -15px;
-  padding: 15px;
-}
+  .RichEditor
+    &-editor
+      padding: $lg $huge
 
-.RichEditor-editor .public-DraftEditor-content {
-  min-height: 100px;
-}
+    &-editorContainer
+      background: transparent
+      position: relative
+      z-index: 1
 
-.RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
-  display: none;
-}
+    &-styleButton
+      color: $copper
+      cursor: pointer
+      font-family: $headlineFont
 
-.RichEditor-editor .RichEditor-blockquote {
-  border-left: 5px solid #eee;
-  color: #666;
-  font-family: 'Hoefler Text', 'Georgia', serif;
-  font-style: italic;
-  margin: 16px 0;
-  padding: 10px 20px;
-}
+    &-activeButton
+      background: $charcoal
+      color: $paper
+      font-family: $headlineFont
 
-.RichEditor-editor .public-DraftStyleDefault-pre {
-  background-color: rgba(0, 0, 0, 0.05);
-  font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
-  font-size: 16px;
-  padding: 20px;
-}
+  .DraftEditor
+    &-root
+      background-color: $pebble
+      font-family: $bodyFont
+      margin: 0 auto
+      line-height: 1.6
+      position: relative
 
-.RichEditor-controls {
-  font-family: 'Helvetica', sans-serif;
-  font-size: 14px;
-  margin-bottom: 5px;
-  user-select: none;
-}
+      +above($break-md)
+        width: pxToRem(720)
 
-.RichEditor-styleButton {
-  color: #999;
-  cursor: pointer;
-  margin-right: 16px;
-  padding: 2px 0;
-  display: inline-block;
-}
+    &-editorContainer
+      color: $charcoal
 
-.RichEditor-activeButton {
-  color: #5890ff;
-}
+  .Toolbar
+    @extend h4
+    align-items: center
+    border: pxToRem(1) solid $concrete
+    bottom: 0
+    display: flex
+    font-size: 12px
+    justify-content: center
+    padding: 0
+    position: absolute
+    width: 100%
 
-// .TextEditor
-//   background: $pebble
-//   min-height: 100vh
-//   padding: $huge 0
-//
-//   .content
-//     span
-//       line-height: 1.6
-//
-//   /*
-//    * Editor Styles
-//    */
-//
-//   .md-RichEditor
-//     &-root
-//       background-color: $pebble
-//       border-bottom: pxToRem(1) solid $concrete
-//       font-family: $bodyFont
-//       margin: 0 auto
-//       line-height: 1.6
-//       padding: $md 0
-//       position: relative
-//       text-align: left
-//
-//       +above($break-md)
-//         width: pxToRem(720)
-//
-//     &-editor
-//       min-height: 0
-//
-//     &-editorContainer
-//       background: transparent
-//       position: relative
-//       z-index: 1
-//
-//     &-styleButton
-//       color: $copper
-//       font-family: $headlineFont
-//       line-height: 1
-//       padding: $md
-//
-//     &-activeButton
-//       background: $charcoal
-//       color: $paper
-//       font-family: $headlineFont
-//       line-height: 1
-//       padding: $md
-//
-//   .md-editor-toolbar
-//     background: $paper
-//     border-radius: 0
-//     box-shadow: pxToRem(2) pxToRem(4) pxToRem(12) rgba($charcoal, .2)
-//
-//     span
-//       line-height: 1
-//
-//     &:after
-//       border-top-color: $paper
-//
-// .md-RichEditor-editor
-//   .public-DraftEditor-content
-//     min-height: 0
-//
-//   .md-block-paragraph
-//     margin: 0
+    .styles,
+    .stats
+      align-items: center
+      display: flex
+
+      > :nth-child(n)
+         border-left: pxToRem(1) solid $concrete
+         padding: $md
+
+    .stats
+      > :last-child
+        border-right: pxToRem(1) solid $concrete
+
+  .public-DraftEditorPlaceholder-root
+    color: rgba($charcoal, .5)
+    position: absolute
+    top: 0
