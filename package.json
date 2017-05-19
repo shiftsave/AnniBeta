@@ -67,6 +67,8 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "draft-js-counter-plugin": "^2.0.0-beta11",
+    "draft-js-plugins-editor": "^2.0.0-beta11",
     "dropbox": "^2.1.0",
     "history": "^4.5.1",
     "medium-draft": "^0.5.2",
