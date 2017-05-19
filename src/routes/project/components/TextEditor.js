@@ -18,9 +18,9 @@ class StyleButton extends Component {
   }
 
   render() {
-    let className = 'RichEditor-styleButton';
+    let className = 'toolbarItem';
     if (this.props.active) {
-      className += ' RichEditor-activeButton';
+      className += ' active';
     }
 
     return (
@@ -35,13 +35,23 @@ const styleTypes = [
   {label: 'Bold', style: 'BOLD'},
   {label: 'Italic', style: 'ITALIC'},
   {label: 'Underline', style: 'UNDERLINE'},
+  {label: 'Strikethrough', style: 'STRIKETHROUGH'}
+];
+
+const condensedStyleTypes = [
+  {label: 'B', style: 'BOLD'},
+  {label: 'I', style: 'ITALIC'},
+  {label: 'U', style: 'UNDERLINE'},
+  {label: 'S', style: 'STRIKETHROUGH'}
 ];
 
 const InlineStyleControls = (props) => {
   const currentStyle = props.editorState.getCurrentInlineStyle();
+
   return (
-    <div className="styles">
-      {styleTypes.map(type =>
+    <div className="InlineStyleControls">
+      {!props.condensed ?
+        styleTypes.map(type =>
         <StyleButton
           key={type.label}
           active={currentStyle.has(type.style)}
@@ -49,7 +59,18 @@ const InlineStyleControls = (props) => {
           onToggle={props.onToggle}
           style={type.style}
         />
-      )}
+      )
+      :
+      condensedStyleTypes.map(type =>
+      <StyleButton
+        key={type.label}
+        active={currentStyle.has(type.style)}
+        label={type.label}
+        onToggle={props.onToggle}
+        style={type.style}
+      />
+    )
+    }
     </div>
   );
 };
@@ -114,6 +135,12 @@ export default class TextEditor extends Component {
       <div className='TextEditor'>
         <h1>Script</h1>
         <div className='content'>
+          <div className="ContextualToolbar">
+            <InlineStyleControls condensed
+              editorState={editorState}
+              onToggle={this.toggleInlineStyle}
+            />
+          </div>
           <div className='Editor' onClick={this.focus}>
             <div className={className} onClick={this.focus}>
               <Editor
