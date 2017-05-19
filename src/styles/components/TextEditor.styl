@@ -1,10 +1,11 @@
 .TextEditor
-  center()
   background: $pebble
-  padding: $xxl 0
-  min-height: pxToRem(600)
+  min-height: 100vh
+  padding: $huge 0
 
   .content
+    span
+      line-height: 1.6
 
   /*
    * Editor Styles
@@ -15,8 +16,8 @@
       background-color: $pebble
       border-bottom: pxToRem(1) solid $concrete
       font-family: $bodyFont
-      font-size: pxToRem(18)
       margin: 0 auto
+      line-height: 1.6
       padding: $md 0
       position: relative
       text-align: left
@@ -50,8 +51,15 @@
     border-radius: 0
     box-shadow: pxToRem(2) pxToRem(4) pxToRem(12) rgba($charcoal, .2)
 
+    span
+      line-height: 1
+
     &:after
       border-top-color: $paper
 
-.md-RichEditor-editor .public-DraftEditor-content
-  min-height: 0
+.md-RichEditor-editor
+  .public-DraftEditor-content
+    min-height: 0
+
+  .md-block-paragraph
+    margin: 0
