@@ -119,17 +119,13 @@ export default class TextEditor extends Component {
   }
 
   render() {
-    const {editorState} = this.state;
+    const { editorState } = this.state;
 
     // If the user changes block type before entering any text, we can
     // either style the placeholder or hide it. Let's just hide it now.
-    let className = 'RichEditor-editor';
-    var contentState = editorState.getCurrentContent();
-    if (!contentState.hasText()) {
-      if (contentState.getBlockMap().first().getType() !== 'unstyled') {
-        className += ' RichEditor-hidePlaceholder';
-      }
-    }
+    let contentState = editorState.getCurrentContent();
+
+    console.log(contentState);
 
     return (
       <div className='TextEditor'>
@@ -142,17 +138,15 @@ export default class TextEditor extends Component {
             />
           </div>
           <div className='Editor' onClick={this.focus}>
-            <div className={className} onClick={this.focus}>
-              <Editor
-                editorState={editorState}
-                handleKeyCommand={this.handleKeyCommand}
-                onChange={this.onChange}
-                placeholder="Start writing here..."
-                plugins={plugins}
-                ref="editor"
-                spellCheck={true}
-              />
-            </div>
+            <Editor
+              editorState={editorState}
+              handleKeyCommand={this.handleKeyCommand}
+              onChange={this.onChange}
+              placeholder="Start writing here..."
+              plugins={plugins}
+              ref="editor"
+              spellCheck={true}
+            />
           </div>
           <div className="Toolbar">
             <InlineStyleControls
