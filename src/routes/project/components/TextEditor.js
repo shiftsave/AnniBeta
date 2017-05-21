@@ -87,8 +87,22 @@ export default class TextEditor extends Component {
     this.focus = () => this.refs.editor.focus();
 
     this.onChange = (editorState) => {
-      let selectedText = getVisibleSelectionRect(window);
+
       this.setState({ editorState });
+
+      const getSelectedBlockElement = () => {
+        var selection = window.getSelection()
+        if (selection.rangeCount === 0) return null
+        var node = selection.getRangeAt(0).startContainer
+        do {
+          if (node.getAttribute && node.getAttribute('data-block') === 'true')
+            return node
+          node = node.parentNode
+        } while (node != null)
+        return null
+      };
+      let selectedText = getVisibleSelectionRect();
+
       if (selectedText !== null) {
         if (selectedText.width > 2) {
           this.setState({
