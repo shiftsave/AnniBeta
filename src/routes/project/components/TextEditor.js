@@ -79,13 +79,36 @@ const InlineStyleControls = (props) => {
 export default class TextEditor extends Component {
   constructor(props) {
     super(props);
-    this.state = {editorState: EditorState.createEmpty()};
+    this.state = {
+      editorState: EditorState.createEmpty(),
+      styles: { opacity: 0 }
+    };
 
     this.focus = () => this.refs.editor.focus();
 
     this.onChange = (editorState) => {
-      this.setState({editorState, styles: getVisibleSelectionRect(window) });
-      console.log(getVisibleSelectionRect(window));
+      let selectedText = getVisibleSelectionRect(window);
+      this.setState({ editorState });
+      if (selectedText !== null) {
+        if (selectedText.width > 2) {
+          this.setState({
+            styles: {
+              top: selectedText.top,
+              left: selectedText.left + selectedText.width*.5,
+              opacity: 1
+            }
+          });
+        } else {
+          this.setState({
+            styles: {
+              top: selectedText.top,
+              left: selectedText.left + selectedText.width*.5,
+              opacity: 0
+            }
+          })
+        }
+      }
+      console.log(selectedText);
     }
 
     this.toggleBlockType = (blockType) => {
@@ -123,13 +146,13 @@ export default class TextEditor extends Component {
   }
 
   render() {
-    const { editorState } = this.state;
+    const { editorState, styles } = this.state;
 
     return (
       <div className='TextEditor'>
         <h1>Script</h1>
         <div className='content'>
-          <div className="ContextualToolbar">
+          <div className="ContextualToolbar" style={styles}>
             <InlineStyleControls condensed
               editorState={editorState}
               onToggle={this.toggleInlineStyle}

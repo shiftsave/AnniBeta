@@ -44,7 +44,7 @@
 
 
   // Styles for the  within the Toolbars
-  
+
   .InlineStyleControls
     display: inline-flex
 
@@ -64,8 +64,11 @@
   .ContextualToolbar
     background: $paper
     display: inline-block
-    position: relative
+    position: absolute
+    // transform: translate(-(pxToRem(78)), -(pxToRem(288)))
     boxShadow()
+    z-index: 2
+    transition: opacity 200ms $expo
 
     &:after
       arrowDown()
