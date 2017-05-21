@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Editor from 'draft-js-plugins-editor';
-import { EditorState, RichUtils } from 'draft-js'
+import { EditorState, RichUtils, getVisibleSelectionRect } from 'draft-js'
 import createCounterPlugin from 'draft-js-counter-plugin';
 
 const counterPlugin = createCounterPlugin();
@@ -82,7 +82,11 @@ export default class TextEditor extends Component {
     this.state = {editorState: EditorState.createEmpty()};
 
     this.focus = () => this.refs.editor.focus();
-    this.onChange = (editorState) => this.setState({editorState});
+
+    this.onChange = (editorState) => {
+      this.setState({editorState, styles: getVisibleSelectionRect(window) });
+      console.log(getVisibleSelectionRect(window));
+    }
 
     this.toggleBlockType = (blockType) => {
       this.onChange(
@@ -120,12 +124,6 @@ export default class TextEditor extends Component {
 
   render() {
     const { editorState } = this.state;
-
-    // If the user changes block type before entering any text, we can
-    // either style the placeholder or hide it. Let's just hide it now.
-    let contentState = editorState.getCurrentContent();
-
-    console.log(contentState);
 
     return (
       <div className='TextEditor'>
