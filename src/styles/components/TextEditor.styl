@@ -2,6 +2,7 @@
   background: $pebble
   min-height: 100vh
   padding: $xxl 0
+  position: relative
 
   .content
     span
@@ -33,6 +34,7 @@
       font-size: pxToRem(18)
       margin: 0 auto
       line-height: 1.6
+      position: relative
 
       +above($break-md)
         width: pxToRem(720)
@@ -63,10 +65,9 @@
     background: $paper
     display: inline-block
     position: absolute
-    // transform: translate(-(pxToRem(78)), -(pxToRem(288)))
     boxShadow()
     z-index: 2
-    transition: opacity 200ms $expo
+    transition: opacity 300ms $expo
 
     &:after
       arrowDown()

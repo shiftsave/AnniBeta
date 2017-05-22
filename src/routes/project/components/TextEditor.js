@@ -86,32 +86,6 @@ export default class TextEditor extends Component {
 
     this.onChange = (editorState) => {
       this.setState({ editorState });
-
-      let selectedText = getVisibleSelectionRect(window);
-
-      if (selectedText !== null && this.editorParent !== null) {
-        if (selectedText.width > 2) {
-          // Thought this would substract the parent bounding box and position correctly...
-
-          this.setState({
-            styles: {
-              top: (selectedText.top - this.editorParent.getBoundingClientRect().top),
-              left: (selectedText.left) + (selectedText.width / 2),
-              opacity: 1
-            }
-          });
-        } else {
-          this.setState({
-            styles: {
-              top: -999,
-              left: -999,
-              opacity: 0
-            }
-          })
-        }
-        console.log(selectedText);
-        console.log(this.editorParent.getBoundingClientRect())
-      }
     }
 
     this.toggleBlockType = (blockType) => {
@@ -141,6 +115,24 @@ export default class TextEditor extends Component {
       }
       return false;
     }
+
+    this.displayContextualMenu = () => {
+      const toolbarDimensions = { width: 156, height: 60 }
+      const selectedText = getVisibleSelectionRect(window);
+      const toolbarParent = this.toolbarParent.getBoundingClientRect()
+
+      if (selectedText.width > 2) {
+        this.setState({
+          styles: {
+            top: selectedText.top - toolbarParent.top - toolbarDimensions.height,
+            left: selectedText.left -toolbarParent.left - toolbarDimensions.width/2 + selectedText.width/2,
+            opacity: 1
+          }
+        });
+      } else {
+        this.setState({ styles: { top: -999, opacity: 0 }})
+      }
+    }
   }
 
   averageReadingTime(str) {
@@ -152,7 +144,7 @@ export default class TextEditor extends Component {
     const { editorState, styles } = this.state;
 
     return (
-      <div className='TextEditor' ref={editorParent => this.editorParent = editorParent}>
+      <div className='TextEditor' ref={toolbarParent => this.toolbarParent = toolbarParent}>
         <div
         className="ContextualToolbar"
         style={styles}>
@@ -163,7 +155,7 @@ export default class TextEditor extends Component {
         </div>
         <h1>Script</h1>
         <div className='content'>
-          <div className='Editor' onClick={this.focus}>
+          <div className='Editor' onClick={this.focus} onMouseUp={this.displayContextualMenu}>
             <Editor
               editorState={editorState}
               handleKeyCommand={this.handleKeyCommand}
