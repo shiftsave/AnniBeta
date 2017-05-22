@@ -78,7 +78,7 @@ export default class TextEditor extends Component {
     super(props);
     this.state = {
       editorState: EditorState.createEmpty(),
-      styles: { opacity: 1 }
+      styles: { top: -999, opacity: 0 }
     };
 
     this.focus = () => this.refs.editor.focus();
