@@ -7,10 +7,10 @@ const counterPlugin = createCounterPlugin();
 const { CharCounter, WordCounter, LineCounter, CustomCounter } = counterPlugin;
 const plugins = [counterPlugin];
 
+
 class StyleButton extends Component {
   constructor() {
     super();
-
     this.onToggle = (e) => {
       e.preventDefault();
       this.props.onToggle(this.props.style);
@@ -22,7 +22,6 @@ class StyleButton extends Component {
     if (this.props.active) {
       className += ' active';
     }
-
     return (
       <span className={className} onMouseDown={this.onToggle}>
         {this.props.label}
@@ -75,54 +74,44 @@ const InlineStyleControls = (props) => {
   );
 };
 
-
 export default class TextEditor extends Component {
   constructor(props) {
     super(props);
     this.state = {
       editorState: EditorState.createEmpty(),
-      styles: { opacity: 0 }
+      styles: { opacity: 1 }
     };
 
     this.focus = () => this.refs.editor.focus();
 
     this.onChange = (editorState) => {
-
       this.setState({ editorState });
 
-      const getSelectedBlockElement = () => {
-        var selection = window.getSelection()
-        if (selection.rangeCount === 0) return null
-        var node = selection.getRangeAt(0).startContainer
-        do {
-          if (node.getAttribute && node.getAttribute('data-block') === 'true')
-            return node
-          node = node.parentNode
-        } while (node != null)
-        return null
-      };
-      let selectedText = getVisibleSelectionRect();
+      let selectedText = getVisibleSelectionRect(window);
 
-      if (selectedText !== null) {
+      if (selectedText !== null && this.editorParent !== null) {
         if (selectedText.width > 2) {
+          // Thought this would substract the parent bounding box and position correctly...
+
           this.setState({
             styles: {
-              top: selectedText.top,
-              left: selectedText.left + selectedText.width*.5,
+              top: (selectedText.top - this.editorParent.getBoundingClientRect().top),
+              left: (selectedText.left) + (selectedText.width / 2),
               opacity: 1
             }
           });
         } else {
           this.setState({
             styles: {
-              top: selectedText.top,
-              left: selectedText.left + selectedText.width*.5,
+              top: -999,
+              left: -999,
               opacity: 0
             }
           })
         }
+        console.log(selectedText);
+        console.log(this.editorParent.getBoundingClientRect())
       }
-      console.log(selectedText);
     }
 
     this.toggleBlockType = (blockType) => {
@@ -163,15 +152,17 @@ export default class TextEditor extends Component {
     const { editorState, styles } = this.state;
 
     return (
-      <div className='TextEditor'>
+      <div className='TextEditor' ref={editorParent => this.editorParent = editorParent}>
+        <div
+        className="ContextualToolbar"
+        style={styles}>
+          <InlineStyleControls condensed
+            editorState={editorState}
+            onToggle={this.toggleInlineStyle}
+          />
+        </div>
         <h1>Script</h1>
         <div className='content'>
-          <div className="ContextualToolbar" style={styles}>
-            <InlineStyleControls condensed
-              editorState={editorState}
-              onToggle={this.toggleInlineStyle}
-            />
-          </div>
           <div className='Editor' onClick={this.focus}>
             <Editor
               editorState={editorState}
