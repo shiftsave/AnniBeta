@@ -120,7 +120,7 @@ export default class TextEditor extends Component {
       const toolbar = this.refs.toolbar.getBoundingClientRect()
       const toolbarParent = this.refs.toolbarParent.getBoundingClientRect()
 
-      if (selectedText.width > 2) {
+      if (selectedText !== null && selectedText.width > 2) {
         this.setState({
           styles: {
             top: selectedText.top - toolbarParent.top - toolbar['height']*1.25,
