@@ -68,8 +68,7 @@ const InlineStyleControls = (props) => {
         onToggle={props.onToggle}
         style={type.style}
       />
-    )
-    }
+    )}
     </div>
   );
 };
@@ -117,15 +116,15 @@ export default class TextEditor extends Component {
     }
 
     this.displayContextualMenu = () => {
-      const toolbarDimensions = { width: 156, height: 60 }
       const selectedText = getVisibleSelectionRect(window);
-      const toolbarParent = this.toolbarParent.getBoundingClientRect()
+      const toolbar = this.refs.toolbar.getBoundingClientRect()
+      const toolbarParent = this.refs.toolbarParent.getBoundingClientRect()
 
       if (selectedText.width > 2) {
         this.setState({
           styles: {
-            top: selectedText.top - toolbarParent.top - toolbarDimensions.height,
-            left: selectedText.left -toolbarParent.left - toolbarDimensions.width/2 + selectedText.width/2,
+            top: selectedText.top - toolbarParent.top - toolbar['height']*1.25,
+            left: selectedText.left -toolbarParent.left - toolbar['width']/2 + selectedText.width/2,
             opacity: 1
           }
         });
@@ -144,10 +143,8 @@ export default class TextEditor extends Component {
     const { editorState, styles } = this.state;
 
     return (
-      <div className='TextEditor' ref={toolbarParent => this.toolbarParent = toolbarParent}>
-        <div
-        className="ContextualToolbar"
-        style={styles}>
+      <div className='TextEditor' ref='toolbarParent'>
+        <div className="ContextualToolbar" style={styles} ref='toolbar'>
           <InlineStyleControls condensed
             editorState={editorState}
             onToggle={this.toggleInlineStyle}
