@@ -151,8 +151,8 @@ export default class TextEditor extends Component {
           />
         </div>
         <h1>Script</h1>
-        <div className='content'>
-          <div className='Editor' onClick={this.focus} onMouseUp={this.displayContextualMenu}>
+        <div className='content' onMouseUp={this.displayContextualMenu}>
+          <div className='Editor' onClick={this.focus}>
             <Editor
               editorState={editorState}
               handleKeyCommand={this.handleKeyCommand}

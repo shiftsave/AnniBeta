@@ -57,7 +57,7 @@
       transition: 300ms $expo
 
     .active
-      background: $concrete
+      background: rgba($charcoal, .05)
       color: $charcoal
       font-family: $headlineFont
 
@@ -68,6 +68,10 @@
     boxShadow()
     z-index: 2
     transition: opacity 300ms $expo
+
+    .active
+      background: $paper
+      color: $copper
 
     &:after
       arrowDown()
@@ -80,7 +84,7 @@
     bottom: 0
     display: inline-flex
     font-size: 12px
-    justify-content: center
+    justify-content: space-between
     padding: 0
     position: absolute
     width: 100%
@@ -91,7 +95,7 @@
       display: flex
 
       > :nth-child(n)
-         border-left: pxToRem(1) solid $concrete
+         border-right: pxToRem(1) solid $concrete
          padding: $md
 
     .stats
