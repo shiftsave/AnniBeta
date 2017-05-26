@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import constants from 'constants';
@@ -118,15 +119,26 @@ class ProjectDetail extends Component {
 }
 
 class Project extends Component {
+=======
+import React, { PureComponent } from "react";
+import { withRouter } from "react-router";
+import constants from "constants";
+import ProjectManager from "containers/ProjectManager";
+import ProjectDetails from "./components/Details";
+import ProjectForm from "./components/CreateForm";
+import AuthManager from "containers/AuthManager";
+
+class Project extends PureComponent {
+>>>>>>> master
   render() {
     const { action } = this.props.params;
-    switch(action) {
+    switch (action) {
       case constants.project.newProject:
-        return <ProjectForm {...this.props} />
+        return <ProjectForm {...this.props} />;
       default:
-        return <ProjectDetail {...this.props} />;
+        return <ProjectDetails {...this.props} />;
     }
   }
 }
 
-export default ProjectManager(withRouter(Project));
+export default ProjectManager(withRouter(AuthManager(Project)));
