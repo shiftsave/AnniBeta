@@ -32,7 +32,12 @@ export default class ProjectDetail extends Component {
             this.props.dispatch(updateProject(update));
           }}
         />
-        <TextEditor />
+        <TextEditor
+          content={project.editorContent}
+          save={update => {
+          update.id = project.id;
+          this.props.dispatch(updateProject(update));
+        }} />
         <Moodboard projectPath={id} project={project} />
         <div>
           <Button

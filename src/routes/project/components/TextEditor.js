@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Editor from 'draft-js-plugins-editor';
-import { EditorState, RichUtils, getVisibleSelectionRect } from 'draft-js'
+import { EditorState, ContentState, RichUtils, getVisibleSelectionRect, convertToRaw, convertFromRaw } from 'draft-js'
 import createCounterPlugin from 'draft-js-counter-plugin';
 
 const counterPlugin = createCounterPlugin();
@@ -73,18 +73,30 @@ const InlineStyleControls = (props) => {
   );
 };
 
+
 export default class TextEditor extends Component {
   constructor(props) {
     super(props);
+
+    const contentState = convertFromRaw(this.props.content);
+
     this.state = {
-      editorState: EditorState.createEmpty(),
+      editorState: EditorState.createWithContent(contentState),
       styles: { top: -999, opacity: 0 }
     };
+
+    console.log(contentState)
+    console.log(this.state.editorState)
 
     this.focus = () => this.refs.editor.focus();
 
     this.onChange = (editorState) => {
       this.setState({ editorState });
+      const contentState = editorState.getCurrentContent();
+      const editorContentRaw = convertToRaw(contentState);
+
+      // save content to database
+      this.props.save({ editorContent: editorContentRaw });
     }
 
     this.toggleBlockType = (blockType) => {
@@ -105,8 +117,7 @@ export default class TextEditor extends Component {
       );
     }
 
-    this.handleKeyCommand = (command) => {
-      const {editorState} = this.state;
+    this.handleKeyCommand = (command, editorState) => {
       const newState = RichUtils.handleKeyCommand(editorState, command);
       if (newState) {
         this.onChange(newState);
@@ -132,6 +143,13 @@ export default class TextEditor extends Component {
         this.setState({ styles: { top: -999, opacity: 0 }})
       }
     }
+  }
+
+  save() {
+    const editorState = this.state;
+    this.props.save({
+      textArea: editorState
+    });
   }
 
   averageReadingTime(str) {
