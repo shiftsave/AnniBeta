@@ -78,12 +78,13 @@ export default class TextEditor extends Component {
   constructor(props) {
     super(props);
 
-    const contentState = convertFromRaw(this.props.content);
-
-    this.state = {
-      editorState: EditorState.createWithContent(contentState),
-      styles: { top: -999, opacity: 0 }
-    };
+    const { content } = this.props;
+    if(content === undefined) {
+      this.state = { editorState: EditorState.createEmpty() };
+    } else {
+      const editorContent = convertFromRaw(content);
+      this.state = { editorState: EditorState.createWithContent(editorContent) };
+    }
 
     this.focus = () => this.refs.editor.focus();
 
