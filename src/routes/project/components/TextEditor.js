@@ -85,9 +85,6 @@ export default class TextEditor extends Component {
       styles: { top: -999, opacity: 0 }
     };
 
-    console.log(contentState)
-    console.log(this.state.editorState)
-
     this.focus = () => this.refs.editor.focus();
 
     this.onChange = (editorState) => {
