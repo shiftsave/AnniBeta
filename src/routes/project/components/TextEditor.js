@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Editor from 'draft-js-plugins-editor';
-import { EditorState, ContentState, RichUtils, getVisibleSelectionRect, convertToRaw, convertFromRaw } from 'draft-js'
+import { EditorState, RichUtils, getVisibleSelectionRect, convertToRaw, convertFromRaw } from 'draft-js'
 import createCounterPlugin from 'draft-js-counter-plugin';
 
 const counterPlugin = createCounterPlugin();
@@ -85,69 +85,62 @@ export default class TextEditor extends Component {
       const editorContent = convertFromRaw(content);
       this.state = { editorState: EditorState.createWithContent(editorContent) };
     }
-
-    this.focus = () => this.refs.editor.focus();
-
-    this.onChange = (editorState) => {
-      this.setState({ editorState });
-      const contentState = editorState.getCurrentContent();
-      const editorContentRaw = convertToRaw(contentState);
-
-      // save content to database
-      this.props.save({ editorContent: editorContentRaw });
-    }
-
-    this.toggleBlockType = (blockType) => {
-      this.onChange(
-        RichUtils.toggleBlockType(
-          this.state.editorState,
-          blockType
-        )
-      );
-    }
-
-    this.toggleInlineStyle = (inlineStyle) => {
-      this.onChange(
-        RichUtils.toggleInlineStyle(
-          this.state.editorState,
-          inlineStyle
-        )
-      );
-    }
-
-    this.handleKeyCommand = (command, editorState) => {
-      const newState = RichUtils.handleKeyCommand(editorState, command);
-      if (newState) {
-        this.onChange(newState);
-        return true;
-      }
-      return false;
-    }
-
-    this.displayContextualMenu = () => {
-      const selectedText = getVisibleSelectionRect(window);
-      const toolbar = this.refs.toolbar.getBoundingClientRect()
-      const toolbarParent = this.refs.toolbarParent.getBoundingClientRect()
-
-      if (selectedText !== null && selectedText.width > 2) {
-        this.setState({
-          styles: {
-            top: selectedText.top - toolbarParent.top - toolbar['height']*1.25,
-            left: selectedText.left -toolbarParent.left - toolbar['width']/2 + selectedText.width/2,
-            opacity: 1
-          }
-        });
-      } else {
-        this.setState({ styles: { top: -999, opacity: 0 }})
-      }
-    }
   }
 
-  save() {
-    const editorState = this.state;
-    this.props.save({
-      textArea: editorState
-    });
+  focus = () => this.refs.editor.focus();
+
+  onChange = (editorState) => {
+    this.setState({ editorState });
+
+    // export data to a raw format and save to database
+    const contentState = editorState.getCurrentContent();
+    const editorContentRaw = convertToRaw(contentState);
+    this.props.save({ editorContent: editorContentRaw });
+  }
+
+  toggleBlockType = (blockType) => {
+    this.onChange(
+      RichUtils.toggleBlockType(
+        this.state.editorState,
+        blockType
+      )
+    );
+  }
+
+  toggleInlineStyle = (inlineStyle) => {
+    this.onChange(
+      RichUtils.toggleInlineStyle(
+        this.state.editorState,
+        inlineStyle
+      )
+    );
+  }
+
+  handleKeyCommand = (command, editorState) => {
+    const newState = RichUtils.handleKeyCommand(editorState, command);
+    if (newState) {
+      this.onChange(newState);
+      return true;
+    }
+    return false;
+  }
+
+  displayContextualMenu = () => {
+    const selectedText = getVisibleSelectionRect(window);
+    const toolbar = this.refs.toolbar.getBoundingClientRect()
+    const toolbarParent = this.refs.toolbarParent.getBoundingClientRect()
+
+    if (selectedText !== null && selectedText.width > 2) {
+      this.setState({
+        styles: {
+          top: selectedText.top - toolbarParent.top - toolbar['height']*1.25,
+          left: selectedText.left -toolbarParent.left - toolbar['width']/2 + selectedText.width/2,
+          opacity: 1
+        }
+      });
+    } else {
+      this.setState({ styles: { top: -999, opacity: 0 }})
+    }
   }
 
   averageReadingTime(str) {
