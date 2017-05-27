@@ -4,7 +4,7 @@ import { EditorState, RichUtils, getVisibleSelectionRect, convertToRaw, convertF
 import createCounterPlugin from 'draft-js-counter-plugin';
 
 const counterPlugin = createCounterPlugin();
-const { CharCounter, WordCounter, LineCounter, CustomCounter } = counterPlugin;
+const { CharCounter, WordCounter, CustomCounter } = counterPlugin;
 const plugins = [counterPlugin];
 
 
@@ -139,8 +139,12 @@ export default class TextEditor extends Component {
         }
       });
     } else {
-      this.setState({ styles: { top: -999, opacity: 0 }})
+      this.hideContextualMenu();
     }
+  }
+
+  hideContextualMenu = () => {
+    this.setState({ styles: { top: -9999, opacity: 0 }})
   }
 
   averageReadingTime(str) {
@@ -180,7 +184,6 @@ export default class TextEditor extends Component {
             <div className="stats">
               <div><CharCounter /> characters</div>
               <div><WordCounter /> words</div>
-              <div><LineCounter /> lines</div>
               <div>Reading time{" "}<CustomCounter countFunction={this.averageReadingTime} /></div>
             </div>
           </div>

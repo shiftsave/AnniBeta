@@ -17,5 +17,4 @@ class Login extends Component {
     );
   }
 }
-
 export default connect((state) => state)(withRouter(Login));
