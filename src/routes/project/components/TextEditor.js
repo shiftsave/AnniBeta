@@ -128,7 +128,7 @@ export default class TextEditor extends Component {
   }
 
   hideContextualMenu = () => {
-    this.setState({ styles: { top: -9999, opacity: 0 }})
+    this.setState({ styles: { left: -9999, opacity: 0 }})
   }
 
   averageReadingTime(str) {
