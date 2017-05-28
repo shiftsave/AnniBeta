@@ -117,9 +117,10 @@ export default class TextEditor extends Component {
     if (selectedText !== null && selectedText.width > 2) {
       this.setState({
         styles: {
-          top: selectedText.top - toolbarParent.top - toolbar['height']*1.25,
+          opacity: 1,
           left: selectedText.left -toolbarParent.left - toolbar['width']/2 + selectedText.width/2,
-          opacity: 1
+          top: selectedText.top - toolbarParent.top - toolbar['height']*1.25,
+          visibility: 'visible'
         }
       });
     } else {
@@ -128,7 +129,7 @@ export default class TextEditor extends Component {
   }
 
   hideContextualMenu = () => {
-    this.setState({ styles: { left: -9999, opacity: 0 }})
+    this.setState({ styles: { opacity: 0 , visibility: 'hidden'}})
   }
 
   averageReadingTime(str) {

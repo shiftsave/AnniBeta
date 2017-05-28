@@ -36,7 +36,7 @@
       font-family: $headlineFont
       line-height: 1
       padding: $md 0
-      transition: 300ms $expo
+      transition: background 300ms $expo
 
     .active
       background: rgba($charcoal, .05)
@@ -44,13 +44,14 @@
       font-family: $headlineFont
 
   .ContextualToolbar
+    boxShadow()
     background: $paper
     display: none
     position: absolute
-    boxShadow()
-    z-index: 2
+    opacity: 0
     transition: opacity 300ms $expo
-    left: pxToRem(9999);
+    visibility: hidden
+    z-index: 2
 
     +above($break-md)
       display: inline-block;
