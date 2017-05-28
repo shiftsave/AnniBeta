@@ -27,10 +27,8 @@ export default class ProjectDetail extends Component {
           name={project.name}
           client={project.client && project.client.text}
           date={project.date && project.date.text}
-          save={update => {
-            update.id = project.id;
-            this.props.dispatch(updateProject(update));
-          }}
+          save={update => this.props.dispatch(updateProject({...update, id: project.id}))}
+
         />
         <TextEditor
           content={project.editorContent}

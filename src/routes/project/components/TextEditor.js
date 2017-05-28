@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
+
 import Editor from 'draft-js-plugins-editor';
 import { EditorState, RichUtils, getVisibleSelectionRect, convertToRaw, convertFromRaw } from 'draft-js'
 import createCounterPlugin from 'draft-js-counter-plugin';
@@ -9,66 +11,48 @@ const plugins = [counterPlugin];
 
 
 class StyleButton extends Component {
-  constructor() {
-    super();
-    this.onToggle = (e) => {
-      e.preventDefault();
-      this.props.onToggle(this.props.style);
-    };
-  }
+
+  onToggle = (e) => {
+    e.preventDefault();
+    this.props.onToggle(this.props.style);
+  };
 
   render() {
-    let className = 'toolbarItem';
-    if (this.props.active) {
-      className += ' active';
-    }
+    const toolbarItem = classNames({
+      'toolbarItem': true,
+      'active': this.props.active
+    });
+
     return (
-      <span className={className} onMouseDown={this.onToggle}>
+      <div className={toolbarItem} onClick={this.onToggle}>
         {this.props.label}
-      </span>
+      </div>
     );
   }
 }
 
 const styleTypes = [
-  {label: 'Bold', style: 'BOLD'},
-  {label: 'Italic', style: 'ITALIC'},
-  {label: 'Underline', style: 'UNDERLINE'},
-  {label: 'Strikethrough', style: 'STRIKETHROUGH'}
-];
-
-const condensedStyleTypes = [
-  {label: 'B', style: 'BOLD'},
-  {label: 'I', style: 'ITALIC'},
-  {label: 'U', style: 'UNDERLINE'},
-  {label: 'S', style: 'STRIKETHROUGH'}
+  {initial: 'B', label: 'Bold', style: 'BOLD'},
+  {initial: 'I', label: 'Italic', style: 'ITALIC'},
+  {initial: 'U', label: 'Underline', style: 'UNDERLINE'},
+  {initial: 'S', label: 'Strikethrough', style: 'STRIKETHROUGH'}
 ];
 
 const InlineStyleControls = (props) => {
   const currentStyle = props.editorState.getCurrentInlineStyle();
+  const { condensed } = props;
 
   return (
     <div className="InlineStyleControls">
-      {!props.condensed ?
-        styleTypes.map(type =>
+      {styleTypes.map(type =>
         <StyleButton
           key={type.label}
           active={currentStyle.has(type.style)}
-          label={type.label}
+          label={condensed ? type.initial : type.label}
           onToggle={props.onToggle}
           style={type.style}
         />
-      )
-      :
-      condensedStyleTypes.map(type =>
-      <StyleButton
-        key={type.label}
-        active={currentStyle.has(type.style)}
-        label={type.label}
-        onToggle={props.onToggle}
-        style={type.style}
-      />
-    )}
+      )}
     </div>
   );
 };
@@ -158,7 +142,8 @@ export default class TextEditor extends Component {
     return (
       <div className='TextEditor' ref='toolbarParent'>
         <div className="ContextualToolbar" style={styles} ref='toolbar'>
-          <InlineStyleControls condensed
+          <InlineStyleControls
+            condensed
             editorState={editorState}
             onToggle={this.toggleInlineStyle}
           />
