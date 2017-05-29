@@ -9,12 +9,17 @@ export class TextArea extends Component {
     super();
     this.state = {
       html: props.html,
-      originalHTML: props.html
+      originalHTML: props.html,
+      isFocused: false
     }
   }
 
   handleChange = (e) => {
     this.setState({ html: e.target.value });
+  }
+
+  focus = () => {
+    this.setState({ isFocused: true });
   }
 
   save = () => {
@@ -23,17 +28,16 @@ export class TextArea extends Component {
       text: stripTags(html),
       html
     });
-    this.setState({ originalHTML: html });
+    this.setState({ originalHTML: html, isFocused: false });
   }
 
-  cancel = (e) => {
-    this.setState({ html: this.props.html });
-    console.log(this.props.html)
+  cancel = () => {
+    this.setState({ html: this.props.html, isFocused: false });
   }
 
   render() {
     let editing = stripTags(this.state.originalHTML) !== stripTags(this.state.html);
-
+    console.log(this.state.isFocused)
 
     const saveButton =
     editing
@@ -50,8 +54,9 @@ export class TextArea extends Component {
 
 
     const styles = classNames({
-      [className]: className,
       'TextArea': true,
+      active: editing || this.state.isFocused,
+      [className]: className,
       center,
       heading,
       subheading
@@ -62,7 +67,9 @@ export class TextArea extends Component {
         <ContentEditable
           disabled={false}       // use true to disable editing
           html={this.state.html}
+          onBlur={this.cancel}
           onChange={this.handleChange}
+          onFocus={this.focus}
         />
         {saveButton}
       </div>

@@ -1,15 +1,17 @@
 .TextArea
-    border: pxToRem(2) solid $concrete
+    border: pxToRem(2) solid transparent
     padding: $md
+    transition: 400ms $expo
 
-  &:hover,
-  &:active
-    border-color: $copper
+  &:hover
+    border-color: $concrete
 
   &:focus
     outline: none
 
   // Custom styles mapped to props
+  &.active
+    border-color: $copper
 
   &.subheading
     @extend h2
