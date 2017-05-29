@@ -6,6 +6,7 @@ const items = [
   <Icon name='logo' />,
   <Icon name='notification' />,
   <Icon name='more' />,
+  <Icon name='confirm' />,
   <Icon name='cancel' />
 ]
 const Icons = () => (

@@ -41,7 +41,15 @@ export const Icon = (props) => {
       break;
 
     case "cancel":
-      polylinePoints = [ "32.964 19 20.967 30 15 23.5" ];
+      pathArray = [
+        "M9 9L39.7461162 39.7461162M39.7461162 9L9 39.7461162"
+      ]
+      break;
+
+    case "confirm":
+      polylinePoints = [
+        "44 12 17.286 36 4 21.818"
+      ];
       break;
 
     default:

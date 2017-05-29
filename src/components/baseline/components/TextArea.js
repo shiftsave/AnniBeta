@@ -28,7 +28,7 @@ export class TextArea extends Component {
 
   render() {
     const editing = stripTags(this.state.originalHTML) !== stripTags(this.state.html);
-    const saveButton = editing ? <Button onClick={this.save.bind(this)}>Save</Button> : null;
+    const saveButton = editing ? <Button onClick={this.save.bind(this)} icon="confirm" /> : null;
     console.log(editing)
 
     const {
