@@ -13,7 +13,7 @@ export class TextArea extends Component {
     }
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({ html: e.target.value });
   }
 
@@ -26,14 +26,20 @@ export class TextArea extends Component {
     this.setState({ originalHTML: html });
   }
 
+  cancel = (e) => {
+    this.setState({ html: this.props.html });
+    console.log(this.props.html)
+  }
+
   render() {
     let editing = stripTags(this.state.originalHTML) !== stripTags(this.state.html);
-    console.log(editing)
+
+
     const saveButton =
     editing
     && <ButtonGroup>
         <Button onClick={this.save} icon="confirm" />
-        <Button onClick={editing = !editing} icon="cancel" />
+        <Button onClick={this.cancel} icon="cancel" />
       </ButtonGroup>
     const {
       heading,
@@ -56,7 +62,7 @@ export class TextArea extends Component {
         <ContentEditable
           disabled={false}       // use true to disable editing
           html={this.state.html}
-          onChange={this.handleChange.bind(this)}
+          onChange={this.handleChange}
         />
         {saveButton}
       </div>
