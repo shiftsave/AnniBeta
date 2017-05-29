@@ -1,0 +1,71 @@
+/*
+ * --------------------------------------------------------
+ *  Mixins
+ * --------------------------------------------------------
+ */
+
+
+// Media Queries
+above($width)
+  @media screen and (min-width: pxToEm($width))
+    {block}
+
+below($width)
+
+  @media screen and (max-width: pxToEm($width))
+    {block}
+
+
+/*
+ * Transform pixel values to REM/EM
+ */
+
+pxTo($px, $unit)
+  ($px / 16)rem
+
+// Exports REM values
+pxToRem($px)
+  pxTo($px, rem)
+
+// Exports EM values
+pxToEm($px)
+  pxTo($px, em)
+
+
+/*
+ * Align center | center
+ */
+
+center($column=null)
+  align-items: center
+  display: flex
+  flex-direction: column
+  justify-content: center
+
+  if $column == 'column'
+    flex-direction: column
+
+
+/*
+ * Text Overflow
+ */
+
+textOverflow()
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+
+
+boxShadow()
+  box-shadow: pxToRem(2) pxToRem(6) pxToRem(18) rgba($charcoal, .1)
+
+arrowDown($size = 10px, $color = $paper)
+  content: ''
+  width: 0
+  height: 0
+  border-left: $size solid transparent
+  border-right: $size solid transparent
+  border-top: $size solid $color
+  position: absolute
+  bottom: -($size)
+  left: "calc(50% - %s)" % $size

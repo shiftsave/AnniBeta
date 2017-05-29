@@ -1,43 +1,19 @@
-import React, { Component } from 'react';
-import { getFilesInFolder } from 'adapters';
-import constants from 'constants';
-import { updateProject } from 'actions';
-import { makeCancelable } from 'utils';
-import FileUploader from 'components/FileUploader';
-import Loader from 'components/Loader';
-import ImageList from './ImageList';
-import FileManager from 'containers/FileManager';
-import SortableList from 'components/SortableList';
-import ImageItem from 'components/Image';
+import React, { Component } from "react";
+import constants from "constants";
+import { updateProject } from "actions";
+import FileUploader from "components/FileUploader";
+import ImageList from "./ImageList";
+import FileManager from "containers/FileManager";
+import { Loader } from "components/baseline";
 
 const { MOODBOARD } = constants.content;
 
 class MoodboardViewer extends Component {
   constructor(props) {
-   super(props);
+    super(props);
     this.state = {
       loading: true
-    }
-  }
-
-  componentDidMount() {
-    const project = this.props.project;
-    if (project) {
-      this.getFiles = makeCancelable(new Promise(r => {
-        getFilesInFolder(`/${this.props.projectPath}`)
-        .then(moodboardItems => {
-          this.getFiles.resolved = true;
-          this.props.dispatch(updateProject({ id: project.id, images: moodboardItems }));
-        });
-      }));
-      this.getFiles
-      .promise
-      .then(() => this.setState({ loading: false }));
-    }
-  }
-
-  componentWillUnmount() {
-    this.getFiles.cancel();
+    };
   }
 
   render() {
@@ -49,20 +25,23 @@ class MoodboardViewer extends Component {
     const path = this.props.projectPath;
     const collectionId = MOODBOARD;
     const images = this.props.getCollectionFiles({ path, collectionId });
-    let list = images && images.length ? <ImageList content={images} />: null;
-    if (this.props.auth.isAuthenticated && images.length) {
-      list = <SortableList containerClass="ImageList" itemClass="ImageListItem" items={images}><ImageItem /></SortableList>;
-    }
+    const list = images && images.length
+      ? <ImageList content={images} />
+      : null;
     return (
-      <div>
-        <h1>Moodboard</h1>
-        <FileUploader
-          path={this.props.projectPath}
-          collection="moodboard"
-          onUpload={(images) => this.props.dispatch(updateProject({ id, images }))}>
-          {list}
-          <Loader show={!project} />
-        </FileUploader>
+      <div className="Moodboard">
+        <div className="content">
+          <h1>Moodboard</h1>
+          <FileUploader
+            path={this.props.projectPath}
+            collection="moodboard"
+            onUpload={images =>
+              this.props.dispatch(updateProject({ id, images }))}
+          >
+            {list}
+            {!project && <Loader />}
+          </FileUploader>
+        </div>
       </div>
     );
   }

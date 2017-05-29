@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-class Landing extends Component {
+class Login extends Component {
   componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
+    if (this.props.auth.toJS().isAuthenticated) {
       this.props.router.push("/dashboard");
     }
   }
   render() {
     return (
-      <div>
-        Hey, login to dropbox above.
+      <div className='Login'>
+        <h1>Start your first project</h1>
+        <p>Sign up using Dropbox and start using Anni to track your project's progress!</p>
       </div>
     );
   }
 }
-
-export default connect((state) => state)(withRouter(Landing));
+export default connect((state) => state)(withRouter(Login));

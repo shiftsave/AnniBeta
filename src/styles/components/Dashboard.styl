@@ -1,39 +1,22 @@
-.dashboard
-  align-items center
-  display flex
-  height 90%
-  min-height 500px
-  justify-content center
+.Dashboard
+  padding $xxl 0 0
+  position: relative
+  center(column)
+  min-height: 100vh
 
-.projectList
-  @extend h1
-  display flex
-  flex-direction column
-  flex-grow 0
-  list-style none
-  position relative
+  .content
+    center()
+    margin: $xxl 0
 
-  li > a
-    display inline-block
-    padding $smPadding 0
-    position relative
+    .projectList
+      @extend h1
+      display flex
+      flex-direction column
+      flex-grow 0
+      list-style none
+      position relative
 
-    &:link, &:visited
-      text-decoration none
-
-    &:after
-      background $copper
-      bottom 5px
-      content ''
-      height 4px
-      left 0
-      position absolute
-      transition all 1200ms $expo
-      width 0
-
-    &:hover
-      &:after
-        width 100%
-
-  button.circle
-    margin-top $smPadding
+      .Button.link
+        font-size: pxToRem(32)
+        padding-bottom: $sm
+        margin-bottom: $sm
