@@ -29,14 +29,18 @@ export class TextArea extends Component {
   render() {
     const editing = stripTags(this.state.originalHTML) !== stripTags(this.state.html);
     const saveButton = editing ? <Button onClick={this.save.bind(this)}>Save</Button> : null;
+    console.log(editing)
 
     const {
       heading,
       subheading,
-      center
+      center,
+      className
     } = this.props;
 
+
     const styles = classNames({
+      [className]: className,
       'TextArea': true,
       center,
       heading,

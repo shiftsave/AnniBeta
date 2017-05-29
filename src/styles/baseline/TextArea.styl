@@ -1,0 +1,19 @@
+.TextArea
+    border: pxToRem(2) solid $concrete
+    padding: $md
+
+  &:hover,
+  &:active
+    border-color: $copper
+
+  &:focus
+    outline: none
+
+  // Custom styles mapped to props
+
+  &.subheading
+    @extend h2
+    padding-top: pxToRem(20)
+
+  &.center
+    text-align: center

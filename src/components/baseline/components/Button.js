@@ -23,6 +23,7 @@ export const Button = props => {
 
   const styles = classNames({
     Button: true,
+    [className]: className,
     primary,
     link,
     large,
@@ -72,5 +73,5 @@ Button.defaultProps = {
   link: false,
   nav: false,
   full: false,
-  className: ""
+  classNames: null,
 }

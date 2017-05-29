@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export const Icon = (props) => {
   const {name, size} = props;
   let pathArray;
+  let polylinePoints;
 
   // Extract svg paths per icon into an array and provide a unique name
   switch (name) {
@@ -39,11 +40,8 @@ export const Icon = (props) => {
       ];
       break;
 
-    case "cross":
-      pathArray = [
-        "M2.987 10.058 37.942 45.013 45.013 37.942 10.058 2.987z",
-        "M10.058 45.013 45.013 10.058 37.942 2.987 2.987 37.942z"
-      ];
+    case "cancel":
+      polylinePoints = [ "32.964 19 20.967 30 15 23.5" ];
       break;
 
     default:
@@ -51,10 +49,12 @@ export const Icon = (props) => {
   }
 
   // Map the paths of the selected svg into a readable SVG path element
-  const paths = pathArray.map((path) => {
-    return(
-      <path d={path} key={path.length} />
-    )
+  const paths = pathArray && pathArray.map((path) => {
+    return <path d={path} key={path.length} />
+  });
+
+  const polyline = polylinePoints && polylinePoints.map((path) => {
+    return <polyline points={path} key={path.length} />
   });
 
   // Turn names into readable titles
@@ -65,6 +65,7 @@ export const Icon = (props) => {
     <svg viewBox='0 0 48 48' id={name} className="Icon" width={size} height={size} {...props}>
       <title>{iconTitle}</title>
       {paths}
+      {polyline}
     </svg>
   );
 };
