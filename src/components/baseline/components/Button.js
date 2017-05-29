@@ -26,6 +26,7 @@ export const Button = props => {
 
   const styles = classNames({
     Button: true,
+    [classNames]: className,
     danger,
     link,
     large,
@@ -42,7 +43,7 @@ export const Button = props => {
   if (to) {
     return (
       <Link
-        className={`${styles} ${className}`}
+        className={styles}
         to={to}
         onClick={onClick}>
         {icon && <Icon name={icon} size={12} />}{children}
@@ -52,7 +53,7 @@ export const Button = props => {
     return (
       <a
         href={href}
-        className={`${styles} ${className}`}
+        className={styles}
         onClick={onClick}>
         {icon && <Icon name={icon} size={12} />}{children}
       </a>
@@ -62,10 +63,23 @@ export const Button = props => {
     return (
       <button
         href={href}
-        className={`${styles} ${className}`}
+        className={styles}
         onClick={onClick}>
         {icon && <Icon name={icon} size={12} />}{children}
       </button>
     )
   }
+}
+
+Button.defaultProps = {
+  children: null,
+  href: null,
+  icon: null,
+  to: null,
+  primary: false,
+  link: false,
+  large: false,
+  nav: false,
+  user: false,
+  full: false,
 }
