@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import ContentEditable from 'react-contenteditable';
 import { stripTags } from 'utils';
-import { Button } from 'components/baseline';
+import { Button, ButtonGroup } from 'components/baseline';
 
 export class TextArea extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export class TextArea extends Component {
     this.setState({ html: e.target.value });
   }
 
-  save() {
+  save = () => {
     const html = this.state.html;
     this.props.save({
       text: stripTags(html),
@@ -27,10 +27,14 @@ export class TextArea extends Component {
   }
 
   render() {
-    const editing = stripTags(this.state.originalHTML) !== stripTags(this.state.html);
-    const saveButton = editing ? <Button onClick={this.save.bind(this)} icon="confirm" /> : null;
+    let editing = stripTags(this.state.originalHTML) !== stripTags(this.state.html);
     console.log(editing)
-
+    const saveButton =
+    editing
+    && <ButtonGroup>
+        <Button onClick={this.save} icon="confirm" />
+        <Button onClick={editing = !editing} icon="cancel" />
+      </ButtonGroup>
     const {
       heading,
       subheading,
