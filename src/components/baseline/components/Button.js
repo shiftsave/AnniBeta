@@ -8,6 +8,9 @@ export const Button = props => {
 
   const {
     children,
+    className,
+    danger,
+    full,
     href,
     icon,
     to,
@@ -15,23 +18,26 @@ export const Button = props => {
     link,
     large,
     nav,
-    full,
     onClick,
-    user,
-    className
+    success,
+    user
+
   } = props;
 
   const styles = classNames({
     Button: true,
-    [className]: className,
-    primary,
+    danger,
     link,
     large,
-    navigation: nav,
     full,
+    navigation: nav,
+    noLabel: !children,
+    success,
     user,
-    noLabel: !children
+    primary
   });
+
+  console.log(props)
 
   if (to) {
     return (
@@ -62,16 +68,4 @@ export const Button = props => {
       </button>
     )
   }
-}
-
-Button.defaultProps = {
-  children: null,
-  href: null,
-  icon: null,
-  to: null,
-  primary: false,
-  link: false,
-  nav: false,
-  full: false,
-  classNames: null,
 }

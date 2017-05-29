@@ -1,19 +1,28 @@
 .TextArea
+  .content
     border: pxToRem(2) solid transparent
     padding: $md
     transition: 400ms $expo
 
-  &:hover
-    border-color: $concrete
+    &:hover
+      border-color: $pebble
 
-  &:focus
-    outline: none
+    &:focus
+      outline: none
+
+  .Button
+    border-color: $pebble
+
+    &:hover
+      border-color: $concrete
+
 
   // Custom styles mapped to props
-  &.active
-    border-color: $copper
 
-  &.subheading
+  &.active > .content
+    border-color: $concrete
+
+  &.subheading > .content
     @extend h2
     padding-top: pxToRem(20)
 

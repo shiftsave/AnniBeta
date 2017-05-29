@@ -39,12 +39,13 @@ export class TextArea extends Component {
     let editing = stripTags(this.state.originalHTML) !== stripTags(this.state.html);
     console.log(this.state.isFocused)
 
-    const saveButton =
-    editing
-    && <ButtonGroup>
-        <Button onClick={this.save} icon="confirm" />
-        <Button onClick={this.cancel} icon="cancel" />
-      </ButtonGroup>
+    const controls =
+      editing &&
+        <ButtonGroup>
+          <Button onClick={this.save} icon="confirm" success />
+          <Button onClick={this.cancel} icon="cancel" danger />
+        </ButtonGroup>
+
     const {
       heading,
       subheading,
@@ -65,13 +66,14 @@ export class TextArea extends Component {
     return(
       <div className={styles}>
         <ContentEditable
+          className="content"
           disabled={false}       // use true to disable editing
           html={this.state.html}
-          onBlur={this.cancel}
+          // onBlur={this.cancel}
           onChange={this.handleChange}
           onFocus={this.focus}
         />
-        {saveButton}
+        {controls}
       </div>
     );
   }
