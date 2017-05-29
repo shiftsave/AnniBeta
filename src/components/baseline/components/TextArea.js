@@ -37,7 +37,6 @@ export class TextArea extends Component {
 
   render() {
     let editing = stripTags(this.state.originalHTML) !== stripTags(this.state.html);
-    console.log(this.state.isFocused)
 
     const controls =
       editing &&
@@ -67,9 +66,8 @@ export class TextArea extends Component {
       <div className={styles}>
         <ContentEditable
           className="content"
-          disabled={false}       // use true to disable editing
+          disabled={false}
           html={this.state.html}
-          // onBlur={this.cancel}
           onChange={this.handleChange}
           onFocus={this.focus}
         />

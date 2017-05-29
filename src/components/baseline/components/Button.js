@@ -26,7 +26,7 @@ export const Button = props => {
 
   const styles = classNames({
     Button: true,
-    [classNames]: className,
+    [className]: className,
     danger,
     link,
     large,
@@ -37,8 +37,6 @@ export const Button = props => {
     user,
     primary
   });
-
-  console.log(props)
 
   if (to) {
     return (
@@ -58,8 +56,7 @@ export const Button = props => {
         {icon && <Icon name={icon} size={12} />}{children}
       </a>
     )
-  }
-  else {
+  } else {
     return (
       <button
         href={href}
