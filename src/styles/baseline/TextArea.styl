@@ -13,10 +13,15 @@
       outline: none
 
   .ButtonGroup
-    position: absolute;
-    right: -($xxl)
-    top: 50%
-    transform: translateY(-50%);
+    padding: $md 0
+    position: relative
+    text-align: center
+
+    +above($break-md)
+      position: absolute;
+      right: -($xxl)
+      top: 50%
+      transform: translateY(-50%);
 
   // Custom styles mapped to props
 
