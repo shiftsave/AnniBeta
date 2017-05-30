@@ -10,14 +10,13 @@ export const Button = props => {
     children,
     className,
     danger,
-    full,
+    noPadding,
     href,
     icon,
     to,
     primary,
     link,
     large,
-    nav,
     onClick,
     success,
     user
@@ -26,16 +25,15 @@ export const Button = props => {
 
   const styles = classNames({
     Button: true,
-    [className]: className,
     danger,
     link,
     large,
-    full,
-    navigation: nav,
-    noLabel: !children,
+    noPadding,
     success,
     user,
-    primary
+    primary,
+    noLabel: !children,
+    [className]: className,
   });
 
   if (to) {
@@ -75,8 +73,8 @@ Button.defaultProps = {
   to: null,
   primary: false,
   link: false,
+  noPadding: false,
   large: false,
-  nav: false,
   user: false,
   full: false,
 }
