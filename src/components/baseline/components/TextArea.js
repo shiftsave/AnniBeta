@@ -22,6 +22,10 @@ export class TextArea extends Component {
     this.setState({ isFocused: true });
   }
 
+  blur = () => {
+    this.setState({ isFocused: false });
+  }
+
   save = () => {
     const html = this.state.html;
     this.props.save({
@@ -70,6 +74,7 @@ export class TextArea extends Component {
           html={this.state.html}
           onChange={this.handleChange}
           onFocus={this.focus}
+          onBlur={this.blur}
         />
         {controls}
       </div>
