@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { uploadFile, getLink } from 'adapters';
-import { addFile, addFileToCollection } from 'actions';
+import { addFile, addFileToCollection, updateCollectionOrder } from 'actions';
 import AuthManager from './AuthManager';
 import { getCollectionKey } from 'utils';
 
@@ -43,10 +43,14 @@ export default function FileManager(Component) {
           return files.archive[id];
         }) : [];
     }
+    reorderCollection(collectionKey, collection) {
+      this.props.dispatch(updateCollectionOrder(collectionKey, collection));
+    }
     render() {
       return <Component {...this.props} {...{
         uploadFiles: this.uploadFiles.bind(this),
-        getCollectionFiles: this.getCollectionFiles.bind(this)
+        getCollectionFiles: this.getCollectionFiles.bind(this),
+        reorderCollection: this.reorderCollection.bind(this)
       }} />;
     }
   }

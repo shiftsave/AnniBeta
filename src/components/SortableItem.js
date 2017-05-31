@@ -4,8 +4,8 @@ import constants from 'constants';
 import { DragSource, DropTarget } from 'react-dnd';
 
 const style = {
-  border: '1px dashed gray',
-  padding: '5px',
+  // border: '1px dashed gray',
+  // padding: '5px',
   cursor: 'move'
 };
 

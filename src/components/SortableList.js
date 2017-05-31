@@ -3,6 +3,7 @@ import update from 'react/lib/update';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import SortableItem from './SortableItem';
+import ImageList from './ImageList';
 
 class SortableList extends Component {
   constructor(props) {
@@ -20,11 +21,17 @@ class SortableList extends Component {
           [hoverIndex, 0, items[dragIndex]]
         ]
       }
-    }));
+    }), () => {
+      console.log(this.state.items);
+      this.props.onReorder(this.state.items);
+    });
   }
 
   render() {
     const { items } = this.state;
+    if (!this.props.enableReorder) {
+      return <ImageList content={this.props.items} />
+    }
     return (
       <div className={this.props.containerClass}>
         {items.map((item, index) => {
