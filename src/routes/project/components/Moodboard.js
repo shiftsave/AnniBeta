@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import constants from "constants";
 import { updateProject } from "actions";
 import FileUploader from "components/FileUploader";
-import ImageList from "./ImageList";
 import FileManager from "containers/FileManager";
-import { Loader } from "components/baseline";
+import { ImageList, Loader } from "components/baseline";
 
 const { MOODBOARD } = constants.content;
 
@@ -25,9 +24,13 @@ class MoodboardViewer extends Component {
     const path = this.props.projectPath;
     const collectionId = MOODBOARD;
     const images = this.props.getCollectionFiles({ path, collectionId });
+
     const list = images && images.length
       ? <ImageList content={images} />
       : null;
+
+    console.log(list)
+
     return (
       <div className="Moodboard">
         <div className="content">

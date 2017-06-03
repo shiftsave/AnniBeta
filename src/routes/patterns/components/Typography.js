@@ -3,8 +3,8 @@ import React from 'react';
 import { Card } from 'components/baseline';
 
 const Typography = () => (
-  <Card>
-    <ul className='typography'>
+  <Card className='Typography'>
+    <ul>
       <li>
         <h4 className='legend'>h1</h4><h1>Headline 1</h1>
       </li>

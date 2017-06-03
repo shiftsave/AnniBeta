@@ -1,6 +1,6 @@
 .Card
   background $paper
-  box-shadow 0 pxToRem(4) pxToRem(20) 0 $concrete
+  box-shadow 0 pxToRem(4) pxToRem(24) 0 $flint
   margin-bottom $lg
   padding $lg
   position: relative
@@ -9,3 +9,7 @@
   +above($break-sm)
     margin-bottom $xl
     padding $xl
+
+  > :last-child
+    margin-bottom:0
+    padding-bottom: 0
