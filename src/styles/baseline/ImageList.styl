@@ -1,3 +1,33 @@
+.ImageList
+  .ImageListItem
+    transform: scale(1)
+    transition: 400ms $expo
+
+    &:hover
+      boxShadow()
+      transform: scale(1.025)
+
+  .imageArea
+    position: relative
+
+  .image
+    display: block
+    height: 100%
+    width: 100%
+
+  .shadow
+    box-shadow: inset 0 pxToRem(-12) pxToRem(40) pxToRem(-12) rgba($charcoal, .10);
+    height: 100%
+    position: absolute
+    top: 0
+    width: 100%
+    z-index: 2
+
+  .TextArea
+    background: $paper
+    padding: $md
+
+// References / Moodboard
 .ImageList.references
   column-count: 1
   column-gap: 0
@@ -15,30 +45,16 @@
   +above($break-xl)
     column-count: 5
 
-  .image
+  .ImageListItem
     break-inside: avoid
-    position: relative
-    margin-bottom: -($xs)
+    margin: 0 $sm $md $sm
 
-    & > img
-      height: auto
-      width: 100%
-      padding: $sm
-
+// Storyboard
 .ImageList.storyboards
-  column-count: 1
-  column-gap: 0
-  padding: 0
+  display: flex
+  justify-content: space-between
+  flex-wrap: wrap
 
-  +above($break-sm)
-    column-count: 2
-
-  .image
-    break-inside: avoid
-    position: relative
-    margin-bottom: -($xs)
-
-    & > img
-      height: auto
-      width: 100%
-      padding: $sm
+  .ImageListItem
+    flex: 0 0 'calc(50% - %s)' % ($md*2)
+    margin: 0 $md $lg $md

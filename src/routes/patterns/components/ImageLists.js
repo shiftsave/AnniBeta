@@ -1,27 +1,27 @@
 import React from 'react';
+import { ImageList } from 'components/baseline';
 
-import { Card, ImageList } from 'components/baseline';
 
 const references =
 [
-  { url: "https://cdn.dribbble.com/users/787686/screenshots/3486696/panic_mondays_concept_art_invision_small.jpg", name: "1" },
-  { url: "https://cdn.dribbble.com/users/787686/screenshots/3257350/panic_styleframe_amy.png", name: "2"  },
-  { url: "https://cdn.dribbble.com/users/787686/screenshots/3486696/panic_mondays_concept_art_invision_small.jpg", name: "3"  },
-  { url: "https://cdn.dribbble.com/users/787686/screenshots/3257350/panic_styleframe_amy.png", name: "4" },
-  { url: "https://cdn.dribbble.com/users/787686/screenshots/3486696/panic_mondays_concept_art_invision_small.jpg", name: "5"  },
-  { url: "https://cdn.dribbble.com/users/787686/screenshots/3486696/panic_mondays_concept_art_invision_small.jpg", name: "6"  }
+  { url: require('./content/references/01.jpg'), name: "1" },
+  { url: require('./content/references/02.png'), name: "2"  },
+  { url: require('./content/references/03.jpg'), name: "3"  },
+  { url: require('./content/references/05.jpg'), name: "5" },
+  { url: require('./content/references/06.jpg'), name: "6"  },
+  { url: require('./content/references/04.jpg'), name: "4" }
 ]
 
 const storyboards =
 [
-  { url: "http://shiftsave.com/delivery/foodbabieslove/assets/images/storyboards/fbl_storyboards_v1_01.jpg", name: "1" },
-  { url: "http://shiftsave.com/delivery/foodbabieslove/assets/images/storyboards/fbl_storyboards_v1_02.jpg", name: "2" },
-  { url: "http://shiftsave.com/delivery/foodbabieslove/assets/images/storyboards/fbl_storyboards_v1_03.jpg", name: "3" },
-  { url: "http://shiftsave.com/delivery/foodbabieslove/assets/images/storyboards/fbl_storyboards_v1_04.jpg", name: "4" }
+  { url: require('./content/storyboards/01.jpg'), name: "1" },
+  { url: require('./content/storyboards/02.jpg'), name: "2" },
+  { url: require('./content/storyboards/03.jpg'), name: "3" },
+  { url: require('./content/storyboards/04.jpg'), name: "4" }
 ]
 
 const ImageLists = () => (
-  <Card className='Reference Item'>
+  <div>
     <h4 className='legend'>Images</h4>
     <h4 className='legend'>References</h4>
     <div>
@@ -31,7 +31,7 @@ const ImageLists = () => (
     <div>
       <ImageList content={storyboards} storyboards />
     </div>
-  </Card>
+  </div>
 );
 
 export default ImageLists;

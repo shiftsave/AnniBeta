@@ -47,6 +47,13 @@ center($column=null)
 
 
 /*
+ * Box Shadow
+ */
+
+boxShadow($color=$flint)
+  box-shadow: 0 pxToRem(4) pxToRem(24) 0 $color
+
+/*
  * Text Overflow
  */
 
@@ -56,8 +63,10 @@ textOverflow()
   white-space nowrap
 
 
-boxShadow()
-  box-shadow: pxToRem(2) pxToRem(6) pxToRem(18) rgba($charcoal, .1)
+/*
+ * Arrow Down
+ */
+
 
 arrowDown($size = 10px, $color = $paper)
   content: ''
