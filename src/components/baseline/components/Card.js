@@ -5,7 +5,7 @@ export const Card = ({ children, className }) => {
 
   const styles = classNames({
     Card: true,
-    [className]: className
+    className
   });
 
   return (

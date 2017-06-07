@@ -38,10 +38,9 @@ export class ImageList extends Component {
       const src = !content.url ? content.preview : content.url;
 
       return (
-        <div className="ImageListItem" key={content.name}>
+        <div className="ImageListItem" key={index}>
           <div className="image" onClick={this.handleClick.bind(this, index)}>
             <img src={src} alt={content.name} />
-            <div className="shadow" />
           </div>
           <TextArea html="Enter description..." />
         </div>

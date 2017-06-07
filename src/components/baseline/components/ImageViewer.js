@@ -36,7 +36,8 @@ export class ImageViewer extends Component {
 
   prevImage = () => {
     const prevImage = this.state.selection - 1;
-    // @hudakdidit Not sure if this is the best way to do this...
+    // @hudakdidit Not sure if this is the best way
+    // to handle the check against the array items
     if (prevImage !== -1) {
       this.setState({ selection: prevImage });
     }

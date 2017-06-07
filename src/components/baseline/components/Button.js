@@ -25,6 +25,7 @@ export const Button = props => {
 
   const styles = classNames({
     Button: true,
+    className,
     danger,
     link,
     large,
@@ -32,8 +33,7 @@ export const Button = props => {
     success,
     user,
     primary,
-    noLabel: !children,
-    [className]: className,
+    noLabel: !children
   });
 
   if (to) {

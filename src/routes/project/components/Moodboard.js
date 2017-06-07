@@ -26,10 +26,8 @@ class MoodboardViewer extends Component {
     const images = this.props.getCollectionFiles({ path, collectionId });
 
     const list = images && images.length
-      ? <ImageList content={images} />
+      ? <ImageList content={images} references />
       : null;
-
-    console.log(list)
 
     return (
       <div className="Moodboard">
