@@ -4,28 +4,20 @@
     transition: 400ms $expo
 
     &:hover
-      boxShadow()
+      hoverShadow()
       transform: scale(1.025)
 
-  .imageArea
-    position: relative
-
   .image
-    display: block
-    height: 100%
-    width: 100%
-
-  .shadow
-    box-shadow: inset 0 pxToRem(-12) pxToRem(40) pxToRem(-12) rgba($charcoal, .10);
-    height: 100%
-    position: absolute
-    top: 0
-    width: 100%
-    z-index: 2
+    border-bottom: pxToRem(1) solid rgba($flint, .25)
+    position: relative
+    img
+      display: block
+      height: 100%
+      width: 100%
 
   .TextArea
     background: $paper
-    padding: $md
+    padding: $sm
 
 // References / Moodboard
 .ImageList.references

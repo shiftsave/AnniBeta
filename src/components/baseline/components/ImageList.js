@@ -1,25 +1,31 @@
 import React, { Component } from "react";
 import classNames from "classnames";
-import { TextArea } from "./TextArea";
 import { ImageViewer } from "./ImageViewer";
+import { TextArea } from "./TextArea";
 
 export class ImageList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selection: {},
-      isViewerVisible: false,
+      selection: null,
+      showViewer: false
     };
   }
 
   handleClick(selection) {
-    this.setState({ selection, isViewerVisible: true });
+    this.setState({ selection, showViewer: true });
   }
 
   render() {
-    const { content, className, references, storyboards } = this.props;
-    const { isViewerVisible, selection } = this.state;
+    const {
+      content,
+      children,
+      className,
+      references,
+      storyboards
+    } = this.props;
+    const { showViewer, selection } = this.state;
 
     const styles = classNames({
       ImageList: true,
@@ -32,13 +38,9 @@ export class ImageList extends Component {
       const src = !content.url ? content.preview : content.url;
 
       return (
-        <div
-          className="ImageListItem"
-          key={content.name}
-          onClick={this.handleClick.bind(this, index)}
-        >
-          <div className="imageArea">
-            <img className="image" src={src} alt={content.name} />
+        <div className="ImageListItem" key={content.name}>
+          <div className="image" onClick={this.handleClick.bind(this, index)}>
+            <img src={src} alt={content.name} />
             <div className="shadow" />
           </div>
           <TextArea html="Enter description..." />
@@ -46,17 +48,23 @@ export class ImageList extends Component {
       );
     });
 
-    if (!content) {
-      return null;
-    } else {
+    if (content) {
       return (
         <div>
           <ul className={styles}>
             {folderItems}
           </ul>
-          {isViewerVisible && <ImageViewer content={content} selection={selection} />}
+          <ImageViewer
+            content={content}
+            selection={selection}
+            show={showViewer}
+          >
+            {children}
+          </ImageViewer>
         </div>
       );
+    } else {
+      return null;
     }
   }
 }

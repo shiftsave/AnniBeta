@@ -50,8 +50,11 @@ center($column=null)
  * Box Shadow
  */
 
-boxShadow($color=$flint)
+boxShadow($color=rgba($charcoal, .08))
   box-shadow: 0 pxToRem(4) pxToRem(24) 0 $color
+
+hoverShadow($color=rgba($charcoal, .08))
+  box-shadow: 0 pxToRem(16) pxToRem(24) 0 $color
 
 /*
  * Text Overflow

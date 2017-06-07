@@ -25,11 +25,15 @@ const ImageLists = () => (
     <h4 className='legend'>Images</h4>
     <h4 className='legend'>References</h4>
     <div>
-      <ImageList content={references} references />
+      <ImageList content={references} references>
+        <p>Image description </p>
+      </ImageList>
     </div>
     <h4 className='legend'>Storyboards</h4>
     <div>
-      <ImageList content={storyboards} storyboards />
+      <ImageList content={storyboards} storyboards>
+        <p>Storyboard description </p>
+      </ImageList>
     </div>
   </div>
 );
