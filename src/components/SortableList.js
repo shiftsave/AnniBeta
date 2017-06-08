@@ -22,7 +22,6 @@ class SortableList extends Component {
         ]
       }
     }), () => {
-      console.log(this.state.items);
       this.props.onReorder(this.state.items);
     });
   }

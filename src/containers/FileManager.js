@@ -43,8 +43,8 @@ export default function FileManager(Component) {
           return files.archive[id];
         }) : [];
     }
-    reorderCollection(collectionKey, collection) {
-      this.props.dispatch(updateCollectionOrder(collectionKey, collection));
+    reorderCollection(collectionKeyOptions, collection) {
+      this.props.dispatch(updateCollectionOrder(getCollectionKey(collectionKeyOptions), collection));
     }
     render() {
       return <Component {...this.props} {...{

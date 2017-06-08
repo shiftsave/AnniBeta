@@ -6,6 +6,7 @@ import ImageItem from "components/Image";
 import FileManager from "containers/FileManager";
 import { Loader } from "components/baseline";
 import SortableList from "components/SortableList";
+import { Button } from "components/baseline";
 
 const { MOODBOARD } = constants.content;
 
@@ -34,7 +35,7 @@ class MoodboardViewer extends Component {
           containerClass="ImageList"
           itemClass="ImageListItem"
           items={images}
-          onReorder={(items) => this.setState({ newItemsOrder: items.map(i => i.name)})}
+          onReorder={(items) => this.setState({ newItemsOrder: items.map(i => ({ id: i.name }))})}
         >
           <ImageItem />
         </SortableList>
@@ -50,25 +51,31 @@ class MoodboardViewer extends Component {
           {list}
           {!project && <Loader />}
         </FileUploader>;
+    const reorderButtons = (
+      <div>
+        <Button onClick={() => this.setState({ reordering: true })}>
+            Reorder
+          </Button>
+          {this.state.reordering
+            ? <Button onClick={this.saveOrder.bind(this)}>Save Order</Button>
+            : null}
+      </div>
+    );
     return (
       <div className="Moodboard">
         <div className="content">
           <h1>Moodboard</h1>
+          {images && images.length > 1 ? reorderButtons : null}
           {imageList}
-          <button onClick={() => this.setState({ reordering: true })}>
-            Reorder
-          </button>
-          {this.state.reordering
-            ? <button onClick={this.saveOrder.bind(this)}>Save Order</button>
-            : null}
         </div>
       </div>
     );
   }
 
   saveOrder() {
-    console.log(this.state.newItemsOrder);
-    this.props.reorderCollection(this.state.newItemsOrder);
+    const path = this.props.projectPath;
+    const collectionId = MOODBOARD;
+    this.props.reorderCollection({ path, collectionId }, this.state.newItemsOrder);
     this.setState({
       reordering: false
     });
