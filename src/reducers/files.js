@@ -1,6 +1,6 @@
 import constants from 'constants';
 import Immutable, { List, Map } from 'immutable';
-const { ADD_FILE, ADD_FILE_TO_COLLECTION, DELETE_FILE, REMOVE_FILE_FROM_COLLECTION, UPDATE_COLLECTION_ORDER } = constants.file;
+const { ADD_FILE, ADD_FILE_TO_COLLECTION, DELETE_FILE, REMOVE_FILE_FROM_COLLECTION, UPDATE_COLLECTION } = constants.file;
 const { REMOVE_PROJECT } = constants.project;
 
 import { getCollectionKey } from 'utils';
@@ -49,7 +49,7 @@ const collections = (state = initialState.get("collections" ), action) => {
       return state.filter((v, k) => {
         return k.indexOf(action.path) === -1;
       });
-    case UPDATE_COLLECTION_ORDER:
+    case UPDATE_COLLECTION:
       return state.setIn([action.collectionKey], action.collection);
     default:
       return state

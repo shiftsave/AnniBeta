@@ -2,7 +2,7 @@ import constants from 'constants';
 
 const { ADD_PROJECT, REMOVE_PROJECT, UPDATE_PROJECT } = constants.project;
 const { ADD_AUTH_TOKEN, ADD_USER_INFO, LOG_OUT } = constants.auth;
-const { ADD_FILE, DELETE_FILE, ADD_FILE_TO_COLLECTION, REMOVE_FILE_FROM_COLLECTION, UPDATE_COLLECTION_ORDER } = constants.file;
+const { ADD_FILE, DELETE_FILE, ADD_FILE_TO_COLLECTION, REMOVE_FILE_FROM_COLLECTION, UPDATE_COLLECTION_ORDER, UPDATE_COLLECTION } = constants.file;
 
 // Project Actions
 export const addProject = (project) => {
@@ -74,6 +74,13 @@ export const removeFileFromCollection = (id, collectionKey) => {
     id,
     collectionKey
   };
+}
+export const updateCollection = (collectionKey, collection) => {
+  return {
+    type: UPDATE_COLLECTION,
+    collectionKey,
+    collection
+  }
 }
 export const updateCollectionOrder = (collectionKey, collection) => {
   return {

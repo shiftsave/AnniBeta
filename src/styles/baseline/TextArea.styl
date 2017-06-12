@@ -1,17 +1,25 @@
+textarea()
+  border: pxToRem(2) solid transparent
+  display block
+  line-height: 1.6
+  padding: pxToRem(10) $md
+  transition: 400ms $expo
+  width 100%
+  margin 0
+
+  &:hover
+  &:focus
+    border-color: $flint
+    outline none
+
+textarea
+  textarea()
+
 .TextArea
   position: relative
 
   .content
-    border: pxToRem(2) solid transparent
-    line-height: 1.6
-    padding: pxToRem(10) $md
-    transition: 400ms $expo
-
-    &:hover
-      border-color: $flint
-
-    &:focus
-      outline: none
+    textarea()
 
   .ButtonGroup
     padding: $md 0
@@ -23,6 +31,7 @@
       right: -($xxl)
       top: 50%
       transform: translateY(-50%);
+      z-index 20
 
   // Custom styles mapped to props
 
