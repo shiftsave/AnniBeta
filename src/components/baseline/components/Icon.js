@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const Icon = (props) => {
-  const { name, size, className } = props;
+  const { name, size } = props;
   let pathArray;
   let polylinePoints;
   let transform;
@@ -78,7 +78,7 @@ export const Icon = (props) => {
 
   // Return the mapped path elements into a <svg /> element
   return (
-    <svg viewBox='0 0 48 48' id={name} className={`Icon ${name} ${className}`} width={size} height={size} {...props}>
+    <svg viewBox='0 0 48 48' id={name} className={`Icon ${name}`} width={size} height={size} {...props}>
       <title>{iconTitle}</title>
       {paths}
       {polyline}

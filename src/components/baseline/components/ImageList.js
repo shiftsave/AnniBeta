@@ -71,15 +71,8 @@ export class ImageList extends Component {
     this.props.onReorder(arrayMove(this.state.items, oldIndex, newIndex));
 
   shouldCancelStart = e => {
-    const disabledElements = [
-      "input",
-      "textarea",
-      "select",
-      "option",
-      "button"
-    ];
-    const isDisabledElement =
-      disabledElements.indexOf(e.target.tagName.toLowerCase()) !== -1;
+    
+    // check classname
     const disabledClasses = ["viewerTarget", "disableDnD"];
     const targetClassNames = e.target.className &&
       typeof e.target.className === "string"
@@ -91,6 +84,18 @@ export class ImageList extends Component {
         isDisabledClass = true;
       }
     });
+
+    // check tagName
+    const disabledElements = [
+      "input",
+      "textarea",
+      "select",
+      "option",
+      "button"
+    ];
+    
+    const isDisabledElement =
+      disabledElements.indexOf(e.target.tagName.toLowerCase()) !== -1;
 
     return isDisabledClass || isDisabledElement;
   };

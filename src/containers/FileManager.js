@@ -5,6 +5,19 @@ import { addFile, addFileToCollection, updateCollection } from 'actions';
 import AuthManager from './AuthManager';
 import { getCollectionKey } from 'utils';
 
+const getImageInfo = (src) => {
+  return new Promise((done, fail) => {
+    const img = new Image();
+    img.onload = (e) => {
+      done({
+        width: img.width,
+        height: img.height
+      });
+    }
+    img.src = src;
+  })
+}
+
 export default function FileManager(Component) {
   class Manager extends Component {
     uploadFiles(files, path, collectionId) {
@@ -33,12 +46,25 @@ export default function FileManager(Component) {
         console.log('gotta delete the folder agian');
         return;
       }
-      if (this.props.files.get("archive").has(file.name)) {
+    
+      if (this.props.files.get("archive").has(file.name) && this.props.files.get("archive").get(file.name).url) {
         // TODO: prevent double upload to dropbox if file name matches
         this.props.dispatch(addFileToCollection(file.name, path, collectionId));
       } else {
-        this.props.dispatch(addFile(file, path));
-        this.props.dispatch(addFileToCollection(file.name, path, collectionId));
+        const addImage = () => {
+          this.props.dispatch(addFile(file, path));
+          this.props.dispatch(addFileToCollection(file.name, path, collectionId));
+        }
+        if (file.url) {
+          getImageInfo(file.url).then(({ width, height}) => {
+            file.width = width;
+            file.height = height;
+            addImage();
+          });
+        } else {
+          addImage();
+        }
+        
       }
     }
     getCollectionFiles(options) {

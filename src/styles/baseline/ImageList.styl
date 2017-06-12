@@ -25,18 +25,19 @@
   padding: 0
   position relative
   display grid
+  // grid-auto-flow column
 
   +above($break-sm)
-    grid-template-columns 1fr 1fr
+    grid-template-columns repeat(2, 1fr)
 
   +above($break-md)
-    grid-template-columns 1fr 1fr 1fr;
+    grid-template-columns repeat(3, 1fr)
 
   +above($break-lg)
-    grid-template-columns 1fr 1fr 1fr 1fr
+    grid-template-columns repeat(4, 1fr)
 
   +above($break-xl)
-    grid-template-columns 1fr 1fr 1fr 1fr 1fr
+    grid-template-columns repeat(5, 1fr)
 
   .ImageListItem
     break-inside: avoid
