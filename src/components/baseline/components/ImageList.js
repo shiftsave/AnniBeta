@@ -50,7 +50,7 @@ const ImageGrid = SortableContainer(({ items, className, handleClick }) => {
   return <div className={className}>{listItems}</div>;
 });
 
-class ImageList extends Component {
+export class ImageList extends Component {
   constructor(props) {
     super(props);
 
@@ -147,5 +147,3 @@ class ImageList extends Component {
     }
   }
 }
-
-export default ImageList;

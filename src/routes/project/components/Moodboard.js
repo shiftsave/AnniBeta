@@ -4,7 +4,7 @@ import FileUploader from "components/FileUploader";
 import FileManager from "containers/FileManager";
 import { Loader } from "components/baseline";
 import ImageItem from "components/Image";
-import ImageList from "components/baseline/components/ImageList";
+import { ImageList } from "components/baseline";
 
 const { MOODBOARD } = constants.content;
 
