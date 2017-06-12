@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import constants from "constants";
-import { updateProject } from "actions";
 import FileUploader from "components/FileUploader";
 import FileManager from "containers/FileManager";
-import { ImageList, Loader } from "components/baseline";
+import { Loader } from "components/baseline";
+import ImageItem from "components/Image";
+import ImageList from "components/baseline/components/ImageList";
 
 const { MOODBOARD } = constants.content;
 
@@ -20,13 +21,20 @@ class MoodboardViewer extends Component {
     if (!project) {
       return null;
     }
-    const { id } = project;
     const path = this.props.projectPath;
     const collectionId = MOODBOARD;
     const images = this.props.getCollectionFiles({ path, collectionId });
 
     const list = images && images.length
-      ? <ImageList content={images} references />
+      ? <ImageList
+          references
+          containerClass="ImageList"
+          itemClass="ImageListItem"
+          content={images}
+          onReorder={this.saveOrder}
+        >
+          <ImageItem />
+        </ImageList>
       : null;
 
     return (
@@ -35,16 +43,19 @@ class MoodboardViewer extends Component {
           <h1>Moodboard</h1>
           <FileUploader
             path={this.props.projectPath}
-            collection="moodboard"
-            onUpload={images =>
-              this.props.dispatch(updateProject({ id, images }))}
-          >
+            collection="moodboard">
             {list}
             {!project && <Loader />}
           </FileUploader>
         </div>
       </div>
     );
+  }
+
+  saveOrder = (items) => {
+    const path = this.props.projectPath;
+    const collectionId = MOODBOARD;
+    this.props.reorderCollection({ path, collectionId }, items.map(i => ({ id: i.name })));
   }
 }
 

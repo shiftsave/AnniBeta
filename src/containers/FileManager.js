@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { uploadFile, getLink } from 'adapters';
-import { addFile, addFileToCollection } from 'actions';
+import { addFile, addFileToCollection, updateCollection } from 'actions';
 import AuthManager from './AuthManager';
 import { getCollectionKey } from 'utils';
 
@@ -11,6 +11,7 @@ export default function FileManager(Component) {
       this.props.validateAuthentication();
       files.forEach(file => this.addFile(file, path, collectionId));
       return new Promise((resolve, reject) => {
+
         Promise.all(files.map(file => uploadFile(path, file)))
         .then(uploadedFiles => {
           Promise.all(uploadedFiles.map(file => getLink(file.path_display)))
@@ -32,8 +33,13 @@ export default function FileManager(Component) {
         console.log('gotta delete the folder agian');
         return;
       }
-      this.props.dispatch(addFile(file, path));
-      this.props.dispatch(addFileToCollection(file.name, path, collectionId));
+      if (this.props.files.get("archive").has(file.name)) {
+        // TODO: prevent double upload to dropbox if file name matches
+        this.props.dispatch(addFileToCollection(file.name, path, collectionId));
+      } else {
+        this.props.dispatch(addFile(file, path));
+        this.props.dispatch(addFileToCollection(file.name, path, collectionId));
+      }
     }
     getCollectionFiles(options) {
       const key = getCollectionKey(options);
@@ -43,10 +49,15 @@ export default function FileManager(Component) {
           return files.archive[id];
         }) : [];
     }
+
+    reorderCollection(collectionKeyOptions, collection) {
+      this.props.dispatch(updateCollection(getCollectionKey(collectionKeyOptions), collection));
+    }
     render() {
       return <Component {...this.props} {...{
         uploadFiles: this.uploadFiles.bind(this),
-        getCollectionFiles: this.getCollectionFiles.bind(this)
+        getCollectionFiles: this.getCollectionFiles.bind(this),
+        reorderCollection: this.reorderCollection.bind(this)
       }} />;
     }
   }

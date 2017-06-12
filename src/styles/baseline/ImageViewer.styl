@@ -1,5 +1,9 @@
 .ImageViewer
   background: rgba($pebble, .9)
+  display flex
+  flex-direction column
+  align-items center
+  justify-content center
   height: 100vh
   left: 0
   position: fixed
@@ -8,12 +12,12 @@
   z-index: 3
 
   .container
-    display: flex
-    height: 100%
+    display: inline-flex
+    height: calc(100% - 40vh)
     flex-direction: column
-    padding: 20vh $xl
     position: relative
     width: auto
+    max-width calc(100% - ($xl * 2))
 
     img
       height: 100%
@@ -61,3 +65,10 @@
       position: absolute
       top: $lg
       transform: translateX(-50%);
+
+.ImageViewer-backdrop
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%

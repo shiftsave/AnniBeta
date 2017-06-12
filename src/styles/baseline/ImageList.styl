@@ -1,42 +1,42 @@
-.ImageList
-  .ImageListItem
-    transform: scale(1)
-    transition: 400ms $expo
+.ImageListItem-card
+  transform: scale(1)
+  transition transform 400ms $expo
+  &:hover
+    hoverShadow()
+    transform: scale(1.025)
 
-    &:hover
-      hoverShadow()
-      transform: scale(1.025)
+.image
+  border-bottom: pxToRem(1) solid rgba($flint, .25)
+  position: relative
+  img
+    display: block
+    height: 100%
+    width: 100%
 
-  .image
-    border-bottom: pxToRem(1) solid rgba($flint, .25)
-    position: relative
-    img
-      display: block
-      height: 100%
-      width: 100%
-
-  .TextArea
-    background: $paper
-    padding: $sm
-    text-align: left
+.TextArea
+  background: $paper
+  padding: $sm
+  text-align: left
 
 // References / Moodboard
 .ImageList.references
   column-count: 1
   column-gap: 0
   padding: 0
+  position relative
+  display grid
 
   +above($break-sm)
-    column-count: 2
+    grid-template-columns 1fr 1fr
 
   +above($break-md)
-    column-count: 3
+    grid-template-columns 1fr 1fr 1fr;
 
   +above($break-lg)
-    column-count: 4
+    grid-template-columns 1fr 1fr 1fr 1fr
 
   +above($break-xl)
-    column-count: 5
+    grid-template-columns 1fr 1fr 1fr 1fr 1fr
 
   .ImageListItem
     break-inside: avoid
@@ -51,3 +51,25 @@
   .ImageListItem
     flex: 0 0 'calc(50% - %s)' % ($md*2)
     margin: 0 $md $lg $md
+
+.ImageListItem .TextArea.active .ButtonGroup
+  position relative
+  transform none
+
+.Image-popoutButton
+  position absolute
+  bottom 0
+  right 0
+  background rgba($copper, .5)
+  cursor pointer
+  border none
+  padding 5px
+  width 30px
+  height 30px
+  box-sizing border-box
+
+  &:hover
+    background rgba($copper, 1.0)
+  
+  .Icon
+    pointer-events none

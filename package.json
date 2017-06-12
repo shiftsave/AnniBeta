@@ -1,5 +1,6 @@
 {
   "name": "AnniBeta",
+  "homepage": "https://anni-platform.github.io",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -78,12 +79,11 @@
     "prop-types": "^15.5.10",
     "react": "^15.3.1",
     "react-contenteditable": "^2.0.2",
-    "react-dnd": "^2.1.4",
-    "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "^15.3.1",
     "react-dropzone": "^3.6.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
+    "react-sortable-hoc": "^0.6.3",
     "resolve-url-loader": "^1.6.0"
   },
   "scripts": {
@@ -93,7 +93,7 @@
     "build": "node scripts/build.js",
     "test": "jest --watch --env=jsdom",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build -b master -o production"
   },
   "eslintConfig": {
     "extends": "./config/eslint.js"

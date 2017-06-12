@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const Icon = (props) => {
-  const {name, size} = props;
+  const { name, size, className } = props;
   let pathArray;
   let polylinePoints;
+  let transform;
 
   // Extract svg paths per icon into an array and provide a unique name
   switch (name) {
@@ -51,6 +52,13 @@ export const Icon = (props) => {
         "44 12 17.286 36 4 21.818"
       ];
       break;
+    
+    case "popout":
+      transform = `translate(${size / 2}, ${size / 2})`;
+      pathArray = [
+        "M7.414 27.414l16.586-16.586v7.172c0 1.105 0.895 2 2 2s2-0.895 2-2v-12c0-0.809-0.487-1.538-1.235-1.848-0.248-0.103-0.508-0.151-0.765-0.151v-0.001h-12c-1.105 0-2 0.895-2 2s0.895 2 2 2h7.172l-16.586 16.586c-0.391 0.39-0.586 0.902-0.586 1.414s0.195 1.024 0.586 1.414c0.781 0.781 2.047 0.781 2.828 0z"
+      ];
+      break;
 
     default:
       break;
@@ -58,7 +66,7 @@ export const Icon = (props) => {
 
   // Map the paths of the selected svg into a readable SVG path element
   const paths = pathArray && pathArray.map((path) => {
-    return <path d={path} key={path.length} />
+    return <path d={path} key={path.length} transform={transform} />
   });
 
   const polyline = polylinePoints && polylinePoints.map((path) => {
@@ -70,7 +78,7 @@ export const Icon = (props) => {
 
   // Return the mapped path elements into a <svg /> element
   return (
-    <svg viewBox='0 0 48 48' id={name} className={`Icon ${name}`} width={size} height={size} {...props}>
+    <svg viewBox='0 0 48 48' id={name} className={`Icon ${name} ${className}`} width={size} height={size} {...props}>
       <title>{iconTitle}</title>
       {paths}
       {polyline}

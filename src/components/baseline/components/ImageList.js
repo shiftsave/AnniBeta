@@ -1,21 +1,99 @@
 import React, { Component } from "react";
 import classNames from "classnames";
 import { ImageViewer } from "./ImageViewer";
-import { TextArea } from "./TextArea";
+import { Icon } from "components/baseline";
+import {
+  SortableContainer,
+  SortableElement,
+  arrayMove
+} from "react-sortable-hoc";
 
-export class ImageList extends Component {
+export const ImageListItem = SortableElement(({
+  content,
+  index,
+  handleClick
+}) => {
+  const src = !content.url ? content.preview : content.url;
+
+  return (
+    <div className="ImageListItem" key={index}>
+      <div className="ImageListItem-card">
+        <div className="image">
+          <img src={src} alt={content.name} />
+          <button
+            className="Image-popoutButton viewTarget"
+            onClick={handleClick}
+          >
+            <Icon name="popout" size={20} />
+          </button>
+        </div>
+        <textarea
+          value={content.caption}
+          placeholder="Enter description..."
+          onChange={({ target }) =>
+            console.log("TODO handle caption save", target.value)}
+        />
+      </div>
+    </div>
+  );
+});
+
+const ImageGrid = SortableContainer(({ items, className, handleClick }) => {
+  const listItems = items.map((item, index) => (
+    <ImageListItem
+      key={`imageListItem${index}`}
+      content={item}
+      index={index}
+      handleClick={() => handleClick(index)}
+    />
+  ));
+  return <div className={className}>{listItems}</div>;
+});
+
+class ImageList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       selection: null,
-      showViewer: false
+      showViewer: false,
+      items: props.content
     };
   }
 
-  handleClick(selection) {
-    this.setState({ selection, showViewer: true });
+  componentWillReceiveProps({ content }) {
+    this.setState({ items: content });
   }
+
+  handleClick = selection => this.setState({ selection, showViewer: true });
+
+  onSortEnd = ({ oldIndex, newIndex }) =>
+    this.props.onReorder(arrayMove(this.state.items, oldIndex, newIndex));
+
+  shouldCancelStart = e => {
+    const disabledElements = [
+      "input",
+      "textarea",
+      "select",
+      "option",
+      "button"
+    ];
+    const isDisabledElement =
+      disabledElements.indexOf(e.target.tagName.toLowerCase()) !== -1;
+    const disabledClasses = ["viewerTarget", "disableDnD"];
+    const targetClassNames = e.target.className &&
+      typeof e.target.className === "string"
+      ? e.target.className.split(" ")
+      : [];
+    let isDisabledClass = false;
+    targetClassNames.forEach(c => {
+      if (disabledClasses.indexOf(c) !== -1) {
+        isDisabledClass = true;
+      }
+    });
+
+    return isDisabledClass || isDisabledElement;
+  };
 
   render() {
     const {
@@ -27,6 +105,22 @@ export class ImageList extends Component {
     } = this.props;
     const { showViewer, selection } = this.state;
 
+    const imageViewer = showViewer
+      ? <ImageViewer
+          content={content}
+          selection={selection}
+          show={showViewer}
+          onClose={() => {
+            this.setState({
+              selection: null,
+              showViewer: false
+            });
+          }}
+        >
+          {children}
+        </ImageViewer>
+      : null;
+
     const styles = classNames({
       ImageList: true,
       className,
@@ -34,32 +128,18 @@ export class ImageList extends Component {
       storyboards
     });
 
-    const folderItems = content.map((content, index) => {
-      const src = !content.url ? content.preview : content.url;
-
-      return (
-        <div className="ImageListItem" key={index}>
-          <div className="image" onClick={this.handleClick.bind(this, index)}>
-            <img src={src} alt={content.name} />
-          </div>
-          <TextArea html="Enter description..." />
-        </div>
-      );
-    });
-
     if (content) {
       return (
         <div>
-          <ul className={styles}>
-            {folderItems}
-          </ul>
-          <ImageViewer
-            content={content}
-            selection={selection}
-            show={showViewer}
-          >
-            {children}
-          </ImageViewer>
+          <ImageGrid
+            axis="xy"
+            className={styles}
+            items={this.state.items}
+            onSortEnd={this.onSortEnd}
+            handleClick={this.handleClick}
+            shouldCancelStart={this.shouldCancelStart}
+          />
+          {imageViewer}
         </div>
       );
     } else {
@@ -67,3 +147,5 @@ export class ImageList extends Component {
     }
   }
 }
+
+export default ImageList;
