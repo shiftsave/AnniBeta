@@ -1,9 +1,10 @@
 .TextEditor
   min-height: 100vh
-  padding: $xxl 0
   position: relative
 
   .content
+    padding: pxToRem(180) pxToRem(120)
+
     span
       line-height: 1.6
 
@@ -13,11 +14,7 @@
       font-size: pxToRem(18)
       margin: 0 auto
       line-height: 1.6
-      padding: 0 $lg
       position: relative
-
-      +above($break-md)
-        width: pxToRem(720)
 
     &-editorContainer
       color: $charcoal
