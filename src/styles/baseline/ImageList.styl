@@ -8,6 +8,11 @@
   position relative
   display grid
 
+  .dragHelper
+    hoverShadow()
+    transform: scale(1.025)
+    margin-left: 8px
+
 
 .ImageListItem
   .content
@@ -18,23 +23,18 @@
       hoverShadow()
       transform: scale(1.025)
 
-.SortableHelper
-  hoverShadow()
-  transform: scale(1.025)
-  margin-left: 8px
+  .image
+    break-inside: avoid-column
+    border-bottom: pxToRem(1) solid rgba($flint, .25)
+    position: relative
 
-.image
-  break-inside: avoid-column
-  border-bottom: pxToRem(1) solid rgba($flint, .25)
-  position: relative
-
-  img
-    display: block
-    height: auto
-    min-height: pxToRem(300)
-    max-height: pxToRem(300)
-    object-fit: cover
-    width: 100%
+    img
+      display: block
+      height: auto
+      min-height: pxToRem(300)
+      max-height: pxToRem(300)
+      object-fit: cover
+      width: 100%
 
 
 // References / Moodboard

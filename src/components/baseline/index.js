@@ -8,4 +8,5 @@ export { Card } from './components/Card'
 export { Icon } from './components/Icon';
 export { ImageList, ImageListItem } from './components/ImageList';
 export { Loader } from './components/Loader';
-export { TextArea } from './components/TextArea';
+// export { TextArea } from './components/TextArea';
+export { TextArea } from './components/Forms';

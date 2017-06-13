@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classNames from "classnames";
 import { ImageViewer } from "./ImageViewer";
-import { Icon } from "components/baseline";
+import { Icon, TextArea } from "components/baseline";
 import {
   SortableContainer,
   SortableElement,
@@ -28,7 +28,7 @@ export const ImageListItem = SortableElement(({
             <Icon name="popout" size={20} />
           </button>
         </div>
-        <textarea
+        <TextArea
           className="textArea"
           value={content.caption}
           placeholder="Enter description..."
@@ -142,7 +142,7 @@ export class ImageList extends Component {
       return (
         <div className="ImageListWrapper">
           <ImageGrid
-            helperClass={"SortableHelper"}
+            helperClass={"dragHelper"}
             axis="xy"
             className={styles}
             items={this.state.items}

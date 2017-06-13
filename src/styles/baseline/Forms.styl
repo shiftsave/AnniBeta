@@ -1,0 +1,33 @@
+/*
+ * Text Area
+ */
+
+.TextArea
+  border: none
+  border-bottom: pxToRem(1) solid transparent
+  display block
+  line-height: 1.6
+  padding: pxToRem(10) $md
+  width 100%
+  margin 0
+
+  &:focus
+    border-bottom: pxToRem(1) solid $copper
+
+/*
+  // Custom styles mapped to props
+
+  &.active > .content
+    border-color: $concrete
+
+  &.heading > .content
+    @extend h1
+    padding: pxToRem(14) $md $sm
+
+  &.subheading > .content
+    @extend h3
+    padding: pxToRem(14) $md $sm
+
+  &.center
+    text-align: center
+*/
