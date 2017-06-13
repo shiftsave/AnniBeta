@@ -11,7 +11,8 @@ import {
 export const ImageListItem = SortableElement(({
   content,
   index,
-  handleClick
+  handleClick,
+  children
 }) => {
   const src = !content.url ? content.preview : content.url;
 
@@ -34,19 +35,22 @@ export const ImageListItem = SortableElement(({
           onChange={({ target }) =>
             console.log("TODO handle caption save", target.value)}
         />
+        {children}
       </div>
     </div>
   );
 });
 
-const ImageGrid = SortableContainer(({ items, className, handleClick }) => {
+const ImageGrid = SortableContainer(({ items, className, handleClick, children }) => {
   const listItems = items.map((item, index) => (
     <ImageListItem
       key={`imageListItem${index}`}
       content={item}
       index={index}
       handleClick={() => handleClick(index)}
-    />
+    >
+      {children}
+    </ImageListItem>
   ));
   return <div className={className}>{listItems}</div>;
 });
@@ -136,7 +140,7 @@ export class ImageList extends Component {
 
     if (content) {
       return (
-        <div>
+        <div className="ImageListWrapper">
           <ImageGrid
             helperClass={"SortableHelper"}
             axis="xy"
@@ -145,7 +149,9 @@ export class ImageList extends Component {
             onSortEnd={this.onSortEnd}
             handleClick={this.handleClick}
             shouldCancelStart={this.shouldCancelStart}
-          />
+          >
+            {children}
+          </ImageGrid>
           {imageViewer}
         </div>
       );

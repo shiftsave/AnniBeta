@@ -3,7 +3,6 @@ import constants from "constants";
 import FileUploader from "components/FileUploader";
 import FileManager from "containers/FileManager";
 import { Loader } from "components/baseline";
-import ImageItem from "components/Image";
 import { ImageList } from "components/baseline";
 
 const { MOODBOARD } = constants.content;
@@ -32,9 +31,7 @@ class MoodboardViewer extends Component {
           itemClass="ImageListItem"
           content={images}
           onReorder={this.saveOrder}
-        >
-          <ImageItem />
-        </ImageList>
+        />
       : null;
 
     return (
