@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { ImageList } from "components/baseline";
 
 const references = [
@@ -17,19 +17,31 @@ const storyboards = [
   { url: require("./content/storyboards/04.jpg"), name: "4" }
 ];
 
-const ImageLists = () => (
-
-  <div>
-    <h4 className="legend">Images</h4>
-    <h4 className="legend">References</h4>
-    <div>
-      <ImageList content={references} references />
-    </div>
-    <h4 className="legend">Storyboards</h4>
-    <div>
-      <ImageList content={storyboards} storyboards />
-    </div>
-  </div>
-);
+class ImageLists extends Component {
+  constructor() {
+    super();
+    this.state = {
+      list1: references,
+      list2: storyboards
+    }
+  }
+  render() {
+    const { list1, list2 } = this.state;
+    return (
+      <div>
+        <h4 className="legend">Images</h4>
+        <h4 className="legend">References</h4>
+        <div>
+          <ImageList content={list1} references onReorder={list1 => this.setState({ list1 })} />
+        </div>
+        <h4 className="legend">Storyboards</h4>
+        <div>
+          <ImageList content={list2} storyboards onReorder={list1 => this.setState({ list2 })} />
+        </div>
+      </div>
+    );
+  }
+  
+}
 
 export default ImageLists;
