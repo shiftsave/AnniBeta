@@ -19,16 +19,21 @@
       transform: scale(1.025)
 
 .SortableHelper
+  hoverShadow()
   transform: scale(1.025)
   margin-left: 8px
 
 .image
+  break-inside: avoid-column
   border-bottom: pxToRem(1) solid rgba($flint, .25)
   position: relative
 
   img
     display: block
-    height: 100%
+    height: auto
+    min-height: pxToRem(300)
+    max-height: pxToRem(300)
+    object-fit: cover
     width: 100%
 
 
