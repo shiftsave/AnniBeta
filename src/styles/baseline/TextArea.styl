@@ -38,8 +38,12 @@ textarea
   &.active > .content
     border-color: $concrete
 
+  &.heading > .content
+    @extend h1
+    padding: pxToRem(14) $md $sm
+
   &.subheading > .content
-    @extend h2
+    @extend h3
     padding: pxToRem(14) $md $sm
 
   &.center

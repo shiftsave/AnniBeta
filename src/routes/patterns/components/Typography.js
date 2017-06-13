@@ -18,6 +18,9 @@ const Typography = () => (
         <h4 className='legend'>h4</h4><h4>Headline 4</h4>
       </li>
       <li>
+        <h4 className='legend'>h4</h4><h5>Headline 5</h5>
+      </li>
+      <li>
         <h4 className='legend'>p.large</h4>
         <p className='large'>
           Vim omnis epicurei ne, pro partem definiebas ad.

@@ -18,20 +18,16 @@ const storyboards = [
 ];
 
 const ImageLists = () => (
-  
+
   <div>
     <h4 className="legend">Images</h4>
     <h4 className="legend">References</h4>
     <div>
-      <ImageList content={references} references>
-        <p>Image description </p>
-      </ImageList>
+      <ImageList content={references} references />
     </div>
     <h4 className="legend">Storyboards</h4>
     <div>
-      <ImageList content={storyboards} storyboards>
-        <p>Storyboard description </p>
-      </ImageList>
+      <ImageList content={storyboards} storyboards />
     </div>
   </div>
 );

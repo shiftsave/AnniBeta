@@ -37,7 +37,7 @@ class MoodboardViewer extends Component {
     return (
       <div className="Moodboard">
         <div className="content">
-          <h1>Moodboard</h1>
+          <h2>Moodboard</h2>
           <FileUploader
             path={this.props.projectPath}
             collection="moodboard">
