@@ -12,6 +12,7 @@ export const ImageListItem = SortableElement(({
   content,
   index,
   handleClick,
+  onCaptionUpdate,
   children
 }) => {
   const src = !content.url ? content.preview : content.url;
@@ -32,8 +33,7 @@ export const ImageListItem = SortableElement(({
           className="textArea"
           value={content.caption}
           placeholder="Enter description..."
-          onChange={({ target }) =>
-            console.log("TODO handle caption save", target.value)}
+          onChange={({ target }) => onCaptionUpdate({ caption: target.value })}
         />
         {children}
       </div>
@@ -41,13 +41,14 @@ export const ImageListItem = SortableElement(({
   );
 });
 
-const ImageGrid = SortableContainer(({ items, className, handleClick, children }) => {
+const ImageGrid = SortableContainer(({ items, className, handleClick, onCaptionUpdate, children }) => {
   const listItems = items.map((item, index) => (
     <ImageListItem
       key={`imageListItem${index}`}
       content={item}
       index={index}
       handleClick={() => handleClick(index)}
+      onCaptionUpdate={(content) => onCaptionUpdate(index, content)}
     >
       {children}
     </ImageListItem>
@@ -111,7 +112,8 @@ export class ImageList extends Component {
       children,
       className,
       references,
-      storyboards
+      storyboards,
+      updateCaption
     } = this.props;
     const { showViewer, selection } = this.state;
 
@@ -149,6 +151,7 @@ export class ImageList extends Component {
             onSortEnd={this.onSortEnd}
             handleClick={this.handleClick}
             shouldCancelStart={this.shouldCancelStart}
+            onCaptionUpdate={updateCaption}
           >
             {children}
           </ImageGrid>
