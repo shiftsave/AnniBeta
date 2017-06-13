@@ -17,7 +17,7 @@ export const ImageListItem = SortableElement(({
 
   return (
     <div className="ImageListItem" key={index}>
-      <div className="ImageListItem-card">
+      <div className="content">
         <div className="image">
           <img src={src} alt={content.name} />
           <button
@@ -28,6 +28,7 @@ export const ImageListItem = SortableElement(({
           </button>
         </div>
         <textarea
+          className="textArea"
           value={content.caption}
           placeholder="Enter description..."
           onChange={({ target }) =>
@@ -71,7 +72,6 @@ export class ImageList extends Component {
     this.props.onReorder(arrayMove(this.state.items, oldIndex, newIndex));
 
   shouldCancelStart = e => {
-    
     // check classname
     const disabledClasses = ["viewerTarget", "disableDnD"];
     const targetClassNames = e.target.className &&
@@ -93,9 +93,10 @@ export class ImageList extends Component {
       "option",
       "button"
     ];
-    
-    const isDisabledElement =
-      disabledElements.indexOf(e.target.tagName.toLowerCase()) !== -1;
+
+    const isDisabledElement = disabledElements.indexOf(
+      e.target.tagName.toLowerCase()
+    ) !== -1;
 
     return isDisabledClass || isDisabledElement;
   };
@@ -137,6 +138,7 @@ export class ImageList extends Component {
       return (
         <div>
           <ImageGrid
+            helperClass={"SortableHelper"}
             axis="xy"
             className={styles}
             items={this.state.items}
