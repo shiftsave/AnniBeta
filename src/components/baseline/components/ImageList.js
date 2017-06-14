@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classNames from "classnames";
 import { ImageViewer } from "./ImageViewer";
-import { Icon, TextArea } from "components/baseline";
+import { Icon, TextArea, ImageElement } from "components/baseline";
 import {
   SortableContainer,
   SortableElement,
@@ -20,15 +20,17 @@ export const ImageListItem = SortableElement(({
   return (
     <div className="ImageListItem" key={index}>
       <div className="content">
-        <div className="image">
+        
+        <ImageElement src={src} className="image">
           <img src={src} alt={content.name} />
           <button
-            className="Image-popoutButton viewTarget"
-            onClick={handleClick}
-          >
-            <Icon name="popout" size={20} />
-          </button>
-        </div>
+              className="Image-popoutButton viewTarget"
+              onClick={handleClick}
+            >
+              <Icon name="popout" size={20} />
+            </button>
+        </ImageElement>
+
         <TextArea
           className="textArea"
           value={content.caption}
