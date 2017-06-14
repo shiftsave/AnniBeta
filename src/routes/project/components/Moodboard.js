@@ -53,7 +53,7 @@ class MoodboardViewer extends Component {
   saveOrder = (items) => {
     const path = this.props.projectPath;
     const collectionId = MOODBOARD;
-    this.props.reorderCollection({ path, collectionId }, items.map(i => ({ id: i.name })));
+    this.props.reorderCollection({ path, collectionId }, items);
   }
 
   updateCaption = (index, caption) => {
