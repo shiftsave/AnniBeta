@@ -67,14 +67,14 @@ export const ImageListItem = SortableElement(({
               icon="audio"
               placeholder="Audio"
               onChange={({ target }) =>
-                onCaptionUpdate({ video: target.value })}
+                onCaptionUpdate({ audio: target.value })}
               value={audio}
             />
             <TextArea
               icon="video"
               placeholder="Video"
               onChange={({ target }) =>
-                onCaptionUpdate({ audio: target.value })}
+                onCaptionUpdate({ video: target.value })}
               value={video}
             />
           </div>}
