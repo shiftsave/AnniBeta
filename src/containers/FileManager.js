@@ -23,7 +23,7 @@ const getImageInfo = src => {
   });
 };
 
-export default function FileManager(Component) {
+export default function FileManager(WrappedComponent) {
   class Manager extends Component {
     uploadFiles = (files, path, collectionId) => {
       this.props.validateAuthentication();
@@ -110,7 +110,7 @@ export default function FileManager(Component) {
 
     render() {
       return (
-        <Component
+        <WrappedComponent
           {...this.props}
           {...{
             uploadFiles: this.uploadFiles,

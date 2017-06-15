@@ -11,3 +11,4 @@ export { Loader } from './components/Loader';
 // export { TextArea } from './components/TextArea';
 export { TextArea } from './components/Forms';
 export { ImageElement } from './components/Image';
+export { FileCollection } from './components/FileCollection';
