@@ -1,7 +1,10 @@
 .PatternLibrary
   background: rgba($flint, .4)
-  padding: $xl
+  padding: $md
   margin-top: pxToRem(85)
+
+  +above($break-sm)
+    padding: $xl
 
   .Card
     > :last-child
@@ -48,9 +51,7 @@
       width: 25%
 
     svg
-      height: $xl
       margin-bottom: $lg
-      width: $xl
 
   // Loader Area
   .Loaders

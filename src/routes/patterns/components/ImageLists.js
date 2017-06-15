@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { ImageList } from "components/baseline";
+import { Button, ImageList } from "components/baseline";
 
 const references = [
-  { url: require("./content/references/01.jpg"), name: "1" },
-  { url: require("./content/references/02.png"), name: "2" },
-  { url: require("./content/references/03.jpg"), name: "3" },
-  { url: require("./content/references/05.jpg"), name: "5" },
-  { url: require("./content/references/06.jpg"), name: "6" },
-  { url: require("./content/references/04.jpg"), name: "4" }
+  { url: require("./content/references/01.jpg"), name: "1", size: "long" },
+  { url: require("./content/references/02.png"), name: "2", size: "tall" },
+  { url: require("./content/references/03.jpg"), name: "3", size: "" },
+  { url: require("./content/references/05.jpg"), name: "5", size: "full" },
+  { url: require("./content/references/06.jpg"), name: "6", size: "" },
+  { url: require("./content/references/04.jpg"), name: "4", size: "" }
 ];
 
 const storyboards = [
@@ -32,7 +32,9 @@ class ImageLists extends Component {
         <h4 className="legend">Images</h4>
         <h4 className="legend">References</h4>
         <div>
-          <ImageList content={list1} references onReorder={list1 => this.setState({ list1 })} />
+          <ImageList content={list1} references onReorder={list1 => this.setState({ list1 })} >
+            <Button icon="resize" noPadding />
+          </ImageList>
         </div>
         <h4 className="legend">Storyboards</h4>
         <div>
@@ -41,7 +43,7 @@ class ImageLists extends Component {
       </div>
     );
   }
-  
+
 }
 
 export default ImageLists;

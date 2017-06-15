@@ -2,80 +2,139 @@
   width: 100%
 
 .ImageList
-  column-count: 1
-  column-gap: 0
-  padding: 0
-  position relative
-  display grid
-
-  .dragHelper
-    hoverShadow()
-    transform: scale(1.025)
-    margin-left: 8px
-
+  display: grid
+  grid-gap: $lg
+  grid-auto-flow: row dense
+  grid-auto-rows: pxToRem(320)
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))
 
 .ImageListItem
   .content
+    display: flex
+    flex-direction: column
+    height: 100%
     transform: scale(1)
-    transition transform 400ms $expo
+    transition: transform 400ms $expo
+    overflow: hidden
+    width: 100%
 
     &:hover
       hoverShadow()
       transform: scale(1.025)
 
+      .panelControls
+        opacity: 1
+        transform: scale(1)
+
   .image
-    break-inside: avoid-column
     border-bottom: pxToRem(1) solid rgba($flint, .25)
-    position: relative
+    height: 100%
+    overflow: hidden
+    width: 100%
 
     img
-      display: block
-      height: auto
-      min-height: pxToRem(300)
-      max-height: pxToRem(300)
+      height: 100%
       object-fit: cover
       width: 100%
 
 
 // References / Moodboard
 .ImageList.references
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
-  grid-auto-flow: row dense
-
   .ImageListItem
-    grid-column-start: auto;
-    grid-row-start: auto;
-    margin: 0 $sm $md $sm
+    grid-column-end: auto
+
+    &.long
+      +above($break-md)
+        grid-column-end: span 2
+
+    &.tall
+      +above($break-md)
+        grid-row-end: span 2
+
+    &.full
+      +above($break-md)
+        grid-column-end: span 2
+        grid-row-end: span 2
 
 
-// Storyboard
+// Storyboard styles
 .ImageList.storyboards
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+  grid-auto-rows: pxToRem(400)
 
   +above($break-sm)
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr))
-
-.ImageListItem
-  grid-column-start: auto;
-  grid-row-start: auto;
-  margin: 0 $sm $md $sm
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr))
 
 
+// Drag Helper
+.dragHelper
+  .content
+    hoverShadow()
+    transform: scale(1.025)
 
-.Image-popoutButton
-  position absolute
-  bottom 0
-  right 0
-  background rgba($copper, .5)
-  cursor pointer
-  border none
-  padding 5px
-  width 30px
-  height 30px
-  box-sizing border-box
 
-  &:hover
-    background rgba($copper, 1.0)
+// Panel Controls
+.panelControls
+  background: $paper
+  border-radius: $xl
+  opacity: .1
+  padding: $xs $sm
+  position: absolute
+  right: $md
+  top: $md
+  transform: scale(.9)
+  transition: 300ms $expo 50ms
 
-  .Icon
-    pointer-events none
+  .Button
+    border: pxToRem(3) solid transparent
+    svg
+      height: $lg
+      width: $lg
+
+    &:hover
+      svg
+        stroke: $copper
+
+  +below($break-md)
+    display: none
+
+
+// Resize Button
+.resizeButton
+  align-items: center
+  display: inline-block
+  height: $md
+  margin: 0 pxToRem(12) pxToRem(6) $sm
+  position: relative
+  width: $md
+
+  div
+    border: pxToRem(2) solid $concrete
+    left: 0
+    position: absolute
+    top: 0
+
+    &:hover
+      background: $paper
+      border-color: $charcoal
+      z-index: 2
+
+  .base
+    width: pxToRem(11)
+    height: pxToRem(11)
+    border-color: $charcoal
+
+  .long
+    width: pxToRem(20)
+    height: pxToRem(11)
+
+  .tall
+    width: pxToRem(11)
+    height: pxToRem(20)
+
+  .full
+    width: pxToRem(20)
+    height: pxToRem(20)
+
+  &.selected
+    background: $paper
+    border-color: pxToRem(2) solid $pebble

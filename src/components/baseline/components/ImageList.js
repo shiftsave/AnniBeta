@@ -1,60 +1,123 @@
 import React, { Component } from "react";
 import classNames from "classnames";
 import { ImageViewer } from "./ImageViewer";
-import { Icon, TextArea } from "components/baseline";
+import { Button, TextArea } from "components/baseline";
 import {
   SortableContainer,
   SortableElement,
   arrayMove
 } from "react-sortable-hoc";
 
+/*
+ * Image List Item
+ */
+
 export const ImageListItem = SortableElement(({
+  children,
   content,
   index,
+  className,
   handleClick,
   onCaptionUpdate,
-  children
+  reference,
+  storyboard,
+  size
 }) => {
   const src = !content.url ? content.preview : content.url;
 
+  const styles = classNames({
+    ImageListItem: true,
+    [className]: className,
+    [content.size]: content.size
+  });
+
+  const resizeButton = (
+    <div className="resizeButton">
+      <div className="full" />
+      <div className="long" />
+      <div className="tall" />
+      <div className="base" />
+    </div>
+  );
+
   return (
-    <div className="ImageListItem" key={index}>
+    <div className={styles} key={index}>
       <div className="content">
         <div className="image">
           <img src={src} alt={content.name} />
-          <button
-            className="Image-popoutButton viewTarget"
-            onClick={handleClick}
-          >
-            <Icon name="popout" size={20} />
-          </button>
         </div>
-        <TextArea
-          className="textArea"
-          value={content.caption}
-          placeholder="Enter description..."
-          onChange={({ target }) => onCaptionUpdate({ caption: target.value })}
-        />
-        {children}
+
+        {reference &&
+          <TextArea
+            placeholder="Enter description..."
+            onChange={({ target }) =>
+              onCaptionUpdate({ caption: target.value })}
+            value={content.caption}
+          />}
+
+        {storyboard &&
+          <div>
+            <TextArea
+              icon="audio"
+              placeholder="Audio"
+              onChange={({ target }) =>
+                onCaptionUpdate({ video: target.value })}
+              value={content.audio}
+            />
+            <TextArea
+              icon="video"
+              placeholder="Video"
+              onChange={({ target }) =>
+                onCaptionUpdate({ audio: target.value })}
+              value={content.video}
+            />
+          </div>}
+
+        <div className="panelControls">
+          {reference && resizeButton}
+          <Button icon="popout" onClick={handleClick} noPadding />
+          <Button icon="delete" noPadding />
+        </div>
       </div>
     </div>
   );
 });
 
-const ImageGrid = SortableContainer(({ items, className, handleClick, onCaptionUpdate, children }) => {
+/*
+ * Image Grid
+ */
+
+const ImageGrid = SortableContainer(({
+  items,
+  className,
+  handleClick,
+  onCaptionUpdate,
+  children,
+  reference,
+  storyboard,
+  type
+}) => {
   const listItems = items.map((item, index) => (
     <ImageListItem
       key={`imageListItem${index}`}
       content={item}
       index={index}
       handleClick={() => handleClick(index)}
-      onCaptionUpdate={(content) => onCaptionUpdate(index, content)}
+      onCaptionUpdate={content => onCaptionUpdate(index, content)}
+      // onSizeUpdate={func()}  T
+      // @hudakdidit we need to implement a way to persist the size
+      storyboard={storyboard}
+      reference={reference}
     >
       {children}
     </ImageListItem>
   ));
   return <div className={className}>{listItems}</div>;
 });
+
+/*
+ * Image List
+ */
 
 export class ImageList extends Component {
   constructor(props) {
@@ -152,6 +215,8 @@ export class ImageList extends Component {
             handleClick={this.handleClick}
             shouldCancelStart={this.shouldCancelStart}
             onCaptionUpdate={updateCaption}
+            reference={references}
+            storyboard={storyboards}
           >
             {children}
           </ImageGrid>

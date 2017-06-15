@@ -23,7 +23,7 @@ export const Button = props => {
 
   const styles = classNames({
     Button: true,
-    className,
+    [className]: className,
     danger,
     link,
     large,
