@@ -68,4 +68,13 @@ export function parseQueryString(str) {
       return ret;
     }
   
-  export const stripTags = (str) => str.replace(/(<([^>]+)>)/ig,"");
+export const stripTags = (str) => str.replace(/(<([^>]+)>)/ig,"");
+
+
+export const preloadImage = src =>
+  new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = resolve;
+    img.onerror = reject;
+    img.src = src;
+  });

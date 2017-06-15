@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classNames from "classnames";
 import { ImageViewer } from "./ImageViewer";
-import { Button, TextArea } from "components/baseline";
+import { Button, ImageElement, TextArea } from "components/baseline";
 import {
   SortableContainer,
   SortableElement,
@@ -43,16 +43,15 @@ export const ImageListItem = SortableElement(({
   return (
     <div className={styles} key={index}>
       <div className="content">
-        <div className="image">
+
+        <ImageElement src={src} className="image">
           <img src={src} alt={content.name} />
-        </div>
+        </ImageElement>
 
         {reference &&
           <TextArea
             placeholder="Enter description..."
-            onChange={({ target }) =>
-              onCaptionUpdate({ caption: target.value })}
-            value={content.caption}
+            onChange={({ target }) => onCaptionUpdate({ caption: target.value })}
           />}
 
         {storyboard &&
@@ -78,8 +77,8 @@ export const ImageListItem = SortableElement(({
           <Button icon="popout" onClick={handleClick} noPadding />
           <Button icon="delete" noPadding />
         </div>
-      </div>
     </div>
+  </div>
   );
 });
 

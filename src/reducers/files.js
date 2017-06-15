@@ -30,16 +30,16 @@ const archive = (state = initialState.get("archive"), action) => {
 
 const collection = (state = List([]), action) => {
   const { id } = action;
-  const collectionEntry = { id };
+  const collectionEntry = Map({ id });
   switch (action.type) {
     case ADD_FILE_TO_COLLECTION:
-      if (state.filter(item => item.id === id).size > 0) {
+      if (state.filter(item => item.get("id") === id).size > 0) {
         // file is a duplicate
         return state;
       }
       return state.push(collectionEntry);
     case REMOVE_FILE_FROM_COLLECTION:
-      return state.filter(item => item.id !== action.id);
+      return state.filter(item => item.get("id") !== action.id);
     case UPDATE_COLLECTION_ITEM:
       return state.set(action.index, state.get(action.index).merge(Map(action.content)));
     default:
