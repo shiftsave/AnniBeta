@@ -3,7 +3,6 @@ import { removeFolder } from "adapters";
 import { removeProject, deleteFile, updateProject } from "actions";
 import Headline from "./Headline";
 import TextEditor from "./TextEditor";
-import Moodboard from "./Moodboard";
 import filter from "lodash.filter";
 import { Button, FileCollection } from "components/baseline";
 import constants from "constants";

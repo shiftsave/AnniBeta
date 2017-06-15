@@ -13,11 +13,10 @@ class Collection extends Component {
   }
 
   render() {
-    const project = this.props.project;
-
     const {
         className,
         collectionId,
+        project,
         title,
         projectPath,
         getCollectionFiles
