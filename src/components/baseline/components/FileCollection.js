@@ -66,7 +66,7 @@ class Collection extends Component {
   }
 
   saveOrder = (items) => {
-    this.props.reorderCollection(this.collectionKeyOptions, items);
+    this.props.reorderCollection(this.collectionKeyOptions, items.map(({ id, caption, aspectRatio }) => ({ id, caption, aspectRatio })));
   }
 
   updateCollectionItem = (index, caption) => {
