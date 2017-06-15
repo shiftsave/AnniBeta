@@ -118,24 +118,24 @@
     &::after
       position absolute
       border pxToRem(2) solid $charcoal
-      background $concrete
+      background $paper
       width pxToRem($buttonSize)
       height pxToRem($buttonSize)
       display block
       content ''
       z-index 6
     &.base::after
-      // 
+      //
     &.long::after
       width pxToRem($buttonSize2x)
-    
+
     &.tall::after
       height pxToRem($buttonSize2x)
-    
+
     &.full::after
       width pxToRem($buttonSize2x)
       height pxToRem($buttonSize2x)
-      
+
     &:hover::after
       display none
 
@@ -168,6 +168,6 @@
     width: pxToRem(20)
     height: pxToRem(20)
 
-  &.selected
+  &.active
     background: $paper
     border-color: pxToRem(2) solid $pebble

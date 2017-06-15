@@ -46,24 +46,31 @@ export default class ProjectDetail extends Component {
           update.id = project.id;
           this.props.dispatch(updateProject(update));
         }} />
-        <FileCollection 
+        <FileCollection
           className={`MoodBoard ${sectionClass}`}
-          projectPath={id} 
-          project={project} 
-          collectionId={MOODBOARD} 
-          title="Moodboard" />
-        <FileCollection 
+          projectPath={id}
+          project={project}
+          collectionId={MOODBOARD}
+          title="Moodboard"
+          references
+         />
+        <FileCollection
           className={`StoryBoard ${sectionClass}`}
-          projectPath={id} 
-          project={project} 
-          collectionId={STORYBOARD} 
-          title="Storyboard" />
-        <FileCollection 
+          projectPath={id}
+          project={project}
+          collectionId={STORYBOARD}
+          title="Storyboard"
+          storyboards
+         />
+
+        <FileCollection
           className={`StyleFrames ${sectionClass}`}
-          projectPath={id} 
-          project={project} 
-          collectionId={STYLEFRAMES} 
-          title="Style Frames" />
+          projectPath={id}
+          project={project}
+          collectionId={STYLEFRAMES}
+          title="Style Frames"
+          styleframes
+         />
         <div>
           <Button
             onClick={() => {

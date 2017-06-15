@@ -36,11 +36,11 @@ export const ImageListItem = SortableElement(({
 
   const resizeButton = (
     <div className={`resizeButton ${imageAspectRatio ? `hasSize ${imageAspectRatio}` : null}`}>
-      {ImageAspectRatio.enumValues.map(i => 
-        <div 
-          key={index + i.name} 
+      {ImageAspectRatio.enumValues.map(i =>
+        <div
+          key={index + i.name}
           className={`${i.name} ${imageAspectRatio === i.name ? "active" : ""}`}
-          onClick={() => onImageSizeUpdate({ aspectRatio: i.name })} 
+          onClick={() => onImageSizeUpdate({ aspectRatio: i.name })}
         />)}
     </div>
   );
