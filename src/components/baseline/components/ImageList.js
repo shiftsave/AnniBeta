@@ -51,7 +51,9 @@ export const ImageListItem = SortableElement(({
         {reference &&
           <TextArea
             placeholder="Enter description..."
-            onChange={({ target }) => onCaptionUpdate({ caption: target.value })}
+            onChange={({ target }) =>
+              onCaptionUpdate({ caption: target.value })}
+            value={content.caption}
           />}
 
         {storyboard &&
@@ -77,8 +79,8 @@ export const ImageListItem = SortableElement(({
           <Button icon="popout" onClick={handleClick} noPadding />
           <Button icon="delete" noPadding />
         </div>
+      </div>
     </div>
-  </div>
   );
 });
 
