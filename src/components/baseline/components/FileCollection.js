@@ -17,20 +17,25 @@ class Collection extends Component {
         className,
         collectionId,
         project,
-        title,
+        getCollectionFiles,
         projectPath,
-        getCollectionFiles
+        references,
+        storyboards,
+        styleframes,
+        title
     } = this.props;
 
     const images = getCollectionFiles(this.collectionKeyOptions);
 
     const list = images && images.length
       ? <ImageList
-          references
           containerClass="ImageList"
-          itemClass="ImageListItem"
           content={images}
+          itemClass="ImageListItem"
           onReorder={this.saveOrder}
+          references={references}
+          storyboards={storyboards}
+          styleframes={styleframes}
           updateCollectionItem={this.updateCollectionItem}
         />
       : null;

@@ -36,11 +36,11 @@ export const ImageListItem = SortableElement(({
 
   const resizeButton = (
     <div className={`resizeButton ${imageAspectRatio ? `hasSize ${imageAspectRatio}` : null}`}>
-      {ImageAspectRatio.enumValues.map(i => 
-        <div 
-          key={index + i.name} 
+      {ImageAspectRatio.enumValues.map(i =>
+        <div
+          key={index + i.name}
           className={`${i.name} ${imageAspectRatio === i.name ? "active" : ""}`}
-          onClick={() => onImageSizeUpdate({ aspectRatio: i.name })} 
+          onClick={() => onImageSizeUpdate({ aspectRatio: i.name })}
         />)}
     </div>
   );
@@ -67,14 +67,14 @@ export const ImageListItem = SortableElement(({
               icon="audio"
               placeholder="Audio"
               onChange={({ target }) =>
-                onCaptionUpdate({ video: target.value })}
+                onCaptionUpdate({ audio: target.value })}
               value={audio}
             />
             <TextArea
               icon="video"
               placeholder="Video"
               onChange={({ target }) =>
-                onCaptionUpdate({ audio: target.value })}
+                onCaptionUpdate({ video: target.value })}
               value={video}
             />
           </div>}
