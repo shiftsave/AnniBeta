@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { uploadFile, getLink } from "adapters";
+// import { Map } from 'immutable';
 import {
+  deleteFile,
   addFile,
   addFileToCollection,
   updateCollection,
-  updateCollectionItem
+  updateCollectionItem,
+  removeCollectionItem
 } from "actions";
 import AuthManager from "./AuthManager";
 import { getCollectionKey } from "utils";
@@ -25,6 +28,12 @@ const getImageInfo = src => {
 
 export default function FileManager(WrappedComponent) {
   class Manager extends Component {
+    constructor() {
+      super();
+      this.state = {
+        deletedFileIds: []
+      };
+    }
     uploadFiles = (files, path, collectionId) => {
       this.props.validateAuthentication();
       files.forEach(file => this.addFile(file, path, collectionId));
@@ -40,9 +49,11 @@ export default function FileManager(WrappedComponent) {
               fileMeta.url = fileMeta.url.replace(/.$/, "1");
               return { ...f, ...fileMeta };
             });
-            processedFiles.forEach(file =>
-              this.addFile(file, path, collectionId)
-            );
+            processedFiles.forEach(file => {
+              if (this.state.deletedFileIds.indexOf(file.name) === -1) {
+                this.addFile(file, path, collectionId)
+              }    
+            });
           });
         });
       });
@@ -108,6 +119,30 @@ export default function FileManager(WrappedComponent) {
       );
     }
 
+    removeCollectionItem = (collectionKeyOptions, index, fileName) => {
+      this.setState({
+        deletedFileIds: this.state.deletedFileIds.concat([fileName])
+      });
+      this.props.dispatch(
+        removeCollectionItem(
+          getCollectionKey(collectionKeyOptions),
+          index
+        )
+      );
+    }
+
+    removeFileIfUnused = (fileName) => {
+      let fileFound = false;
+      this.props.files.get("collections").valueSeq().forEach(collection => {
+        if (collection.filter(i => i.id === fileName).length === 0) {
+          fileFound = true;
+        }
+      });
+      if (!fileFound) {
+        this.props.dispatch(deleteFile(fileName));
+      }
+    }
+
     render() {
       return (
         <WrappedComponent
@@ -116,7 +151,8 @@ export default function FileManager(WrappedComponent) {
             uploadFiles: this.uploadFiles,
             getCollectionFiles: this.getCollectionFiles,
             reorderCollection: this.reorderCollection,
-            updateCollectionItem: this.updateCollectionItem
+            updateCollectionItem: this.updateCollectionItem,
+            removeCollectionItem: this.removeCollectionItem
           }}
         />
       );

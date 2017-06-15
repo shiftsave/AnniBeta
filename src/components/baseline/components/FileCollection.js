@@ -37,6 +37,7 @@ class Collection extends Component {
           storyboards={storyboards}
           styleframes={styleframes}
           updateCollectionItem={this.updateCollectionItem}
+          removeCollectionItem={this.removeCollectionItem}
         />
       : null;
 
@@ -71,6 +72,10 @@ class Collection extends Component {
 
   updateCollectionItem = (index, caption) => {
     this.props.updateCollectionItem(this.collectionKeyOptions, index, caption);
+  }
+
+  removeCollectionItem = (index, fileName) => {
+    this.props.removeCollectionItem(this.collectionKeyOptions, index, fileName);
   }
 }
 

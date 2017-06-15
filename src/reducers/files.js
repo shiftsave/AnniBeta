@@ -6,7 +6,8 @@ const {
   DELETE_FILE,
   REMOVE_FILE_FROM_COLLECTION,
   UPDATE_COLLECTION,
-  UPDATE_COLLECTION_ITEM
+  UPDATE_COLLECTION_ITEM,
+  REMOVE_COLLECTION_ITEM
 } = constants.file;
 const { REMOVE_PROJECT } = constants.project;
 
@@ -45,6 +46,8 @@ const collection = (state = List([]), action) => {
       return state.filter(item => item.get("id") !== action.id);
     case UPDATE_COLLECTION_ITEM:
       return state.set(action.index, state.get(action.index).merge(Map(action.content)));
+    case REMOVE_COLLECTION_ITEM:
+      return state.delete(action.index);
     default:
       return state;
   }
@@ -74,6 +77,8 @@ const collections = (state = initialState.get("collections"), action) => {
       });
     case UPDATE_COLLECTION:
       return state.setIn([action.collectionKey], action.collection);
+    case REMOVE_COLLECTION_ITEM:
+      return state.setIn([action.collectionKey], collection(state.get(action.collectionKey), action));
     default:
       return state;
   }

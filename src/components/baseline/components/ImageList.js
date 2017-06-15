@@ -23,7 +23,8 @@ export const ImageListItem = SortableElement(({
   reference,
   storyboard,
   size,
-  onImageSizeUpdate
+  onImageSizeUpdate,
+  onImageRemove
 }) => {
   const src = !content.url ? content.preview : content.url;
   const { aspectRatio, name, caption, audio, video } = content;
@@ -82,7 +83,7 @@ export const ImageListItem = SortableElement(({
         <div className="panelControls disableDnD">
           {reference && resizeButton}
           <Button icon="popout" onClick={handleClick} noPadding />
-          <Button icon="delete" noPadding />
+          <Button icon="delete" noPadding onClick={onImageRemove} />
         </div>
       </div>
     </div>
@@ -102,6 +103,7 @@ const ImageGrid = SortableContainer(({
   reference,
   storyboard,
   onImageSizeUpdate,
+  removeCollectionItem,
   type
 }) => {
   const listItems = items.map((item, index) => (
@@ -112,6 +114,7 @@ const ImageGrid = SortableContainer(({
       handleClick={() => handleClick(index)}
       onCaptionUpdate={content => onCaptionUpdate(index, content)}
       onImageSizeUpdate={content => onImageSizeUpdate(index, content)}
+      onImageRemove={() => removeCollectionItem(index, item.name)}
       storyboard={storyboard}
       reference={reference}
     >
@@ -182,7 +185,8 @@ export class ImageList extends Component {
       className,
       references,
       storyboards,
-      updateCollectionItem
+      updateCollectionItem,
+      removeCollectionItem
     } = this.props;
     const { showViewer, selection } = this.state;
 
@@ -222,6 +226,7 @@ export class ImageList extends Component {
             shouldCancelStart={this.shouldCancelStart}
             onCaptionUpdate={updateCollectionItem}
             onImageSizeUpdate={updateCollectionItem}
+            removeCollectionItem={removeCollectionItem}
             reference={references}
             storyboard={storyboards}
           >

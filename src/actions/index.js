@@ -9,7 +9,8 @@ const {
   REMOVE_FILE_FROM_COLLECTION,
   UPDATE_COLLECTION_ORDER,
   UPDATE_COLLECTION,
-  UPDATE_COLLECTION_ITEM
+  UPDATE_COLLECTION_ITEM,
+  REMOVE_COLLECTION_ITEM
 } = constants.file;
 
 // Project Actions
@@ -104,5 +105,13 @@ export const updateCollectionItem = (collectionKey, index, content) => {
     collectionKey,
     index,
     content
+  };
+};
+
+export const removeCollectionItem = (collectionKey, index) => {
+  return {
+    type: REMOVE_COLLECTION_ITEM,
+    collectionKey,
+    index
   };
 };
