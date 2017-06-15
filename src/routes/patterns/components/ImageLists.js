@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Button, ImageList } from "components/baseline";
+import { ImageAspectRatio } from "utils";
 
 const references = [
-  { url: require("./content/references/01.jpg"), name: "1", size: "long" },
-  { url: require("./content/references/02.png"), name: "2", size: "tall" },
-  { url: require("./content/references/03.jpg"), name: "3", size: "" },
-  { url: require("./content/references/05.jpg"), name: "5", size: "full" },
-  { url: require("./content/references/06.jpg"), name: "6", size: "" },
-  { url: require("./content/references/04.jpg"), name: "4", size: "" }
+  { url: require("./content/references/01.jpg"), name: "1", aspectRatio: ImageAspectRatio.long.name },
+  { url: require("./content/references/02.png"), name: "2", aspectRatio: ImageAspectRatio.tall.name },
+  { url: require("./content/references/03.jpg"), name: "3", aspectRatio: "" },
+  { url: require("./content/references/05.jpg"), name: "5", aspectRatio: ImageAspectRatio.full.name },
+  { url: require("./content/references/06.jpg"), name: "6", aspectRatio: "" },
+  { url: require("./content/references/04.jpg"), name: "4", aspectRatio: "" }
 ];
 
 const storyboards = [

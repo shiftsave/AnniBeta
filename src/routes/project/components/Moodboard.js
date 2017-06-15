@@ -31,7 +31,7 @@ class MoodboardViewer extends Component {
           itemClass="ImageListItem"
           content={images}
           onReorder={this.saveOrder}
-          updateCaption={this.updateCaption}
+          updateCollectionItem={this.updateCollectionItem}
         />
       : null;
 
@@ -56,7 +56,7 @@ class MoodboardViewer extends Component {
     this.props.reorderCollection({ path, collectionId }, items);
   }
 
-  updateCaption = (index, caption) => {
+  updateCollectionItem = (index, caption) => {
     const path = this.props.projectPath;
     const collectionId = MOODBOARD;
     this.props.updateCollectionItem({ path, collectionId }, index, caption);

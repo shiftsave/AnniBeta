@@ -7,6 +7,7 @@ import {
   SortableElement,
   arrayMove
 } from "react-sortable-hoc";
+import { ImageAspectRatio } from "utils";
 
 /*
  * Image List Item
@@ -21,22 +22,26 @@ export const ImageListItem = SortableElement(({
   onCaptionUpdate,
   reference,
   storyboard,
-  size
+  size,
+  onImageSizeUpdate
 }) => {
   const src = !content.url ? content.preview : content.url;
-
+  const { aspectRatio, name, caption, audio, video } = content;
+  const imageAspectRatio = ImageAspectRatio[aspectRatio] ? ImageAspectRatio[aspectRatio].name : undefined;
   const styles = classNames({
     ImageListItem: true,
-    [className]: className,
-    [content.size]: content.size
+    [className]: !!className,
+    [imageAspectRatio]: true
   });
 
   const resizeButton = (
-    <div className="resizeButton">
-      <div className="full" />
-      <div className="long" />
-      <div className="tall" />
-      <div className="base" />
+    <div className={`resizeButton ${imageAspectRatio ? `hasSize ${imageAspectRatio}` : null}`}>
+      {ImageAspectRatio.enumValues.map(i => 
+        <div 
+          key={index + i.name} 
+          className={`${i.name} ${imageAspectRatio === i.name ? "active" : ""}`}
+          onClick={() => onImageSizeUpdate({ aspectRatio: i.name })} 
+        />)}
     </div>
   );
 
@@ -45,7 +50,7 @@ export const ImageListItem = SortableElement(({
       <div className="content">
 
         <ImageElement src={src} className="image">
-          <img src={src} alt={content.name} />
+          <img src={src} alt={name} />
         </ImageElement>
 
         {reference &&
@@ -53,7 +58,7 @@ export const ImageListItem = SortableElement(({
             placeholder="Enter description..."
             onChange={({ target }) =>
               onCaptionUpdate({ caption: target.value })}
-            value={content.caption}
+            value={caption}
           />}
 
         {storyboard &&
@@ -63,18 +68,18 @@ export const ImageListItem = SortableElement(({
               placeholder="Audio"
               onChange={({ target }) =>
                 onCaptionUpdate({ video: target.value })}
-              value={content.audio}
+              value={audio}
             />
             <TextArea
               icon="video"
               placeholder="Video"
               onChange={({ target }) =>
                 onCaptionUpdate({ audio: target.value })}
-              value={content.video}
+              value={video}
             />
           </div>}
 
-        <div className="panelControls">
+        <div className="panelControls disableDnD">
           {reference && resizeButton}
           <Button icon="popout" onClick={handleClick} noPadding />
           <Button icon="delete" noPadding />
@@ -96,6 +101,7 @@ const ImageGrid = SortableContainer(({
   children,
   reference,
   storyboard,
+  onImageSizeUpdate,
   type
 }) => {
   const listItems = items.map((item, index) => (
@@ -105,8 +111,7 @@ const ImageGrid = SortableContainer(({
       index={index}
       handleClick={() => handleClick(index)}
       onCaptionUpdate={content => onCaptionUpdate(index, content)}
-      // onSizeUpdate={func()}  T
-      // @hudakdidit we need to implement a way to persist the size
+      onImageSizeUpdate={content => onImageSizeUpdate(index, content)}
       storyboard={storyboard}
       reference={reference}
     >
@@ -177,7 +182,7 @@ export class ImageList extends Component {
       className,
       references,
       storyboards,
-      updateCaption
+      updateCollectionItem
     } = this.props;
     const { showViewer, selection } = this.state;
 
@@ -215,7 +220,8 @@ export class ImageList extends Component {
             onSortEnd={this.onSortEnd}
             handleClick={this.handleClick}
             shouldCancelStart={this.shouldCancelStart}
-            onCaptionUpdate={updateCaption}
+            onCaptionUpdate={updateCollectionItem}
+            onImageSizeUpdate={updateCollectionItem}
             reference={references}
             storyboard={storyboards}
           >

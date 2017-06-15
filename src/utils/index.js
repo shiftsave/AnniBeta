@@ -1,3 +1,5 @@
+import { Enum } from 'enumify';
+
 export function getProjectByName(_name, projects) {
   if (!projects) {
     return;
@@ -78,3 +80,6 @@ export const preloadImage = src =>
     img.onerror = reject;
     img.src = src;
   });
+
+export class ImageAspectRatio extends Enum {}
+ImageAspectRatio.initEnum(['full', 'long', 'tall', 'base']);

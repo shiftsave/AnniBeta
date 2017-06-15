@@ -29,6 +29,9 @@ const archive = (state = initialState.get("archive"), action) => {
 };
 
 const collection = (state = List([]), action) => {
+  if (!List.isList(state)) {
+    state = List(state.map(i => Map(i)));
+  }
   const { id } = action;
   const collectionEntry = Map({ id });
   switch (action.type) {
