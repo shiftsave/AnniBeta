@@ -8,12 +8,16 @@ export const TextArea = props => {
     onChange,
     placeholder,
     value,
+    subheading,
+    imageItem,
     icon
   } = props;
 
   const styles = classNames({
     TextArea: true,
-    [className]: className
+    [className]: className,
+    subheading,
+    imageItem
   });
 
   return (

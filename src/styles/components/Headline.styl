@@ -1,8 +1,22 @@
 .Headline
-  center($horizontalOnly:horizontalOnly)
+  center($horizontal:horizontal)
   min-height: 100vh
   padding pxToRem(120)
   position: relative
 
   .date
     margin $xl 0 0
+
+  .TextArea
+    padding: 0
+
+    textarea
+      border-bottom: 1px solid $flint
+      height: pxToRem(48)
+      transition: 200ms ease
+
+      &:hover
+        border-color: $concrete
+
+      &:focus
+        border-color: $copper

@@ -15,12 +15,6 @@ const Headline = ({ name, client, date, save }) => {
           save={client => save({ client })}
           subheading
         />
-
-        <TextArea
-          className="date"
-          html={date ? date : currentDate}
-          save={date => save({ date })}
-        />
       </div>
     </div>
   );

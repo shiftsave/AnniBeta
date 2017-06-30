@@ -62,7 +62,7 @@ export default class ProjectDetail extends Component {
           storyboards
          />
 
-        <FileCollection
+        {/* <FileCollection
           className={`StyleFrames ${sectionClass}`}
           projectPath={id}
           project={project}
@@ -81,6 +81,7 @@ export default class ProjectDetail extends Component {
             Delete Project
           </Button>
         </div>
+        */}
       </div>
     );
   }

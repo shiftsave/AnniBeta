@@ -36,13 +36,13 @@ pxToEm($px)
  * Align center | center
  */
 
-center($column=null, $horizontalOnly=null)
+center($column=null, $horizontal=null)
   align-items: center
   display: flex
   flex-direction: column
   justify-content: center
 
-  if $horizontalOnly == 'horizontalOnly'
+  if $horizontal == 'horizontal'
     align-items: flex-start
 
   if $column == 'column'
