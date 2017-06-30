@@ -144,8 +144,13 @@ export default class TextEditor extends Component {
   render() {
     const { editorState, styles } = this.state;
 
+    const Editorstyles = classNames({
+      TextEditor: true,
+      [this.props.className]: this.props.className
+    });
+
     return (
-      <div className="TextEditor" ref="toolbarParent">
+      <div className={Editorstyles} ref="toolbarParent">
         <div className="ContextualToolbar" style={styles} ref="toolbar">
           <InlineStyleControls
             condensed

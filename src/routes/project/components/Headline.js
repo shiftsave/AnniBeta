@@ -1,9 +1,15 @@
 import React from "react";
+import classNames from "classnames";
 import { TextArea } from "components/baseline";
 
-const Headline = ({ name, client, date, save }) => {
+const Headline = ({ className, name, client, date, save }) => {
+  const styles = classNames({
+    Headline: true,
+    [className]: className
+  });
+
   return (
-    <div className="Headline">
+    <div className={styles}>
       <div className="content">
         <div>
           <TextArea

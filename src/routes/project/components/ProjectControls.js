@@ -1,4 +1,7 @@
 import React from "react";
+import classNames from "classnames";
+
+
 
 export const ProjectControls = ({ children }) => {
   return (
@@ -10,11 +13,19 @@ export const ProjectControls = ({ children }) => {
   );
 };
 
-export const Section = ({ name, checked, onClick }) => (
+export const Section = ({ name, checked, onClick }) => {
+
+  const styles = classNames({
+    checked
+  });
+
+  return (
   <div className="Section">
-    <label>
+    <label className={styles}>
       {name}
+      {checked ? <div className="pip checked" /> : <div className="pip" /> }
       <input type="radio" checked={checked} onClick={onClick} readOnly value={name}/>
     </label>
   </div>
 )
+}

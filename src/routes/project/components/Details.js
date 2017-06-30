@@ -92,7 +92,7 @@ export default class ProjectDetail extends Component {
       this.props.router.push("/dashboard");
     }
     const sectionClass = classNames({
-      "Project-section": true
+      "ProjectSection": true
     });
 
     const {
@@ -108,6 +108,7 @@ export default class ProjectDetail extends Component {
 
         {showHeadline &&
           <Headline
+            className={sectionClass}
             name={project.name}
             client={project.client && project.client}
             save={update =>
@@ -116,6 +117,7 @@ export default class ProjectDetail extends Component {
 
         {showEditor &&
           <TextEditor
+            className={sectionClass}
             content={project.editorContent}
             save={update => {
               update.id = project.id;
