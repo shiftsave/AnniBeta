@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 // import { removeFolder } from "adapters";
 import { removeProject, deleteFile, updateProject } from "actions";
-import Headline from "./Headline";
-import TextEditor from "./TextEditor";
 import filter from "lodash.filter";
-import { Button, ButtonGroup, FileCollection } from "components/baseline";
+import { FileCollection } from "components/baseline";
 import constants from "constants";
 import classNames from "classnames";
 const {
@@ -13,9 +11,13 @@ const {
   STYLEFRAMES
 } = constants.content;
 
+import Headline from "./Headline";
+import TextEditor from "./TextEditor";
+import { ProjectControls, Section } from "./ProjectControls";
+
 export default class ProjectDetail extends Component {
   state = {
-    showHeadline: false,
+    showHeadline: true,
     showEditor: false,
     showMoodboard: false,
     showStoryboards: false,
@@ -40,8 +42,8 @@ export default class ProjectDetail extends Component {
       showMoodboard: false,
       showStoryboards: false,
       showStyleframes: false
-    })
-  }
+    });
+  };
 
   toggleEditor = () => {
     this.setState({
@@ -50,8 +52,8 @@ export default class ProjectDetail extends Component {
       showMoodboard: false,
       showStoryboards: false,
       showStyleframes: false
-    })
-  }
+    });
+  };
 
   toggleMoodboard = () => {
     this.setState({
@@ -60,18 +62,18 @@ export default class ProjectDetail extends Component {
       showMoodboard: true,
       showStoryboards: false,
       showStyleframes: false
-    })
-  }
+    });
+  };
 
   toggleStoryboards = () => {
     this.setState({
-      showHeadline: true,
+      showHeadline: false,
       showEditor: false,
       showMoodboard: false,
       showStoryboards: true,
       showStyleframes: false
-    })
-  }
+    });
+  };
 
   toggleStyleframes = () => {
     this.setState({
@@ -80,8 +82,8 @@ export default class ProjectDetail extends Component {
       showMoodboard: false,
       showStoryboards: false,
       showStyleframes: true
-    })
-  }
+    });
+  };
 
   render() {
     const { id } = this.props.params;
@@ -104,19 +106,10 @@ export default class ProjectDetail extends Component {
     return (
       <div className="ProjectDetail">
 
-        <ButtonGroup className="tempToggle">
-          <Button link onClick={this.toggleHeadline}>Headline</Button>
-          <Button link onClick={this.toggleEditor}>Editor</Button>
-          <Button link onClick={this.toggleMoodboard}>Moodboard</Button>
-          <Button link onClick={this.toggleStoryboards}>Storyboards</Button>
-          <Button link onClick={this.toggleStyleframes}>Styleframes</Button>
-        </ButtonGroup>
-
         {showHeadline &&
           <Headline
             name={project.name}
-            client={project.client && project.client.text}
-            date={project.date && project.date.text}
+            client={project.client && project.client}
             save={update =>
               this.props.dispatch(updateProject({ ...update, id: project.id }))}
           />}
@@ -159,6 +152,34 @@ export default class ProjectDetail extends Component {
             title="Style Frames"
             styleframes
           />}
+
+        <ProjectControls>
+          <Section
+            name="Introduction"
+            checked={showHeadline}
+            onClick={this.toggleHeadline}
+          />
+          <Section
+            name="Script"
+            checked={showEditor}
+            onClick={this.toggleEditor}
+          />
+          <Section
+            name="Moodboard"
+            checked={showMoodboard}
+            onClick={this.toggleMoodboard}
+          />
+          <Section
+            name="Storyboards"
+            checked={showStoryboards}
+            onClick={this.toggleStoryboards}
+          />
+          <Section
+            name="Styleframes"
+            checked={showStyleframes}
+            onClick={this.toggleStyleframes}
+          />
+        </ProjectControls>
 
         {/* <div>
           <Button
