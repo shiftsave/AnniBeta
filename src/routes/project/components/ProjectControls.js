@@ -13,7 +13,7 @@ export const ProjectControls = ({ children }) => {
   );
 };
 
-export const Section = ({ name, checked, onClick }) => {
+export const ProjectSectionNavItem = ({ name, checked, onClick }) => {
 
   const styles = classNames({
     checked
