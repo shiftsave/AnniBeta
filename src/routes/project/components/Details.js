@@ -31,7 +31,8 @@ const ProjectSectionNavigator = ({
   Sections,
   activeSectionIndex,
   activateSectionByIndex,
-  save
+  save,
+  projectPath
 }) => {
   return (
     <div className="Project-sections">
@@ -49,7 +50,8 @@ const ProjectSectionNavigator = ({
             key: `${name}sectionNavItem${index}`,
             name,
             checked: activeSectionIndex === index,
-            onClick: () => activateSectionByIndex(index)
+            onClick: () => activateSectionByIndex(index),
+            projectPath
           })
         ))}
       </ProjectControls>
@@ -57,16 +59,8 @@ const ProjectSectionNavigator = ({
   );
 };
 
-export default class ProjectDetail extends Component {
-  constructor(props) {
-    super(props);
-    const name = props.params.id;
-    const project = props.getProjectByName(name);
-    const id = project.id;
-    this.id = id;
-    this.state = {
-      activeSectionIndex: 1,
-      Sections: [
+const getSections = (project, id) => 
+      [
         {
           name: "Introduction",
           SectionType: Headline,
@@ -121,6 +115,24 @@ export default class ProjectDetail extends Component {
           }
         }
       ]
+
+export default class ProjectDetail extends Component {
+  constructor(props) {
+    super(props);
+    const name = props.params.id;
+    this.projectPath = props.location.pathname;
+    const project = props.getProjectByName(name);
+    const id = project.id;
+    this.id = id;
+    const Sections = getSections(project, id);
+    let activeSectionIndex = 0;
+    const sectionQueryParam = props.location.query.section;
+    if (sectionQueryParam) {
+      activeSectionIndex = Sections.findIndex(s => s.name === sectionQueryParam) || 0;
+    }
+    this.state = {
+      activeSectionIndex,
+      Sections
     };
   }
   componentDidMount() {
@@ -144,7 +156,7 @@ export default class ProjectDetail extends Component {
     }
 
     const { Sections, activeSectionIndex } = this.state;
-    const { save } = this;
+    const { save, projectPath } = this;
 
     return (
       <div className="ProjectDetail">
@@ -152,7 +164,8 @@ export default class ProjectDetail extends Component {
           activeSectionIndex,
           activateSectionByIndex: this.activateSectionByIndex,
           Sections,
-          save
+          save,
+          projectPath
         })}
         {/*<Button
             onClick={() => {
