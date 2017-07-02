@@ -15,7 +15,7 @@
     flex-direction: column;
     @extend h5
 
-  .Section
+  .ProjectSectionNavItem
     label
       align-items: center
       color: $concrete
@@ -50,3 +50,10 @@
     input
       position: absolute
       visibility: hidden
+
+.ProjectSectionNavItem-name
+  display none
+  font-weight 700
+
+  +above($break-lg)
+    display inline

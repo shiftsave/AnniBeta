@@ -18,12 +18,12 @@ export const ProjectSectionNavItem = ({ name, checked, onClick, projectPath }) =
   });
 
   return (
-    <Link className="Section" to={{
+    <Link className="ProjectSectionNavItem" to={{
       pathname: projectPath,
       query: { section: name }
     }} onClick={onClick}>
       <label className={styles}>
-        {name}
+        <span className="ProjectSectionNavItem-name">{name}</span>
         {checked ? <div className="pip checked" /> : <div className="pip" />}
         <input
           type="radio"
