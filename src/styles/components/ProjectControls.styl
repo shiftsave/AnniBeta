@@ -13,7 +13,6 @@
     display: flex
     align-items: flex-end
     flex-direction: column;
-    @extend h5
 
   .Section
     label
@@ -21,13 +20,21 @@
       color: $concrete
       cursor: pointer
       display: inline-flex
-      padding: $sm 0
       transition: 400ms $expo
       transform-origin: right
+      translate3d( 0, 0, 0)
+
+      h5
+        display: none
+        padding: 0
+
+      +above($break-md)
+        h5
+          display: inline-block
 
       &:hover
         color: $charcoal
-        transform: scale(1.05)
+        transform: scale(1.048)
 
         .pip
           transform: scale(1.15)
@@ -36,7 +43,7 @@
       border: pxToRem(2) solid $copper
       border-radius: $xl
       height: pxToRem(12)
-      margin-left: $sm
+      margin: $sm
       transition: 200ms $expo
       width: pxToRem(12)
 

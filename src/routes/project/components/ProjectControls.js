@@ -22,7 +22,7 @@ export const Section = ({ name, checked, onClick }) => {
   return (
   <div className="Section">
     <label className={styles}>
-      {name}
+      <h5>{name}</h5>
       {checked ? <div className="pip checked" /> : <div className="pip" /> }
       <input type="radio" checked={checked} onClick={onClick} readOnly value={name}/>
     </label>
