@@ -1,28 +1,149 @@
-import React, { Component } from "react";
+import React, { Component, createElement } from "react";
 // import { removeFolder } from "adapters";
 import { removeProject, deleteFile, updateProject } from "actions";
 import filter from "lodash.filter";
 import { FileCollection } from "components/baseline";
 import constants from "constants";
 import classNames from "classnames";
-const {
-  MOODBOARD,
-  STORYBOARD,
-  STYLEFRAMES
-} = constants.content;
+const { MOODBOARD, STORYBOARD, STYLEFRAMES } = constants.content;
 
 import Headline from "./Headline";
 import TextEditor from "./TextEditor";
-import { ProjectControls, Section } from "./ProjectControls";
+import { ProjectControls, ProjectSectionNavItem } from "./ProjectControls";
+
+const ProjectSection = ({
+  isActive,
+  SectionType,
+  SectionProps,
+  key,
+  save,
+  className
+}) => {
+  const sectionClass = classNames(className, {
+    ProjectSection: true
+  });
+  const props = { ...SectionProps, className: sectionClass, key, save };
+  return isActive ? createElement(SectionType, props, null) : null;
+};
+
+const ProjectSectionNavigator = ({
+  name,
+  Sections,
+  activeSectionIndex,
+  activateSectionByIndex,
+  save,
+  projectPath
+}) => {
+  return (
+    <div className="Project-sections">
+      {Sections.map((section, index) =>
+        ProjectSection({
+          ...section,
+          save,
+          key: `section${index}`,
+          isActive: activeSectionIndex === index
+        })
+      )}
+      <ProjectControls>
+        {Sections.map(({ SectionType, name }, index) => (
+          createElement(ProjectSectionNavItem, {
+            key: `${name}sectionNavItem${index}`,
+            name,
+            checked: activeSectionIndex === index,
+            onClick: () => activateSectionByIndex(index),
+            projectPath
+          })
+        ))}
+      </ProjectControls>
+    </div>
+  );
+};
+
+const getSections = (project, id) => 
+      [
+        {
+          name: "Introduction",
+          SectionType: Headline,
+          SectionProps: {
+            className: "",
+            name: project.name,
+            client: project.client 
+          }
+        },
+        {
+          name: "Script",
+          SectionType: TextEditor,
+          SectionProps: {
+            className: "",
+            content: project.editorContent
+          }
+        },
+        {
+          name: "Moodboard",
+          SectionType: FileCollection,
+          SectionProps: {
+            className: `MoodBoard`,
+            projectPath: id,
+            project,
+            collectionId: MOODBOARD,
+            title: `Moodboard`,
+            references: true
+          }
+        },
+        {
+          name: "Storyboard",
+          SectionType: FileCollection,
+          SectionProps: {
+            className: `Storyboard`,
+            projectPath: id,
+            project,
+            collectionId: STORYBOARD,
+            title: `Storyboard`,
+            storyboards: true
+          }
+        },
+        {
+          name: "Styleframes",
+          SectionType: FileCollection,
+          SectionProps: {
+            className: `Styleframes`,
+            projectPath: id,
+            project,
+            collectionId: STYLEFRAMES,
+            title: `Styleframes`,
+            styleframes: true
+          }
+        }
+      ]
+
+const getActiveSectionIndex = (props, Sections) => {
+    let activeSectionIndex = 0;
+    const sectionQueryParam = props.location.query.section;
+    if (sectionQueryParam) {
+      const foundSection = Sections.findIndex(s => s.name === sectionQueryParam);
+      if (foundSection > -1) {
+        activeSectionIndex = foundSection;
+      }
+    }
+    return activeSectionIndex;
+  }
 
 export default class ProjectDetail extends Component {
-  state = {
-    showHeadline: true,
-    showEditor: false,
-    showMoodboard: false,
-    showStoryboards: false,
-    showStyleframes: false
-  };
+  constructor(props) {
+    super(props);
+    const name = props.params.id;
+    this.projectPath = props.location.pathname;
+    const project = props.getProjectByName(name);
+    const id = project.id;
+    this.id = id;
+    const Sections = getSections(project, id);
+    let activeSectionIndex = getActiveSectionIndex(props, Sections);
+    
+    this.state = {
+      activeSectionIndex,
+      Sections
+    };
+  }
   componentDidMount() {
     const { id } = this.props.params;
     const project = this.props.getProjectByName(id);
@@ -31,59 +152,10 @@ export default class ProjectDetail extends Component {
     }
   }
 
-  /*
-   * Temporary toggles to reveal sections
-   */
-
-  toggleHeadline = () => {
-    this.setState({
-      showHeadline: true,
-      showEditor: false,
-      showMoodboard: false,
-      showStoryboards: false,
-      showStyleframes: false
-    });
-  };
-
-  toggleEditor = () => {
-    this.setState({
-      showHeadline: false,
-      showEditor: true,
-      showMoodboard: false,
-      showStoryboards: false,
-      showStyleframes: false
-    });
-  };
-
-  toggleMoodboard = () => {
-    this.setState({
-      showHeadline: false,
-      showEditor: false,
-      showMoodboard: true,
-      showStoryboards: false,
-      showStyleframes: false
-    });
-  };
-
-  toggleStoryboards = () => {
-    this.setState({
-      showHeadline: false,
-      showEditor: false,
-      showMoodboard: false,
-      showStoryboards: true,
-      showStyleframes: false
-    });
-  };
-
-  toggleStyleframes = () => {
-    this.setState({
-      showHeadline: false,
-      showEditor: false,
-      showMoodboard: false,
-      showStoryboards: false,
-      showStyleframes: true
-    });
-  };
+  activateSectionByIndex = activeSectionIndex =>
+    this.setState({ activeSectionIndex });
+  
+  save = update => this.props.dispatch(updateProject({ ...update, id: this.id }))
 
   render() {
     const { id } = this.props.params;
@@ -91,100 +163,20 @@ export default class ProjectDetail extends Component {
     if (!project) {
       this.props.router.push("/dashboard");
     }
-    const sectionClass = classNames({
-      "ProjectSection": true
-    });
 
-    const {
-      showHeadline,
-      showEditor,
-      showMoodboard,
-      showStoryboards,
-      showStyleframes
-    } = this.state;
+    const { Sections, activeSectionIndex } = this.state;
+    const { save, projectPath } = this;
 
     return (
       <div className="ProjectDetail">
-
-        {showHeadline &&
-          <Headline
-            className={sectionClass}
-            name={project.name}
-            client={project.client && project.client}
-            save={update =>
-              this.props.dispatch(updateProject({ ...update, id: project.id }))}
-          />}
-
-        {showEditor &&
-          <TextEditor
-            className={sectionClass}
-            content={project.editorContent}
-            save={update => {
-              update.id = project.id;
-              this.props.dispatch(updateProject(update));
-            }}
-          />}
-
-        {showMoodboard &&
-          <FileCollection
-            className={`MoodBoard ${sectionClass}`}
-            projectPath={id}
-            project={project}
-            collectionId={MOODBOARD}
-            title="Moodboard"
-            references
-          />}
-
-        {showStoryboards &&
-          <FileCollection
-            className={`StoryBoard ${sectionClass}`}
-            projectPath={id}
-            project={project}
-            collectionId={STORYBOARD}
-            title="Storyboard"
-            storyboards
-          />}
-
-        {showStyleframes &&
-          <FileCollection
-            className={`StyleFrames ${sectionClass}`}
-            projectPath={id}
-            project={project}
-            collectionId={STYLEFRAMES}
-            title="Style Frames"
-            styleframes
-          />}
-
-        <ProjectControls>
-          <Section
-            name="Introduction"
-            checked={showHeadline}
-            onClick={this.toggleHeadline}
-          />
-          <Section
-            name="Script"
-            checked={showEditor}
-            onClick={this.toggleEditor}
-          />
-          <Section
-            name="Moodboard"
-            checked={showMoodboard}
-            onClick={this.toggleMoodboard}
-          />
-          <Section
-            name="Storyboards"
-            checked={showStoryboards}
-            onClick={this.toggleStoryboards}
-          />
-          <Section
-            name="Styleframes"
-            checked={showStyleframes}
-            onClick={this.toggleStyleframes}
-          />
-        </ProjectControls>
-
-        {/* <div>
-          <Button
+        {createElement(ProjectSectionNavigator, {
+          activeSectionIndex,
+          activateSectionByIndex: this.activateSectionByIndex,
+          Sections,
+          save,
+          projectPath
+        })}
+        {/*<Button
             onClick={() => {
               removeFolder(project.path_display).then(
                 this._removeProject.bind(this)
@@ -192,9 +184,7 @@ export default class ProjectDetail extends Component {
             }}
           >
             Delete Project
-          </Button>
-        </div>
-        */}
+          </Button>*/}
       </div>
     );
   }
@@ -207,7 +197,8 @@ export default class ProjectDetail extends Component {
     // remove all unused files from store
     Object.keys(this.props.files.archive).forEach(file => {
       const fileUsed = collectionKeys.map(collection =>
-        collection.indexOf(file));
+        collection.indexOf(file)
+      );
       if (!filter(fileUsed, i => i > -1).length) {
         this.props.dispatch(deleteFile(file));
       }

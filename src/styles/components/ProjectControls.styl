@@ -14,7 +14,18 @@
     align-items: flex-end
     flex-direction: column;
 
-  .Section
+  .Button
+    border-color: $copper
+    border-width: pxToRem(2)
+    border-radius: 1000
+    padding: pxToRem(2)
+    margin: pxToRem(4) pxToRem(2)
+
+    &:hover
+      transform-origin: center
+      transform: scale(1.2) translate3d(0,0,0);
+
+  .ProjectSectionNavItem
     label
       align-items: center
       color: $concrete
@@ -28,7 +39,7 @@
         display: none
         padding: 0
 
-      +above($break-md)
+      +above($break-lg)
         h5
           display: inline-block
 
@@ -57,3 +68,10 @@
     input
       position: absolute
       visibility: hidden
+
+.ProjectSectionNavItem-name
+  display none
+  font-weight 700
+
+  +above($break-lg)
+    display inline
