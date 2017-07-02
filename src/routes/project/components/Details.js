@@ -116,6 +116,18 @@ const getSections = (project, id) =>
         }
       ]
 
+const getActiveSectionIndex = (props, Sections) => {
+    let activeSectionIndex = 0;
+    const sectionQueryParam = props.location.query.section;
+    if (sectionQueryParam) {
+      const foundSection = Sections.findIndex(s => s.name === sectionQueryParam);
+      if (foundSection > -1) {
+        activeSectionIndex = foundSection;
+      }
+    }
+    return activeSectionIndex;
+  }
+
 export default class ProjectDetail extends Component {
   constructor(props) {
     super(props);
@@ -125,11 +137,8 @@ export default class ProjectDetail extends Component {
     const id = project.id;
     this.id = id;
     const Sections = getSections(project, id);
-    let activeSectionIndex = 0;
-    const sectionQueryParam = props.location.query.section;
-    if (sectionQueryParam) {
-      activeSectionIndex = Sections.findIndex(s => s.name === sectionQueryParam) || 0;
-    }
+    let activeSectionIndex = getActiveSectionIndex(props, Sections);
+    
     this.state = {
       activeSectionIndex,
       Sections
