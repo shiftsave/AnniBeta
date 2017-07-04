@@ -47,5 +47,6 @@ export const Heading = styled.h1`
 export const Paragraph = styled.p`
   font-family: ${props => props.strong ? "Apercu Medium" : "Apercu"}, sans-serif;
   font-size: 16px;
-  margin: 0 0 4px 0;
+  line-height: 1.6;
+  margin: 0;
 `;
