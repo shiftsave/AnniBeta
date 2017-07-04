@@ -37,33 +37,15 @@ export const GlobalStyles = injectGlobal`
 export const Heading = styled.h1`
   font-family: 'Apercu Bold', sans-serif;
   font-size: 32px;
+  margin: 0 0 4px 0;
 
   ${Above.sm`
     font-size: 48px;
   `}
-
-  > .ityped-cursor {
-    color: #E2A480;
-    animation: blink 1100ms linear infinite;
-  }
-
-  @keyframes blink {
-    0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 1;
-    }
-    51% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
 `;
 
 export const Paragraph = styled.p`
   font-family: ${props => props.strong ? "Apercu Medium" : "Apercu"}, sans-serif;
   font-size: 16px;
+  margin: 0 0 4px 0;
 `;

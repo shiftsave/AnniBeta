@@ -46,6 +46,8 @@ class Dashboard extends Component {
     return (
       <Section>
         <Heading>Welcome Back Mika!</Heading>
+        <Paragraph>You have 12 unread notifications</Paragraph>
+        <Paragraph>Your Projects</Paragraph>
         <Content>
           {loading ? <Loader fullPage /> : renderProjects}
         </Content>

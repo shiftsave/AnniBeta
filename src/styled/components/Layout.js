@@ -5,7 +5,9 @@ import { CONCRETE, PAPER, PEBBLE, EASE_OUT_EXPO } from "./Variables";
 export const Card = styled.div`
   background: ${PAPER};
   box-shadow: 0 2px 4px 0 ${PEBBLE};
-  height: ${props => props.height ? `${props.height}px` : "auto"};
+  display: flex;
+  flex-direction: column;
+  height: auto;
   transition: 400ms ${EASE_OUT_EXPO};
   width: 100%;
 
@@ -14,6 +16,10 @@ export const Card = styled.div`
   }
 `;
 
+export const CardDetails = styled.div`
+  height: auto;
+  padding: 24px;
+`;
 
 export const Content = styled.div`
   height: 100%;
@@ -24,15 +30,15 @@ export const Grid = styled.div`
   grid-gap: 24px;
   grid-auto-flow: row dense;
   grid-auto-rows: 320px;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 `;
-
 
 export const Image = styled.img`
-  object-fit: contain;
+  height: auto;
+  object-fit: cover;
+  overflow: hidden;
   width: 100%;
 `;
-
 
 export const Section = styled.div`
   background: ${PEBBLE};
@@ -41,7 +47,7 @@ export const Section = styled.div`
   margin-top: 80px;
   height: calc(100vh - 80px);
   padding: 24px;
-  width: 100vw;
+  max-width: 100vw;
 
   ${Above.sm`
     padding: 48px;

@@ -1,13 +1,14 @@
-// import styled, { injectGlobal } from "styled-components";
-//
-// /*
-//  * Globals
-//  */
-//
-// injectGlobal`
-//   body {
-//     margin: 0;
-//     max-width: 100vw;
-//     overflow-x: hidden;
-//   }
-// `;
+import styledNormalize from "styled-normalize";
+import { injectGlobal } from "styled-components";
+
+/*
+ * Globals
+ */
+
+export default () => injectGlobal`
+  ${styledNormalize}
+
+  body {
+    background: red;
+  }
+`;
