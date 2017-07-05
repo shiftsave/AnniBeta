@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router';
 import { getAuthUrl, login, logoutSession } from 'adapters';
 import { addAuthToken, logout } from 'actions';
 
-import { Button, Icon } from 'components/baseline';
+import { NavBar, Nav, Logo } from 'styled';
 
 class Navigation extends Component {
   componentDidMount() {
@@ -33,32 +33,32 @@ class Navigation extends Component {
 
   render() {
     const login = (
-      <nav className="NavigationItems">
-        <Button primary href={getAuthUrl()}>Sign in</Button>
-      </nav>);
+      <Nav>
+        <button primary href={getAuthUrl()}>Sign in</button>
+      </Nav>);
     const userInfo = this.props.auth.toJS().userInfo;
     const firstInitial = userInfo ? userInfo.name.given_name[0] : "I";
     const lastInitial = userInfo ? userInfo.name.surname[0] : "C";
 
     const loggedInNav = (
-      <nav className="NavigationItems">
-        <Button to="/dashboard" link>Projects</Button>
+      <Nav>
+        <button to="/dashboard" link>Projects</button>
         {/* <Button to="/activity" link>Activity</Button> */}
-        <Button icon="notification" noPadding />
-        <Button user onClick={this.logout.bind(this)}>
+        <button icon="notification" noPadding />
+        <button user onClick={this.logout.bind(this)}>
           <span className="userInitials">
             {firstInitial + lastInitial}
           </span>
-        </Button>
-      </nav>
+        </button>
+      </Nav>
     );
     return (
-      <div className="Navigation">
+      <NavBar>
         <Link to="/">
-          <Icon name='logo' width={48} height={48} />
+          <Logo />
         </Link>
         {(this.props.auth.toJS().isAuthenticated ? loggedInNav : login)}
-      </div>
+      </NavBar>
     );
   }
 }
