@@ -35,13 +35,13 @@ export const ProjectListItem = ({ name, client, image, link }) => {
       <CardControls>
         <Subheading micro>Due May 21</Subheading>
         <ButtonGroup mr={-16}>
-        <ButtonLink>
+        <ButtonLink noBorder>
           <OutlineIcon name="confirm" size={16} strokeWidth={4} />
         </ButtonLink>
-        <ButtonLink>
+        <ButtonLink noBorder>
           <OutlineIcon name="view" size={16} strokeWidth={4} />
         </ButtonLink>
-        <ButtonLink>
+        <ButtonLink noBorder>
           <OutlineIcon name="delete" size={16} strokeWidth={4} />
         </ButtonLink>
       </ButtonGroup>

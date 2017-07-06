@@ -8,14 +8,10 @@ export const ButtonGroup = styled.div`
   ${ Utils.margin };
 `;
 
-export const Button = styled.button.attrs({
-
-  border: props => `${props.border}px` || `2px solid ${COPPER}`,
-
-})`
+export const Button = styled.button`
   align-items: center;
   background: none;
-  border: ${props => props.border};
+  border: ${props => props.noBorder ? "none" : `2px solid ${COPPER}`};
   border-radius: 80px;
   color: ${CHARCOAL};
   cursor: pointer;

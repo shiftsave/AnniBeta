@@ -53,7 +53,7 @@ class Navigation extends Component {
     );
     return (
       <NavBar>
-        <ButtonLink to="/" border={0}>
+        <ButtonLink to="/" noBorder>
           <Logo />
         </ButtonLink>
         {(this.props.auth.toJS().isAuthenticated ? loggedInNav : login)}
