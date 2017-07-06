@@ -5,9 +5,9 @@ import { Above } from "./MediaTemplates";
  * Font Definitions
  */
 
-import ApercuRegular from "../../../fonts/ApercuTrial-Regular.ttf";
-import ApercuMedium from "../../../fonts/ApercuTrial-Medium.ttf";
-import ApercuBold from "../../../fonts/ApercuTrial-Bold.ttf";
+import ApercuRegular from "fonts/ApercuTrial-Regular.ttf";
+import ApercuMedium from "fonts/ApercuTrial-Medium.ttf";
+import ApercuBold from "fonts/ApercuTrial-Bold.ttf";
 
 export const GlobalStyles = injectGlobal`
   @font-face {

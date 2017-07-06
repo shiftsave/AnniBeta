@@ -22,7 +22,7 @@ export { Heading, Subheading, Paragraph } from "./components/Typography";
 
 
 /* Button */
-export { Button } from "./components/Buttons";
+export { Button, ButtonLink, Hyperlink } from "./components/Buttons";
 
 
 /* Icons */
