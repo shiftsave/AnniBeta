@@ -55,12 +55,12 @@ export const Card = styled.div`
   height: auto;
   transition: 320ms ${EASE_OUT_BACK};
   width: 100%;
-  cursor: ${props => props.onClick ? "pointer" : "default"};
+  cursor: ${props => props.active ? "pointer" : "default"};
 
 
   &:hover {
-    box-shadow: ${props => props.onClick ? `4px 12px 24px 0 ${CONCRETE}` : "none"};
-    transform: scale(${props => props.onClick ? 1.016 : 1});
+    box-shadow: ${props => props.active ? `4px 12px 24px 0 ${CONCRETE}` : "none"};
+    transform: scale(${props => props.active ? 1.016 : 1});
 
     ${CardControls} {
       height: auto;

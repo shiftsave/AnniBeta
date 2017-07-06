@@ -2,6 +2,8 @@ import React from "react";
 import { browserHistory } from "react-router";
 
 import {
+  ButtonGroup,
+  ButtonLink,
   Card,
   CardDetails,
   CardControls,
@@ -24,15 +26,25 @@ export const ProjectList = ({ children }) => {
 
 export const ProjectListItem = ({ name, client, image, link }) => {
   return (
-    <Card onClick={() => browserHistory.push(link)}>
-      <Image src={image ? image : tempImage} alt={name} />
-      <CardDetails>
+    <Card active>
+      <Image src={image ? image : tempImage} alt={name} onClick={() => browserHistory.push(link)} />
+      <CardDetails onClick={() => browserHistory.push(link)}>
         <Paragraph strong>{name}</Paragraph>
-        <Paragraph>{client ? client : "Client Area"}</Paragraph>
+        <Paragraph>{client ? client : "Client Name"}</Paragraph>
       </CardDetails>
       <CardControls>
         <Subheading micro>Due May 21</Subheading>
-        <OutlineIcon name="confirm" size={12} strokeWidth={8} />
+        <ButtonGroup mr={-16}>
+        <ButtonLink>
+          <OutlineIcon name="confirm" size={16} strokeWidth={4} />
+        </ButtonLink>
+        <ButtonLink>
+          <OutlineIcon name="view" size={16} strokeWidth={4} />
+        </ButtonLink>
+        <ButtonLink>
+          <OutlineIcon name="delete" size={16} strokeWidth={4} />
+        </ButtonLink>
+      </ButtonGroup>
       </CardControls>
     </Card>
   );

@@ -8,7 +8,7 @@ import {
   FILE_DATABASE_HISTORY_DIRECTORY
 } from "constants/file";
 
-import { Button, Content, Heading, Paragraph, Section } from "styled";
+import { Content, Heading, Paragraph, Section } from "styled";
 import { Loader } from "components/baseline";
 
 class Dashboard extends Component {

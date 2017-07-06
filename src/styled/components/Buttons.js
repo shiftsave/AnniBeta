@@ -1,12 +1,21 @@
 import styled from "styled-components";
 import { Link } from "react-router";
+import { Utils } from "./Utils";
 
 import { CHARCOAL, COPPER, EASE_OUT_EXPO } from "./Variables";
 
-export const Button = styled.button`
+export const ButtonGroup = styled.div`
+  ${ Utils.margin };
+`;
+
+export const Button = styled.button.attrs({
+
+  border: props => `${props.border}px` || `2px solid ${COPPER}`,
+
+})`
   align-items: center;
   background: none;
-  border: ${props => props.noBorder ? "none" : `2px solid ${COPPER}`};
+  border: ${props => props.border};
   border-radius: 80px;
   color: ${CHARCOAL};
   cursor: pointer;
@@ -20,6 +29,7 @@ export const Button = styled.button`
   text-decoration: none;
   text-transform: uppercase;
   transition: 400ms ${EASE_OUT_EXPO};
+  z-index: 2;
 
   :hover {
     transform: scale(1.025);
