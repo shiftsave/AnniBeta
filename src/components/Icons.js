@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export const Icon = props => {
+export const Icons = props => {
   const { name, size } = props;
   let pathArray;
   let polylinePoints;
@@ -120,13 +120,13 @@ export const Icon = props => {
 };
 
 // Define Icon Prop Types
-Icon.propTypes = {
+Icons.propTypes = {
   name: PropTypes.string.isRequired,
   className: PropTypes.string,
   size: PropTypes.number
 };
 
-Icon.defaultProps = {
+Icons.defaultProps = {
   name: "",
   size: 48
 };

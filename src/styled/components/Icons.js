@@ -1,7 +1,22 @@
 import styled from "styled-components";
-import { Icon } from "components/Icon";
+import { Icons } from "components/Icons";
+import { CHARCOAL } from "./Variables";
 
-export const Logo = styled(Icon).attrs({
+
+
+export const SolidIcon = styled(Icons)`
+  fill: ${CHARCOAL};
+  stroke: transparent;
+  stroke-width: ${props => props.strokeWidth ? `${props.strokeWidth}px` : "2px"} ;
+`;
+
+export const OutlineIcon = styled(Icons)`
+  fill: none;
+  stroke: ${CHARCOAL};
+  stroke-width: ${props => props.strokeWidth ? `${props.strokeWidth}px` : "2px"} ;
+`;
+
+export const Logo = styled(Icons).attrs({
   name: "logo"
 })`
   fill: none;
@@ -16,4 +31,5 @@ export const Logo = styled(Icon).attrs({
   :nth-child(5){
     fill: #E2A480;
     stroke: none;
+  }
 `;

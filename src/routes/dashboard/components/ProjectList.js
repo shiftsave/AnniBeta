@@ -1,7 +1,17 @@
 import React from "react";
 import { browserHistory } from "react-router";
 
-import { Card, CardDetails, Grid, Image, Paragraph } from "styled";
+import {
+  Card,
+  CardDetails,
+  CardControls,
+  Grid,
+  OutlineIcon,
+  Image,
+  Subheading,
+  Paragraph
+} from "styled";
+
 import tempImage from "media/adidas.png";
 
 export const ProjectList = ({ children }) => {
@@ -20,6 +30,10 @@ export const ProjectListItem = ({ name, client, image, link }) => {
         <Paragraph strong>{name}</Paragraph>
         <Paragraph>{client ? client : "Client Area"}</Paragraph>
       </CardDetails>
+      <CardControls>
+        <Subheading micro>Due May 21</Subheading>
+        <OutlineIcon name="confirm" size={12} strokeWidth={8} />
+      </CardControls>
     </Card>
   );
 };

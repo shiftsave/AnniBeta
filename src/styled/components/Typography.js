@@ -1,5 +1,6 @@
 import styled, { injectGlobal } from "styled-components";
 import { Above } from "./MediaTemplates";
+
 /*
  * Font Definitions
  */
@@ -44,9 +45,21 @@ export const Heading = styled.h1`
   `}
 `;
 
+export const Subheading = styled.h2`
+  font-family: 'Apercu Bold', sans-serif;
+  font-size: ${props => props.tiny && "15px"};
+  font-size: ${props => props.micro && "12px"};
+  margin: 0;
+  letter-spacing: .75px;
+  text-transform: uppercase;
+`;
+
 export const Paragraph = styled.p`
   font-family: ${props => props.strong ? "Apercu Medium" : "Apercu"}, sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  margin: 0;
+  margin-top: ${props => props.mt ? `${props.mt}px` : "0"};
+  margin-right: ${props => props.mr ? `${props.mr}px` : "0"};
+  margin-bottom: ${props => props.mb ? `${props.mb}px` : "0"};
+  margin-left: ${props => props.ml ? `${props.ml}px` : "0"};
 `;

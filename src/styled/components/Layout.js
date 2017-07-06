@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Above } from "./MediaTemplates";
-import { CONCRETE, PAPER, PEBBLE, EASE_OUT_BACK } from "./Variables";
+import { CONCRETE, PAPER, FLINT, PEBBLE, EASE_OUT_BACK } from "./Variables";
 
 export const Section = styled.div`
   background: ${PEBBLE};
@@ -32,26 +32,44 @@ export const Content = styled.div`
   height: 100%;
 `;
 
-export const Card = styled.div`
-  background: ${PAPER};
-  box-shadow: 0 2px 4px 0 ${PEBBLE};
+export const CardControls = styled.div`
+  align-items: center;
   display: flex;
-  flex-direction: column;
-  height: auto;
-  transition: 400ms ${EASE_OUT_BACK};
-  width: 100%;
-  cursor: ${props => props.onClick ? "pointer" : "default"};
-
-  &:hover {
-    box-shadow: ${props => props.onClick ? `4px 12px 24px 0 ${CONCRETE}` : "none"};
-    transform: scale(${props => props.onClick ? 1.02 : 1});
-  }
+  height: 0;
+  justify-content: space-between;
+  padding: 0 24px;
+  transition: 240ms ${EASE_OUT_BACK};
+  overflow: hidden;
 `;
 
 export const CardDetails = styled.div`
   height: auto;
-  padding: 24px;
+  padding: 16px 24px;
 `;
+
+export const Card = styled.div`
+  background: ${PAPER};
+  box-shadow: 0 2px 24px 0 ${FLINT};
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  transition: 320ms ${EASE_OUT_BACK};
+  width: 100%;
+  cursor: ${props => props.onClick ? "pointer" : "default"};
+
+
+  &:hover {
+    box-shadow: ${props => props.onClick ? `4px 12px 24px 0 ${CONCRETE}` : "none"};
+    transform: scale(${props => props.onClick ? 1.016 : 1});
+
+    ${CardControls} {
+      height: auto;
+      padding: 8px 24px 24px 24px;
+    }
+  }
+`;
+
+CardControls.displayName = "CardControls";
 
 export const Image = styled.img`
   height: auto;

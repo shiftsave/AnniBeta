@@ -34,7 +34,7 @@ class Navigation extends Component {
   render() {
     const login = (
       <Nav>
-        <button primary href={getAuthUrl()}>Sign in</button>
+        <Link href={getAuthUrl()}>Sign in</Link>
       </Nav>);
     const userInfo = this.props.auth.toJS().userInfo;
     const firstInitial = userInfo ? userInfo.name.given_name[0] : "I";
@@ -42,10 +42,9 @@ class Navigation extends Component {
 
     const loggedInNav = (
       <Nav>
-        <button to="/dashboard" link>Projects</button>
+        <Link to="/dashboard">Projects</Link>
         {/* <Button to="/activity" link>Activity</Button> */}
-        <button icon="notification" noPadding />
-        <button user onClick={this.logout.bind(this)}>
+        <button onClick={this.logout.bind(this)}>
           <span className="userInitials">
             {firstInitial + lastInitial}
           </span>

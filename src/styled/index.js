@@ -1,7 +1,6 @@
 /* Globals */
 import "./components/Base";
 
-
 /* Media Template Definitions */
 export { Above } from "./components/MediaTemplates";
 
@@ -10,6 +9,7 @@ export { Above } from "./components/MediaTemplates";
 export {
   Card,
   CardDetails,
+  CardControls,
   Content,
   Grid,
   Image,
@@ -18,7 +18,7 @@ export {
 
 
 /* Typography */
-export { Heading, Paragraph } from "./components/Typography";
+export { Heading, Subheading, Paragraph } from "./components/Typography";
 
 
 /* Button */
@@ -26,7 +26,7 @@ export { Button } from "./components/Buttons";
 
 
 /* Icons */
-export { Logo } from "./components/Icons";
+export { SolidIcon, OutlineIcon, Logo } from "./components/Icons";
 
 
 /* Form */
