@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
+import { withRouter } from 'react-router';
 import { getAuthUrl, login, logoutSession } from 'adapters';
 import { addAuthToken, logout } from 'actions';
 
-import { NavBar, Nav, Logo } from 'styled';
+import { ButtonLink, NavBar, Nav, Logo } from 'styled';
 
 class Navigation extends Component {
   componentDidMount() {
@@ -34,7 +34,7 @@ class Navigation extends Component {
   render() {
     const login = (
       <Nav>
-        <Link href={getAuthUrl()}>Sign in</Link>
+        <ButtonLink href={getAuthUrl()}>Sign in</ButtonLink>
       </Nav>);
     const userInfo = this.props.auth.toJS().userInfo;
     const firstInitial = userInfo ? userInfo.name.given_name[0] : "I";
@@ -42,7 +42,7 @@ class Navigation extends Component {
 
     const loggedInNav = (
       <Nav>
-        <Link to="/dashboard">Projects</Link>
+        <ButtonLink to="/dashboard">Projects</ButtonLink>
         {/* <Button to="/activity" link>Activity</Button> */}
         <button onClick={this.logout.bind(this)}>
           <span className="userInitials">
@@ -53,9 +53,9 @@ class Navigation extends Component {
     );
     return (
       <NavBar>
-        <Link to="/">
+        <ButtonLink to="/" noBorder>
           <Logo />
-        </Link>
+        </ButtonLink>
         {(this.props.auth.toJS().isAuthenticated ? loggedInNav : login)}
       </NavBar>
     );

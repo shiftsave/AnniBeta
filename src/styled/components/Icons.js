@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { Icons } from "components/Icons";
 import { CHARCOAL } from "./Variables";
 
-
-
 export const SolidIcon = styled(Icons)`
   fill: ${CHARCOAL};
   stroke: transparent;
@@ -23,12 +21,12 @@ export const Logo = styled(Icons).attrs({
   stroke: #E2A480;
   stroke-width: 1;
 
-  :nth-child(4){
+  > :nth-child(4){
     fill: #E2A480;
     stroke: none;
   }
 
-  :nth-child(5){
+  > :nth-child(5){
     fill: #E2A480;
     stroke: none;
   }
