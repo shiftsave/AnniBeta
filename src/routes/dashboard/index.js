@@ -23,7 +23,9 @@ class Dashboard extends Component {
     const projectItems = filteredProjects.valueSeq().toJS().map(project => {
       return (
         <ProjectListItem
+          id={project.id}
           name={project.name}
+          path={project.path_display}
           key={project.name}
           link={`/project/${project.name}`}
         />

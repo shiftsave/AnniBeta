@@ -13,21 +13,3 @@ export const OutlineIcon = styled(Icons)`
   stroke: ${CHARCOAL};
   stroke-width: ${props => props.strokeWidth ? `${props.strokeWidth}px` : "2px"} ;
 `;
-
-export const Logo = styled(Icons).attrs({
-  name: "logo"
-})`
-  fill: none;
-  stroke: #E2A480;
-  stroke-width: 1;
-
-  > :nth-child(4){
-    fill: #E2A480;
-    stroke: none;
-  }
-
-  > :nth-child(5){
-    fill: #E2A480;
-    stroke: none;
-  }
-`;

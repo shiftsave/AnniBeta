@@ -3,18 +3,21 @@ import { browserHistory } from "react-router";
 
 import {
   ButtonGroup,
-  ButtonLink,
+  Button,
   Card,
   CardDetails,
   CardControls,
   Grid,
-  OutlineIcon,
   Image,
   Subheading,
   Paragraph
 } from "styled";
 
 import tempImage from "media/adidas.png";
+
+import { removeProject, deleteFile } from "actions";
+import { removeFolder } from "adapters";
+import filter from "lodash.filter";
 
 export const ProjectList = ({ children }) => {
   return (
@@ -24,10 +27,33 @@ export const ProjectList = ({ children }) => {
   );
 };
 
-export const ProjectListItem = ({ name, client, image, link }) => {
+export const ProjectListItem = ({ path, name, client, image, link, id, files}) => {
+
+  // TODO: @hudakdidit
+  // This needs work to get it to work
+  function deleteProject() {
+    const project = id;
+    this.props.dispatch(removeProject(project.id, id));
+    const collectionKeys = Object.keys(files.collections);
+    // remove all unused files from store
+    Object.keys(this.props.files.archive).forEach(file => {
+      const fileUsed = collectionKeys.map(collection =>
+        collection.indexOf(file)
+      );
+      if (!filter(fileUsed, i => i > -1).length) {
+        this.props.dispatch(deleteFile(file));
+      }
+    });
+    this.props.router.push("/dashboard");
+  }
+
   return (
     <Card active>
-      <Image src={image ? image : tempImage} alt={name} onClick={() => browserHistory.push(link)} />
+      <Image
+        src={image ? image : tempImage}
+        alt={name}
+        onClick={() => browserHistory.push(link)}
+      />
       <CardDetails onClick={() => browserHistory.push(link)}>
         <Paragraph strong>{name}</Paragraph>
         <Paragraph>{client ? client : "Client Name"}</Paragraph>
@@ -35,16 +61,14 @@ export const ProjectListItem = ({ name, client, image, link }) => {
       <CardControls>
         <Subheading micro>Due May 21</Subheading>
         <ButtonGroup mr={-16}>
-        <ButtonLink noBorder>
-          <OutlineIcon name="confirm" size={16} strokeWidth={4} />
-        </ButtonLink>
-        <ButtonLink noBorder>
-          <OutlineIcon name="view" size={16} strokeWidth={4} />
-        </ButtonLink>
-        <ButtonLink noBorder>
-          <OutlineIcon name="delete" size={16} strokeWidth={4} />
-        </ButtonLink>
-      </ButtonGroup>
+          <Button icon="share" noBorder />
+          <Button onClick={() => browserHistory.push(link)} icon="view" iconStroke={4} noBorder />
+          <Button onClick={() => {
+            removeFolder(path).then(
+              deleteProject()
+            );
+          }} icon="delete" iconStroke={4} noBorder />
+        </ButtonGroup>
       </CardControls>
     </Card>
   );
