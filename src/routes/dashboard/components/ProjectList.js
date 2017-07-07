@@ -27,8 +27,9 @@ export const ProjectList = ({ children }) => {
   );
 };
 
-export const ProjectListItem = ({ path, name, client, image, link, id, files}) => {
-
+export const ProjectListItem = (
+  { path, name, client, image, link, id, files }
+) => {
   // TODO: @hudakdidit
   // This needs work to get it to work
   function deleteProject() {
@@ -38,8 +39,7 @@ export const ProjectListItem = ({ path, name, client, image, link, id, files}) =
     // remove all unused files from store
     Object.keys(this.props.files.archive).forEach(file => {
       const fileUsed = collectionKeys.map(collection =>
-        collection.indexOf(file)
-      );
+        collection.indexOf(file));
       if (!filter(fileUsed, i => i > -1).length) {
         this.props.dispatch(deleteFile(file));
       }
@@ -47,14 +47,18 @@ export const ProjectListItem = ({ path, name, client, image, link, id, files}) =
     this.props.router.push("/dashboard");
   }
 
+  const projectLink = () => {
+    browserHistory.push(link);
+  };
+
   return (
     <Card active>
       <Image
         src={image ? image : tempImage}
         alt={name}
-        onClick={() => browserHistory.push(link)}
+        onClick={projectLink}
       />
-      <CardDetails onClick={() => browserHistory.push(link)}>
+      <CardDetails onClick={projectLink}>
         <Paragraph strong>{name}</Paragraph>
         <Paragraph>{client ? client : "Client Name"}</Paragraph>
       </CardDetails>
@@ -62,12 +66,20 @@ export const ProjectListItem = ({ path, name, client, image, link, id, files}) =
         <Subheading micro>Due May 21</Subheading>
         <ButtonGroup mr={-16}>
           <Button icon="share" noBorder />
-          <Button onClick={() => browserHistory.push(link)} icon="view" iconStroke={4} noBorder />
-          <Button onClick={() => {
-            removeFolder(path).then(
-              deleteProject()
-            );
-          }} icon="delete" iconStroke={4} noBorder />
+          <Button
+            onClick={projectLink}
+            icon="view"
+            iconStroke={4}
+            noBorder
+          />
+          <Button
+            onClick={() => {
+              removeFolder(path).then(deleteProject());
+            }}
+            icon="delete"
+            iconStroke={4}
+            noBorder
+          />
         </ButtonGroup>
       </CardControls>
     </Card>
