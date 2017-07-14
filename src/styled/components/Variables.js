@@ -3,6 +3,8 @@
  */
 
 export const COPPER   = "#E2A480"
+export const HAZEL    = "#FFE5CA"
+
 export const CHARCOAL = "#1B1D1E"
 export const CONCRETE = "#DBDBDB"
 export const FLINT    = "#EBEBEB"

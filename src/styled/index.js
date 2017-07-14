@@ -30,7 +30,7 @@ export {
 export { SolidIcon, OutlineIcon, Logo } from "./components/Icons";
 
 /* Form */
-export { FormGroup, Input } from "./components/Forms";
+export { FormGroup, Input, TextArea } from "./components/Forms";
 
 /* Component Specific */
 export { NavBar, Nav, NavItem } from "./components/Navigation";
