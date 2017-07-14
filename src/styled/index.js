@@ -13,7 +13,6 @@ export {
   Content,
   Grid,
   Image,
-  ProjectSection,
   Section,
   Wrapper
 } from "./components/Layout";
@@ -33,8 +32,9 @@ export {
 export { SolidIcon, OutlineIcon, Logo } from "./components/Icons";
 
 /* Form */
-export { FormGroup, Input, TextArea } from "./components/Forms";
+export { FormGroup, Input, Label, TextArea } from "./components/Forms";
 
 /* Component Specific */
 export { NavBar, Nav, NavItem } from "./components/Navigation";
 export { ProjectList } from "./components/Dashboard";
+export { ProjectSection, ProjectNav, ProjectNavItem} from './components/ProjectDetails';

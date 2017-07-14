@@ -37,28 +37,9 @@ export const TextArea = styled(BaseTextArea)`
 `;
 
 export const FormGroup = styled.form`
-  align-items: center;
-  display: flex;
-  width: 100%;
+  background: red;
 `;
 
-export const Input = styled.input`
-  border: none;
-  border-bottom: 1px solid ${FLINT};
-  color: ${CHARCOAL};
-  font-family: "Apercu";
-  font-size: 18px;
-  height: 44px;
-  min-width: 290px;
-  transition: 200ms ${EASE_OUT_EXPO};
-  width: 100%;
-
-  :hover {
-    border-color: ${HAZEL};
-  }
-
-  :focus {
-    border-color: ${COPPER};
-    outline: none;
-  }
+export const Label = styled.label`
+  color: red;
 `;
