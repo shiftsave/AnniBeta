@@ -47,11 +47,13 @@ class Dashboard extends Component {
     const renderProjects = projectItems.length ? projectsList : empty;
     return (
       <Section>
-        <Heading>Welcome Back Mika!</Heading>
-        <Paragraph mb={32} strong>You have 12 unread notifications</Paragraph>
-        <Paragraph mb={24} strong >Your Projects</Paragraph>
         <Content>
-          {loading ? <Loader fullPage /> : renderProjects}
+          <Heading>Welcome Back Mika!</Heading>
+          <Paragraph mb={32} strong>You have 12 unread notifications</Paragraph>
+          <Paragraph mb={24} strong >Your Projects</Paragraph>
+          <Content full>
+            {loading ? <Loader fullPage /> : renderProjects}
+          </Content>
         </Content>
       </Section>
     );

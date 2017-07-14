@@ -2,38 +2,35 @@ import styled from "styled-components";
 import { Above } from "./MediaTemplates";
 import { CONCRETE, PAPER, FLINT, PEBBLE, EASE_OUT_BACK } from "./Variables";
 
+export const Wrapper = styled.div`
+`;
+
+export const Container = styled.div`
+  height: 100%;
+  width: 100%;
+`;
+
 export const Section = styled.div`
   background: ${PEBBLE};
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 80px);
-  padding: 24px;
+  flex-grow: 1;
   max-width: 100vw;
-
-  ${Above.sm`
-    padding: 48px;
-  `}
-
-  ${Above.lg`
-    padding: 120px;
-  `}
+  min-height: 100vh;
 `;
 
 export const ProjectSection = Section.extend`
   max-width: calc(100vw - 80px);
   justify-content: ${props => props.center ? "center" : "normal"};
-`
 
-// width: 100vw
-// max-width: calc(100vw - 80px)
-//
-// +above($break-sm)
-//   padding: pxToRem(120) 0 pxToRem(120) pxToRem(48)
-//   max-width: calc(100vw - 120px)
-//
-// +above($break-lg)
-//   padding: pxToRem(160) 0 pxToRem(160) pxToRem(120)
-//   max-width: calc(100vw - 300px)
+  ${Above.sm`
+    max-width: calc(100vw - 120px);
+  `}
+
+  ${Above.lg`
+    max-width: calc(100vw - 300px);
+  `}
+`
 
 export const Grid = styled.div`
   display: grid;
@@ -44,7 +41,15 @@ export const Grid = styled.div`
 `;
 
 export const Content = styled.div`
-  height: ${props => props.full ? "100%" : "initial"};
+  padding: ${props => props.full ? "0" : "24px"};
+
+  ${Above.sm`
+    padding: ${props => props.full ? "0" : "48px"};
+  `}
+
+  ${Above.lg`
+    padding: ${props => props.full ? "0" : "120px"};
+  `}
 `;
 
 export const CardControls = styled.div`

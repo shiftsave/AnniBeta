@@ -6,7 +6,7 @@ import reducer from "reducers";
 import { getAccessTokenFromUrl, storeSessionToken } from "adapters";
 import { saveState } from "./utils/localStorage";
 import StaticJSONFileDatabase from "utils/fileStorage";
-
+import { Wrapper } from "styled";
 import { Loader } from "components/baseline";
 
 let enhancer = null;
@@ -43,11 +43,11 @@ class App extends Component {
     const store = this.state.store;
     return store
       ? <Provider store={store}>
-          <div>
+          <Wrapper>
             <Navigation />
             {this.props.children}
             {DevTools ? <DevTools /> : null}
-          </div>
+          </Wrapper>
         </Provider>
       : <Loader fullPage />;
   }

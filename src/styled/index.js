@@ -9,11 +9,13 @@ export {
   Card,
   CardDetails,
   CardControls,
+  Container,
   Content,
   Grid,
   Image,
   ProjectSection,
-  Section
+  Section,
+  Wrapper
 } from "./components/Layout";
 
 /* Typography */
