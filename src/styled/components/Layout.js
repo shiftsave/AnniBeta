@@ -6,7 +6,6 @@ export const Section = styled.div`
   background: ${PEBBLE};
   display: flex;
   flex-direction: column;
-  margin-top: 80px;
   height: calc(100vh - 80px);
   padding: 24px;
   max-width: 100vw;
@@ -20,6 +19,22 @@ export const Section = styled.div`
   `}
 `;
 
+export const ProjectSection = Section.extend`
+  max-width: calc(100vw - 80px);
+  justify-content: ${props => props.center ? "center" : "normal"};
+`
+
+// width: 100vw
+// max-width: calc(100vw - 80px)
+//
+// +above($break-sm)
+//   padding: pxToRem(120) 0 pxToRem(120) pxToRem(48)
+//   max-width: calc(100vw - 120px)
+//
+// +above($break-lg)
+//   padding: pxToRem(160) 0 pxToRem(160) pxToRem(120)
+//   max-width: calc(100vw - 300px)
+
 export const Grid = styled.div`
   display: grid;
   grid-gap: 24px;
@@ -29,7 +44,7 @@ export const Grid = styled.div`
 `;
 
 export const Content = styled.div`
-  height: 100%;
+  height: ${props => props.full ? "100%" : "initial"};
 `;
 
 export const CardControls = styled.div`

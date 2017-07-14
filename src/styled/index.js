@@ -12,6 +12,7 @@ export {
   Content,
   Grid,
   Image,
+  ProjectSection,
   Section
 } from "./components/Layout";
 

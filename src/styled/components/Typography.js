@@ -40,6 +40,8 @@ export const Heading = styled.h1`
   font-family: 'Apercu Bold', sans-serif;
   font-size: 32px;
   margin: 0 0 4px 0;
+  text-transform: ${props => props.capitalize ? "uppercase" : "default"};
+  ${ Utils.margin };
 
   ${Above.sm`
     font-size: 48px;
