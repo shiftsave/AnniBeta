@@ -41,5 +41,26 @@ export const FormGroup = styled.form`
 `;
 
 export const Label = styled.label`
-  color: red;
+  align-items: center;
+  color: ${CONCRETE};
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  transition: 400ms ${EASE_OUT_EXPO};
+  transform-origin: right;
+  translate3d( 0, 0, 0);
+
+  :hover {
+    transform: scale(1.048);
+  }
+
+  &.checked {
+    color: ${CHARCOAL};
+  }
+`;
+
+export const Radio = styled.input.attrs({
+	type: 'radio',
+})`
+  position: ${props => props.hide ? "hidden" : "inherit"};
 `;

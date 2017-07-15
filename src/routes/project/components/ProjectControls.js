@@ -1,15 +1,20 @@
 import React from "react";
 import classNames from "classnames";
-import { Button } from "components/baseline";
-import { ProjectNav, ProjectNavItem, Content, Label  } from "styled";
-
+import {
+  Content,
+  Label,
+  ProjectNav,
+  ProjectNavItem,
+  ProjectNavId,
+  Radio,
+  Subheading
+} from "styled";
 
 export const ProjectControls = ({ children }) => {
   return (
     <ProjectNav>
       <Content full>
         {children}
-        <Button icon="add" />
       </Content>
     </ProjectNav>
   );
@@ -32,9 +37,9 @@ export const ProjectSectionNavItem = (
       onClick={onClick}
     >
       <Label className={styles}>
-        <h5 className="ProjectSectionNavItem-name">{name}</h5>
-        {checked ? <div className="pip checked" /> : <div className="pip" />}
-        <input type="radio" checked={checked} readOnly value={name} />
+        <Subheading micro>{name}</Subheading>
+        {checked ? <ProjectNavId checked /> : <ProjectNavId />}
+        <Radio checked={checked} readOnly value={name} hidden />
       </Label>
     </ProjectNavItem>
   );

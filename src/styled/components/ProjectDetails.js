@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Above } from "./MediaTemplates";
 import { Section } from "styled";
 
-// import { CONCRETE, PAPER, FLINT, PEBBLE, EASE_OUT_BACK } from "./Variables";
+import { COPPER, PEBBLE, EASE_OUT_EXPO } from "./Variables";
 
 export const ProjectSection = Section.extend`
   max-width: calc(100vw - 80px);
@@ -18,17 +18,25 @@ export const ProjectSection = Section.extend`
 `;
 
 export const ProjectNav = styled.div`
+  background: ${PEBBLE};
   align-items: center;
   display: flex;
-  flex-grow: 1;
-  justify-content: center;
+  justify-content: flex-end;
   width: 80px;
   min-height: 100vh;
+  padding-right: 24px;
   position: fixed;
   right: 0;
   top: 0;
 
+  > div {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
   ${Above.sm`
+    padding-right: 48px;
     width: 120px;
   `}
 
@@ -38,83 +46,26 @@ export const ProjectNav = styled.div`
 `;
 
 export const ProjectNavItem = styled.div`
+  display: flex;
+  padding: 6px;
+  justify-content: flex-end;
+
+  h2 {
+    display: none;
+
+    ${Above.lg`
+      display: inline-block;
+      margin-right: 16px;
+    `}
+  }
 `;
 
-
-// .ProjectControls
-//   center()
-//   flex-grow: 1
-//   height: 100vh
-//   position: fixed
-//   top: 0
-//   right: pxToRem(24)
-//
-//   +above($break-sm)
-//     right: pxToRem(48)
-//
-//   .content
-//     display: flex
-//     align-items: flex-end
-//     flex-direction: column;
-//
-//   .Button
-//     border-color: $copper
-//     border-width: pxToRem(2)
-//     border-radius: 1000
-//     padding: pxToRem(2)
-//     margin: pxToRem(4) pxToRem(2)
-//
-//     &:hover
-//       transform-origin: center
-//       transform: scale(1.2) translate3d(0,0,0);
-//
-//   .ProjectSectionNavItem
-//     label
-//       align-items: center
-//       color: $concrete
-//       cursor: pointer
-//       display: inline-flex
-//       transition: 400ms $expo
-//       transform-origin: right
-//       translate3d( 0, 0, 0)
-//
-//       h5
-//         display: none
-//         padding: 0
-//
-//       +above($break-lg)
-//         h5
-//           display: inline-block
-//
-//       &:hover
-//         color: $charcoal
-//         transform: scale(1.048)
-//
-//         .pip
-//           transform: scale(1.15)
-//
-//     .pip
-//       border: pxToRem(2) solid $copper
-//       border-radius: $xl
-//       height: pxToRem(12)
-//       margin: $sm
-//       transition: 200ms $expo
-//       width: pxToRem(12)
-//
-//       &.checked
-//         background: $copper
-//
-//
-//     .checked
-//       color: $charcoal
-//
-//     input
-//       position: absolute
-//       visibility: hidden
-//
-// .ProjectSectionNavItem-name
-//   display none
-//   font-weight 700
-//
-//   +above($break-lg)
-//     display inline
+export const ProjectNavId = styled.div`
+  background: ${props => props.checked ? `${COPPER}` : "transparent"};
+  border: 2px solid ${COPPER};
+  border-radius: 10px;
+  height: 8px;
+  padding: 0;
+  transition: 200ms ${EASE_OUT_EXPO};
+  width: 8px;
+`;
