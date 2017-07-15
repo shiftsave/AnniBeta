@@ -9,7 +9,7 @@ import {
 } from "constants/file";
 
 import { Content, Heading, Paragraph, Section } from "styled";
-import { Loader } from "components/baseline";
+import Loader from "components/Loader";
 
 class Dashboard extends Component {
   render() {

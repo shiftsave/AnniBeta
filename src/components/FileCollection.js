@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import FileUploader from "components/FileUploader";
 import FileManager from "containers/FileManager";
-import { Loader } from "components/baseline";
-import { ImageList } from "components/baseline";
+import Loader from "./Loader";
+import { ImageList } from "./ImageList";
 
 class Collection extends Component {
   constructor(props) {

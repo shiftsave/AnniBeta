@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { createFolder } from "adapters";
 import { addProject } from "actions";
-import { Button } from "components/baseline";
+import { Button } from "styled";
 
 export default class ProjectForm extends Component {
   constructor() {

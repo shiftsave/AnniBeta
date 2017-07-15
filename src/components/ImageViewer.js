@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import classNames from "classnames";
-import { Button } from "./Button";
+import { Button } from "styled";
 
 export class ImageViewer extends Component {
   constructor(props) {
@@ -31,14 +31,14 @@ export class ImageViewer extends Component {
   // Image Viewer controls
   nextImage = () => {
     const currentImage = this.state.currentImage < this.props.content.length - 1
-      ? this.state.currentImage + 1 
+      ? this.state.currentImage + 1
       : 0;
     this.setState({ currentImage });
   };
 
   prevImage = () => {
-    const currentImage = this.state.currentImage > 0 
-      ? this.state.currentImage - 1 
+    const currentImage = this.state.currentImage > 0
+      ? this.state.currentImage - 1
       : this.props.content.length - 1;
     this.setState({ currentImage });
   };
@@ -70,11 +70,11 @@ export class ImageViewer extends Component {
   };
 
   render() {
-    const { 
-      className, 
+    const {
+      className,
       content,
-      show, 
-      children 
+      show,
+      children
     } = this.props;
 
     const {

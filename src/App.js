@@ -7,7 +7,7 @@ import { getAccessTokenFromUrl, storeSessionToken } from "adapters";
 import { saveState } from "./utils/localStorage";
 import StaticJSONFileDatabase from "utils/fileStorage";
 import { Wrapper } from "styled";
-import { Loader } from "components/baseline";
+import Loader from "components/Loader";
 
 let enhancer = null;
 let DevTools = null;

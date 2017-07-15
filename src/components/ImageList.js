@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import classNames from "classnames";
 import { ImageViewer } from "./ImageViewer";
-import { Button, ImageElement, TextArea } from "components/baseline";
+import { ImageElement } from "./Image";
+import { TextArea } from "./Forms";
+import { Button, Grid } from "styled";
+
 import {
   SortableContainer,
   SortableElement,
@@ -28,7 +31,9 @@ export const ImageListItem = SortableElement(({
 }) => {
   const src = !content.url ? content.preview : content.url;
   const { aspectRatio, name, caption, audio, video } = content;
-  const imageAspectRatio = ImageAspectRatio[aspectRatio] ? ImageAspectRatio[aspectRatio].name : undefined;
+  const imageAspectRatio = ImageAspectRatio[aspectRatio]
+    ? ImageAspectRatio[aspectRatio].name
+    : undefined;
   const styles = classNames({
     ImageListItem: true,
     [className]: !!className,
@@ -36,20 +41,24 @@ export const ImageListItem = SortableElement(({
   });
 
   const resizeButton = (
-    <div className={`resizeButton ${imageAspectRatio ? `hasSize ${imageAspectRatio}` : null}`}>
-      {ImageAspectRatio.enumValues.map(i =>
+    <div
+      className={
+        `resizeButton ${imageAspectRatio ? `hasSize ${imageAspectRatio}` : null}`
+      }
+    >
+      {ImageAspectRatio.enumValues.map(i => (
         <div
           key={index + i.name}
           className={`${i.name} ${imageAspectRatio === i.name ? "active" : ""}`}
           onClick={() => onImageSizeUpdate({ aspectRatio: i.name })}
-        />)}
+        />
+      ))}
     </div>
   );
 
   return (
     <div className={styles} key={index}>
       <div className="content">
-
         <ImageElement src={src} className="image">
           <img src={src} alt={name} />
         </ImageElement>
@@ -124,7 +133,7 @@ const ImageGrid = SortableContainer(({
       {children}
     </ImageListItem>
   ));
-  return <div className={className}>{listItems}</div>;
+  return <Grid className={className}>{listItems}</Grid>;
 });
 
 /*
