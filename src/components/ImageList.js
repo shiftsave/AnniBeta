@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { ImageViewer } from "./ImageViewer";
 import { ImageElement } from "./Image";
 import { TextArea } from "./Forms";
-import { Button, Grid } from "styled";
+import { Button, Card, Container, CardDetails, CardControls, Grid, Image } from "styled";
 
 import {
   SortableContainer,
@@ -35,7 +35,6 @@ export const ImageListItem = SortableElement(({
     ? ImageAspectRatio[aspectRatio].name
     : undefined;
   const styles = classNames({
-    ImageListItem: true,
     [className]: !!className,
     [imageAspectRatio]: true
   });
@@ -57,12 +56,13 @@ export const ImageListItem = SortableElement(({
   );
 
   return (
-    <div className={styles} key={index}>
-      <div className="content">
-        <ImageElement src={src} className="image">
-          <img src={src} alt={name} />
-        </ImageElement>
+    <Container>
+    <Card className={styles} key={index}>
+      <ImageElement src={src}>
+        <Image src={src} alt={name} />
+      </ImageElement>
 
+      <CardDetails>
         {reference &&
           <TextArea
             placeholder="Enter description..."
@@ -91,14 +91,15 @@ export const ImageListItem = SortableElement(({
               imageItem
             />
           </div>}
+      </CardDetails>
 
-        <div className="panelControls disableDnD">
-          {reference && resizeButton}
-          <Button icon="popout" onClick={handleClick} noPadding />
-          <Button icon="delete" noPadding onClick={onImageRemove} />
-        </div>
-      </div>
-    </div>
+      {/* <CardControls className="disableDnD">
+        {reference && resizeButton}
+        <Button icon="popout" onClick={handleClick} noPadding />
+        <Button icon="delete" noPadding onClick={onImageRemove} />
+      </CardControls> */}
+    </Card>
+  </Container>
   );
 });
 
