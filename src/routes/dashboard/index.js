@@ -15,6 +15,7 @@ class Dashboard extends Component {
   render() {
     const { projects, auth } = this.props;
     const loading = !auth.toJS().isAuthenticated;
+    const userInfo = auth.get("userInfo");
     const filteredProjects = projects.filter(
       p =>
         p.get("name") !== FILE_DATABASE_DIRECTORY &&
@@ -48,7 +49,7 @@ class Dashboard extends Component {
     return (
       <Section>
         <Content>
-          <Heading>Welcome Back Mika!</Heading>
+          <Heading>Welcome Back {userInfo ? userInfo.name.familiar_name : "Mika"}!</Heading>
           <Paragraph mb={32} strong>You have 12 unread notifications</Paragraph>
           <Paragraph mb={24} strong >Your Projects</Paragraph>
           <Content full>
