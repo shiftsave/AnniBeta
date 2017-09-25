@@ -31,6 +31,10 @@ export {
 /* Icons */
 export { SolidIcon, OutlineIcon, Logo } from "./components/Icons";
 
+/* Images */
+export { ImageControls } from "./components/Images";
+
+
 /* Form */
 export { FormGroup, Input, Label, Radio, TextArea } from "./components/Forms";
 

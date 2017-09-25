@@ -18,7 +18,6 @@ export const ProjectSection = Section.extend`
 `;
 
 export const ProjectNav = styled.div`
-  background: ${PEBBLE};
   align-items: center;
   display: flex;
   justify-content: flex-end;

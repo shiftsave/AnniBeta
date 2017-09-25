@@ -67,7 +67,7 @@ export default class TextEditor extends Component {
 
     const { content } = this.props;
     this.state = {
-      editorState: content 
+      editorState: content
         ? EditorState.createWithContent(convertFromRaw(content))
         : EditorState.createEmpty()
     }

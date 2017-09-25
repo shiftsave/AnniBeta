@@ -3,7 +3,15 @@ import classNames from "classnames";
 import { ImageViewer } from "./ImageViewer";
 import { ImageElement } from "./Image";
 import { TextArea } from "./Forms";
-import { Button, Card, Container, CardDetails, CardControls, Grid, Image } from "styled";
+import {
+  Button,
+  Card,
+  Container,
+  CardDetails,
+  Grid,
+  Image,
+  ImageControls
+} from "styled";
 
 import {
   SortableContainer,
@@ -56,8 +64,7 @@ export const ImageListItem = SortableElement(({
   );
 
   return (
-    <Container>
-    <Card className={styles} key={index}>
+    <Card className={styles} key={index} active>
       <ImageElement src={src}>
         <Image src={src} alt={name} />
       </ImageElement>
@@ -93,13 +100,12 @@ export const ImageListItem = SortableElement(({
           </div>}
       </CardDetails>
 
-      {/* <CardControls className="disableDnD">
+      <ImageControls className="disableDnD">
         {reference && resizeButton}
         <Button icon="popout" onClick={handleClick} noPadding />
         <Button icon="delete" noPadding onClick={onImageRemove} />
-      </CardControls> */}
+      </ImageControls>
     </Card>
-  </Container>
   );
 });
 
@@ -134,7 +140,7 @@ const ImageGrid = SortableContainer(({
       {children}
     </ImageListItem>
   ));
-  return <Grid className={className}>{listItems}</Grid>;
+  return <Grid project className={className}>{listItems}</Grid>;
 });
 
 /*
@@ -228,7 +234,7 @@ export class ImageList extends Component {
 
     if (content) {
       return (
-        <div className="ImageListWrapper">
+        <Container>
           <ImageGrid
             helperClass={"dragHelper"}
             axis="xy"
@@ -246,7 +252,7 @@ export class ImageList extends Component {
             {children}
           </ImageGrid>
           {imageViewer}
-        </div>
+        </Container>
       );
     } else {
       return null;
