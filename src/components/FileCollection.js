@@ -4,6 +4,12 @@ import FileManager from "containers/FileManager";
 import Loader from "./Loader";
 import { ImageList } from "./ImageList";
 
+import {
+  Content,
+  Heading,
+  Section
+} from "styled";
+
 class Collection extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +20,6 @@ class Collection extends Component {
 
   render() {
     const {
-      className,
       collectionId,
       project,
       getCollectionFiles,
@@ -42,15 +47,15 @@ class Collection extends Component {
       : null;
 
     return (
-      <div className={className || title}>
-        <div className="content">
-          <h2>{title}</h2>
+      <Section>
+        <Content>
+          <Heading mb={40}>{title}</Heading>
           <FileUploader path={projectPath} collection={collectionId}>
             {list}
             {!project && <Loader />}
           </FileUploader>
-        </div>
-      </div>
+        </Content>
+      </Section>
     );
   }
 

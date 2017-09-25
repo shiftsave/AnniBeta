@@ -89,7 +89,7 @@ const getSections = (project, id) => [
       projectPath: id,
       project,
       collectionId: MOODBOARD,
-      title: `Moodboard`,
+      title: `MOODBOARD`,
       references: true
     }
   },
@@ -101,7 +101,7 @@ const getSections = (project, id) => [
       projectPath: id,
       project,
       collectionId: STORYBOARD,
-      title: `Storyboard`,
+      title: `STORYBOARDS`,
       storyboards: true
     }
   },
@@ -113,7 +113,7 @@ const getSections = (project, id) => [
       projectPath: id,
       project,
       collectionId: STYLEFRAMES,
-      title: `Styleframes`,
+      title: `STYLEFRAMES`,
       styleframes: true
     }
   }
