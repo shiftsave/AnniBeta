@@ -10,7 +10,8 @@ import {
   CardDetails,
   Grid,
   Image,
-  ImageControls
+  ImageControls,
+  ImageControlsButton
 } from "styled";
 
 import {
@@ -48,7 +49,7 @@ export const ImageListItem = SortableElement(({
   });
 
   const resizeButton = (
-    <div
+    <ImageControlsButton
       className={
         `resizeButton ${imageAspectRatio ? `hasSize ${imageAspectRatio}` : null}`
       }
@@ -60,7 +61,7 @@ export const ImageListItem = SortableElement(({
           onClick={() => onImageSizeUpdate({ aspectRatio: i.name })}
         />
       ))}
-    </div>
+    </ImageControlsButton>
   );
 
   return (
@@ -102,8 +103,8 @@ export const ImageListItem = SortableElement(({
 
       <ImageControls className="disableDnD">
         {reference && resizeButton}
-        <Button icon="popout" onClick={handleClick} noPadding />
-        <Button icon="delete" noPadding onClick={onImageRemove} />
+        <Button icon="popout" onClick={handleClick} iconStroke={4} noBorder />
+        <Button icon="delete" onClick={onImageRemove} iconStroke={4} noBorder />
       </ImageControls>
     </Card>
   );

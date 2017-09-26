@@ -17,7 +17,7 @@ export { Grid } from "./components/Grid";
 export { SolidIcon, OutlineIcon, Logo } from "./components/Icons";
 
 /* Images */
-export { Image, ImageControls } from "./components/Images";
+export { Image, ImageControls, ImageControlsButton } from "./components/Images";
 
 /* Layout Components */
 export { Container, Content, Section, Wrapper } from "./components/Layout";
