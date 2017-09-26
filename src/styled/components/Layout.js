@@ -1,17 +1,25 @@
 import styled from "styled-components";
 import { Above } from "./MediaTemplates";
-import { CONCRETE, PAPER, FLINT, PEBBLE, EASE_OUT_BACK } from "./Variables";
-
-export const Wrapper = styled.div`
-`;
+import { PEBBLE } from "./Variables";
 
 export const Container = styled.div`
   height: 100%;
   width: 100%;
 `;
 
+export const Content = styled.div`
+  padding: ${props => props.full ? "0" : "24px"};
+
+  ${Above.sm`
+    padding: ${props => props.full ? "0" : "48px"};
+  `}
+
+  ${Above.lg`
+    padding: ${props => props.full ? "0" : "120px"};
+  `}
+`;
+
 export const Section = styled.div`
-  background: ${PEBBLE};
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -32,78 +40,6 @@ export const ProjectSection = Section.extend`
   `}
 `
 
-export const Grid = styled.div`
-  display: grid;
-  grid-gap: 24px;
-  grid-auto-flow: row dense;
-  grid-auto-rows: 320px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  width: ${props => props.project ? `calc(100% - 50px)` : "100%"};
-
-  ${Above.sm`
-    padding-right: ${props => props.project && "0"};
-    width: ${props => props.project && "calc(100% - 80px)"};
-  `}
-
-  ${Above.lg`
-    width: ${props => props.project && "calc(100% - 100px)"};
-  `}
-`;
-
-export const Content = styled.div`
-  padding: ${props => props.full ? "0" : "24px"};
-
-  ${Above.sm`
-    padding: ${props => props.full ? "0" : "48px"};
-  `}
-
-  ${Above.lg`
-    padding: ${props => props.full ? "0" : "120px"};
-  `}
-`;
-
-export const CardControls = styled.div`
-  align-items: center;
-  display: flex;
-  height: 0;
-  justify-content: space-between;
-  padding: 0 24px;
-  transition: 240ms ${EASE_OUT_BACK};
-  overflow: hidden;
-`;
-
-export const CardDetails = styled.div`
-  height: auto;
-  padding: 16px 24px;
-`;
-
-export const Card = styled.div`
-  background: ${PAPER};
-  box-shadow: 0 2px 24px 0 ${FLINT};
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  transition: 320ms ${EASE_OUT_BACK};
-  width: 100%;
-  cursor: ${props => props.active ? "pointer" : "default"};
-
-
-  &:hover {
-    box-shadow: ${props => props.active ? `4px 12px 24px 0 ${CONCRETE}` : "none"};
-    transform: scale(${props => props.active ? 1.016 : 1});
-
-    ${CardControls} {
-      height: auto;
-      padding: 8px 24px 24px 24px;
-    }
-  }
-`;
-
-CardControls.displayName = "CardControls";
-
-export const Image = styled.img`
-  height: auto;
-  object-fit: cover;
-  overflow: hidden;
-  width: 100%;
+export const Wrapper = styled.div`
+  background: ${PEBBLE};
 `;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Above } from "./MediaTemplates";
 import { Section } from "styled";
 
-import { COPPER, PEBBLE, EASE_OUT_EXPO } from "./Variables";
+import { COPPER, EASE_OUT_EXPO } from "./Variables";
 
 export const ProjectSection = Section.extend`
   max-width: calc(100vw - 80px);
