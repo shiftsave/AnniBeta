@@ -5,6 +5,8 @@ import {
   FLINT,
   CHARCOAL,
   CONCRETE,
+  PAPER,
+  EASE_OUT_BACK,
   EASE_OUT_EXPO
 } from "./Variables";
 
@@ -20,19 +22,36 @@ export const TextArea = styled(BaseTextArea)`
   height: 30px;
   resize: none;
   transition: 200ms ${EASE_OUT_EXPO};
-  width: 100%;
 
-  :hover {
+  &:hover {
     border-color: ${HAZEL};
   }
 
-  :focus {
+  &:focus {
     border-color: ${COPPER};
     outline: none;
   }
 
   ::placeholder {
     color: ${CONCRETE}
+  }
+
+  &.imageItem {
+    background: ${PAPER};
+    line-height: 2;
+    min-height: 0;
+    max-height: 50px;
+    padding: 12px 16px 16px 16px;
+    position: relative;
+    transition: min-height 200ms ${EASE_OUT_BACK};
+    transform: translate3d(0, 0, 0);
+  }
+
+  &.imageItem:focus,
+  &.imageItem:hover {
+    line-height: 1.6;
+    min-height: 50px;
+    padding: 16px;
   }
 `;
 
@@ -60,7 +79,7 @@ export const Label = styled.label`
 `;
 
 export const Radio = styled.input.attrs({
-	type: 'radio',
+  type: "radio"
 })`
   position: ${props => props.hide ? "hidden" : "inherit"};
 `;

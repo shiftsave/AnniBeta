@@ -2,16 +2,15 @@ import React, { Component } from "react";
 import classNames from "classnames";
 import { ImageViewer } from "./ImageViewer";
 import { ImageElement } from "./Image";
-import { TextArea } from "./Forms";
 import {
   Button,
   Card,
   Container,
-  CardDetails,
   Grid,
   Image,
   ImageControls,
-  ImageControlsButton
+  ImageControlsButton,
+  TextArea
 } from "styled";
 
 import {
@@ -70,36 +69,31 @@ export const ImageListItem = SortableElement(({
         <Image src={src} alt={name} />
       </ImageElement>
 
-      <CardDetails>
-        {reference &&
-          <TextArea
-            placeholder="Enter description..."
-            onChange={({ target }) =>
-              onCaptionUpdate({ caption: target.value })}
-            value={caption}
-            imageItem
-          />}
+      {reference &&
+        <TextArea
+          placeholder="Enter description..."
+          onChange={({ target }) => onCaptionUpdate({ caption: target.value })}
+          value={caption}
+          imageItem
+        />}
 
-        {storyboard &&
-          <div>
-            <TextArea
-              icon="audio"
-              placeholder="Audio"
-              onChange={({ target }) =>
-                onCaptionUpdate({ audio: target.value })}
-              value={audio}
-              imageItem
-            />
-            <TextArea
-              icon="video"
-              placeholder="Video"
-              onChange={({ target }) =>
-                onCaptionUpdate({ video: target.value })}
-              value={video}
-              imageItem
-            />
-          </div>}
-      </CardDetails>
+      {storyboard &&
+        <div>
+          <TextArea
+            icon="audio"
+            placeholder="Audio"
+            onChange={({ target }) => onCaptionUpdate({ audio: target.value })}
+            value={audio}
+            imageItem
+          />
+          <TextArea
+            icon="video"
+            placeholder="Video"
+            onChange={({ target }) => onCaptionUpdate({ video: target.value })}
+            value={video}
+            imageItem
+          />
+        </div>}
 
       <ImageControls className="disableDnD">
         {reference && resizeButton}
