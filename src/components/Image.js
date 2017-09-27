@@ -25,7 +25,7 @@ export class ImageElement extends Component {
     const { loaded, error } = this.state;
 
     if (!loaded && !error) {
-      return <Loader />;
+      return <Loader center />;
     } else if (!!error) {
       return error;
     } else {
