@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {ImageControls} from 'styled';
 import { CONCRETE, PAPER, FLINT, EASE_OUT_BACK } from "./Variables";
 
 
@@ -31,6 +32,11 @@ export const Card = styled.div`
   &:hover {
     box-shadow: ${props => props.active ? `4px 12px 24px 0 ${CONCRETE}` : "none"};
     transform: scale(${props => props.active ? 1.016 : 1});
+
+    .disableDnD {
+      opacity: 1;
+      transform: scale(1);
+    }
 
     ${CardControls} {
       height: auto;

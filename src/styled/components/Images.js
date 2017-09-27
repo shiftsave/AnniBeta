@@ -15,20 +15,26 @@ export const ImageControls = styled.div`
   display: flex;
   justify-content: space-between;
   position: absolute;
-  right: 8px;
-  top: 12px;
+  right: 16px;
+  top: 16px;
+  transform: scale(.9);
   transition: 240ms ${EASE_OUT_BACK};
   overflow: hidden;
+  opacity: .25;
   z-index: 99;
+
+  button {
+    padding: 8px;
+  }
 `;
 
 export const ImageControlsButton = styled.div`
   align-items: center;
   display: inline-block;
-  height: 18px;
+  height: 14px;
   margin: 0 12px 6px 16px;
   position: relative;
-  width: 18px;
+  width: 14px;
 
   div {
     border: 2px solid ${CONCRETE};
@@ -44,24 +50,24 @@ export const ImageControlsButton = styled.div`
   }
 
   .base {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-color: ${CHARCOAL};
   }
 
   .long {
-    width: 18px;
-    height: 8px;
+    width: 14px;
+    height: 6px;
   }
 
   .tall {
-    width: 8px;
-    height: 18px;
+    width: 6px;
+    height: 14px;
   }
 
   .full {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
   }
 
   .active {
@@ -74,24 +80,24 @@ export const ImageControlsButton = styled.div`
       position: absolute;
       border: 2px solid ${CHARCOAL};
       background: ${PAPER};
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       display: block;
       content: '';
       z-index: 2;
     }
 
     &.long::after {
-      width: 18px;
+      width: 14px;
     }
 
     &.tall::after {
-      height: 18px;
+      height: 14px;
     }
 
     &.full::after {
-      width: 18px;
-      height: 18px;
+      width: 14px;
+      height: 14px;
     }
   }
 
