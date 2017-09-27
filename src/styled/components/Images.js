@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CONCRETE, CHARCOAL, PAPER, PEBBLE, EASE_OUT_BACK } from "./Variables";
+import { CONCRETE, COPPER, CHARCOAL, PAPER, EASE_OUT_BACK } from "./Variables";
 
 export const Image = styled.img`
   height: 100%;
@@ -14,7 +14,6 @@ export const ImageControls = styled.div`
   border-radius: 99px;
   display: flex;
   justify-content: space-between;
-  padding: 0 24px;
   position: absolute;
   right: 8px;
   top: 12px;
@@ -26,10 +25,10 @@ export const ImageControls = styled.div`
 export const ImageControlsButton = styled.div`
   align-items: center;
   display: inline-block;
-  height: 16px;
+  height: 18px;
   margin: 0 12px 6px 16px;
   position: relative;
-  width: 16px;
+  width: 18px;
 
   div {
     border: 2px solid ${CONCRETE};
@@ -39,7 +38,7 @@ export const ImageControlsButton = styled.div`
 
     &:hover {
       background: ${PAPER};
-      border-color: ${CHARCOAL};
+      border-color: ${COPPER};
       z-index: 2;
     }
   }
@@ -51,18 +50,18 @@ export const ImageControlsButton = styled.div`
   }
 
   .long {
-    width: 16px;
+    width: 18px;
     height: 8px;
   }
 
   .tall {
     width: 8px;
-    height: 16px;
+    height: 18px;
   }
 
   .full {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
   }
 
   .active {
@@ -83,16 +82,16 @@ export const ImageControlsButton = styled.div`
     }
 
     &.long::after {
-      width: 16px;
+      width: 18px;
     }
 
     &.tall::after {
-      height: 16px;
+      height: 18px;
     }
 
     &.full::after {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
     }
   }
 

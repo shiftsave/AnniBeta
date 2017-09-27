@@ -65,8 +65,9 @@ export const ImageListItem = SortableElement(({
   );
 
   return (
+    <div>
     <Card className={styles} key={index} active>
-      <ImageElement src={src}>
+      <ImageElement src={src} className="image">
         <Image src={src} alt={name} />
       </ImageElement>
 
@@ -103,10 +104,17 @@ export const ImageListItem = SortableElement(({
 
       <ImageControls className="disableDnD">
         {reference && resizeButton}
-        <Button icon="popout" onClick={handleClick} iconStroke={4} noBorder />
+        <Button
+          icon="popout"
+          onClick={handleClick}
+          iconStroke={4}
+          noBorder
+          iconSize={18}
+        />
         <Button icon="delete" onClick={onImageRemove} iconStroke={4} noBorder />
       </ImageControls>
     </Card>
+    </div>
   );
 });
 

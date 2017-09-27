@@ -1,38 +1,25 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import classNames from "classnames";
 
-class Loader extends Component {
-  static propTypes = {
-    center: PropTypes.bool,
-    fullPage: PropTypes.bool,
-    size: PropTypes.number
-  };
+export const BaseLoader = ({center, fullPage, size}) => {
 
-  static defaultProps = {
-    center: false,
-    fullPage: false,
-    size: 24,
-    style: {}
-  };
+  const styles = classNames({
+    center: center,
+    fullPage: fullPage
+  });
 
-  render() {
-    const { center, fullPage, size } = this.props;
+  return (
+    <div className={styles}>
+      <svg viewBox="0 0 48 48" id={name} width={size} height={size}>
+        <circle className="loaderPath" cx={size} cy={size} r="21" />
+      </svg>
+    </div>
+  );
+};
 
-    const styles = classNames({
-      Loader: Loader,
-      center: center,
-      fullPage: fullPage
-    });
-
-    return (
-      <div className={styles}>
-        <svg viewBox="0 0 48 48" id={name} width={size} height={size}>
-          <circle className="loaderPath" cx={size} cy={size} r="21" />
-        </svg>
-      </div>
-    );
-  }
-}
-
-export default Loader;
+BaseLoader.defaultProps = {
+  center: false,
+  fullPage: false,
+  size: 24,
+  style: {}
+};

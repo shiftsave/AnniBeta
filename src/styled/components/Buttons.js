@@ -56,8 +56,6 @@ export const Button = styled(BaseButton)`
     }
   }
 
-
-
   :hover {
     transform: scale(1.025);
 

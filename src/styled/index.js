@@ -1,5 +1,5 @@
 /* Globals */
-import "./components/Base";
+export { GlobalStyles } from "./components/Base";
 
 /* Media Template Definitions */
 export { Above } from "./components/MediaTemplates";
@@ -21,6 +21,9 @@ export { Image, ImageControls, ImageControlsButton } from "./components/Images";
 
 /* Layout Components */
 export { Container, Content, Section, Wrapper } from "./components/Layout";
+
+/* Loader */
+export { Loader } from "./components/Loader";
 
 /* Typography */
 export { Heading, Subheading, Paragraph } from "./components/Typography";

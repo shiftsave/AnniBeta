@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { preloadImage } from "utils";
 import PropTypes from "prop-types";
-import Loader from "./Loader";
+import { Loader } from "styled";
 
 export class ImageElement extends Component {
   constructor() {
@@ -25,11 +25,11 @@ export class ImageElement extends Component {
     const { loaded, error } = this.state;
 
     if (!loaded && !error) {
-      return <Loader />
-    } else if(!!error) {
-      return error
+      return <Loader />;
+    } else if (!!error) {
+      return error;
     } else {
-      return children
+      return children;
     }
   }
 }

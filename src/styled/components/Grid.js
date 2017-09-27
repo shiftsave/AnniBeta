@@ -17,4 +17,23 @@ export const Grid = styled.div`
   ${Above.lg`
     width: ${props => props.project && "calc(100% - 100px)"};
   `}
+
+  .long {
+    ${Above.md`
+      grid-column-end: span 2;
+    `}
+  }
+
+  .tall {
+    ${Above.md`
+      grid-row-end: span 2;
+    `}
+  }
+
+  .full {
+    ${Above.md`
+      grid-column-end: span 2;
+      grid-row-end: span 2;
+    `}
+  }
 `;
