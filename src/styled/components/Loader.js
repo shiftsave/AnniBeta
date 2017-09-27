@@ -26,4 +26,31 @@ export const Loader = styled(BaseLoader)`
   .loaderPath {
     animation: dash 1400ms linear infinite;
   }
+
+  @keyframes rotate {
+    0% {
+      transform: rotateZ(0deg);
+    }
+
+    100% {
+      transform: rotateZ(360deg);
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 90, 200;
+      stroke-dashoffset: -30px;
+    }
+
+    100% {
+      stroke-dasharray: 90, 200;
+      stroke-dashoffset: -124px;
+    }
+  }
 `;

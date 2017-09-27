@@ -1,11 +1,11 @@
 import React from "react";
 import classNames from "classnames";
 
-export const BaseLoader = ({center, fullPage, size}) => {
-
+export const BaseLoader = ({ center, fullPage, size, className }) => {
   const styles = classNames({
     center: center,
-    fullPage: fullPage
+    fullPage: fullPage,
+    [className]: className
   });
 
   return (
