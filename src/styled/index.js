@@ -35,3 +35,4 @@ export { FormGroup, Input, Label, Radio, TextArea } from "./components/Forms";
 export { NavBar, Nav, NavItem } from "./components/Navigation";
 export { ProjectList } from "./components/Dashboard";
 export { ProjectNav, ProjectNavItem, ProjectNavId } from "./components/ProjectDetails";
+export { UploadArea } from "./components/UploadArea";

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import classNames from "classnames";
+import { Container, Content, Heading } from "styled";
 
 import Editor from "draft-js-plugins-editor";
 import {
@@ -70,7 +71,7 @@ export default class TextEditor extends Component {
       editorState: content
         ? EditorState.createWithContent(convertFromRaw(content))
         : EditorState.createEmpty()
-    }
+    };
   }
 
   focus = () => this.refs.editor.focus();
@@ -146,7 +147,7 @@ export default class TextEditor extends Component {
     });
 
     return (
-      <div className={Editorstyles} ref="toolbarParent">
+      <Container className={Editorstyles} ref="toolbarParent">
         <div className="ContextualToolbar" style={styles} ref="toolbar">
           <InlineStyleControls
             condensed
@@ -154,8 +155,8 @@ export default class TextEditor extends Component {
             onToggle={this.toggleInlineStyle}
           />
         </div>
-        <div className="content" onMouseUp={this.displayContextualMenu}>
-          <h2>Script</h2>
+        <Content project onMouseUp={this.displayContextualMenu}>
+          <Heading>SCRIPT</Heading>
           <div className="Editor" onClick={this.focus}>
             <Editor
               editorState={editorState}
@@ -167,7 +168,7 @@ export default class TextEditor extends Component {
               spellCheck={true}
             />
           </div>
-        </div>
+        </Content>
         <div className="Toolbar">
           <InlineStyleControls
             editorState={editorState}
@@ -183,7 +184,7 @@ export default class TextEditor extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     );
   }
 }

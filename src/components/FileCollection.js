@@ -4,11 +4,7 @@ import FileManager from "containers/FileManager";
 import Loader from "./Loader";
 import { ImageList } from "./ImageList";
 
-import {
-  Content,
-  Heading,
-  Section
-} from "styled";
+import { Content, Heading, Section, UploadArea } from "styled";
 
 class Collection extends Component {
   constructor(props) {
@@ -49,11 +45,13 @@ class Collection extends Component {
     return (
       <Section>
         <Content project>
-          <Heading mb={40}>{title}</Heading>
-          <FileUploader path={projectPath} collection={collectionId}>
-            {list}
-            {!project && <Loader />}
-          </FileUploader>
+          <UploadArea>
+            <Heading mb={40}>{title}</Heading>
+            <FileUploader path={projectPath} collection={collectionId}>
+              {list}
+              {!project && <Loader />}
+            </FileUploader>
+          </UploadArea>
         </Content>
       </Section>
     );

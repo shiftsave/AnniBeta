@@ -8,6 +8,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
+  border: ${props => props.upload && `2px dashed black`};
   padding: ${props => props.full ? "0" : "10px"};
   padding: ${props => props.project ? "10px 0 10px 10px" : ""};
 
