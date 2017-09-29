@@ -141,7 +141,7 @@ const ImageGrid = SortableContainer(({
       {children}
     </ImageListItem>
   ));
-  return <Grid project className={className}>{listItems}</Grid>;
+  return <Grid className={className}>{listItems}</Grid>;
 });
 
 /*

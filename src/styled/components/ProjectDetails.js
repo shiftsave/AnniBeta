@@ -1,21 +1,7 @@
 import styled from "styled-components";
 import { Above } from "./MediaTemplates";
-import { Section } from "styled";
 
 import { COPPER, EASE_OUT_EXPO } from "./Variables";
-
-export const ProjectSection = Section.extend`
-  max-width: calc(100vw - 80px);
-  justify-content: ${props => props.center ? "center" : "normal"};
-
-  ${Above.sm`
-    max-width: calc(100vw - 120px);
-  `}
-
-  ${Above.lg`
-    max-width: calc(100vw - 300px);
-  `}
-`;
 
 export const ProjectNav = styled.div`
   align-items: center;

@@ -34,4 +34,4 @@ export { FormGroup, Input, Label, Radio, TextArea } from "./components/Forms";
 /* Component Specific */
 export { NavBar, Nav, NavItem } from "./components/Navigation";
 export { ProjectList } from "./components/Dashboard";
-export { ProjectSection, ProjectNav, ProjectNavItem, ProjectNavId } from "./components/ProjectDetails";
+export { ProjectNav, ProjectNavItem, ProjectNavId } from "./components/ProjectDetails";

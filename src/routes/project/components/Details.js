@@ -7,7 +7,7 @@ import constants from "constants";
 import classNames from "classnames";
 const { MOODBOARD, STORYBOARD, STYLEFRAMES } = constants.content;
 
-import { Container } from "styled";
+import { Container, Section } from "styled";
 
 import Headline from "./Headline";
 import TextEditor from "./TextEditor";
@@ -42,6 +42,7 @@ const ProjectSectionNavigator = (
 ) => {
   return (
     <Container>
+      <Section project>
       {Sections.map((section, index) =>
         ProjectSection({
           ...section,
@@ -49,6 +50,7 @@ const ProjectSectionNavigator = (
           key: `section${index}`,
           isActive: activeSectionIndex === index
         }))}
+      </Section>
       <ProjectControls>
         {Sections.map(({ SectionType, name }, index) =>
           createElement(ProjectSectionNavItem, {

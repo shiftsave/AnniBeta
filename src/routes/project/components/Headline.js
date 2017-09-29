@@ -1,9 +1,9 @@
 import React from "react";
-import { Content, Heading, TextArea, ProjectSection } from "styled";
+import { Content, Heading, TextArea, Section } from "styled";
 
 const Headline = ({ name, client, date, save }) => {
   return (
-    <ProjectSection center>
+    <Section project center>
       <Content>
         <Heading mb={24} capitalize>{name}</Heading>
         <TextArea
@@ -13,7 +13,7 @@ const Headline = ({ name, client, date, save }) => {
           subheading
         />
       </Content>
-    </ProjectSection>
+    </Section>
   );
 };
 

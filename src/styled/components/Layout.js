@@ -23,22 +23,18 @@ export const Section = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  max-width: 100vw;
-  min-height: 100vh;
-`;
-
-export const ProjectSection = Section.extend`
-  max-width: calc(100vw - 80px);
   justify-content: ${props => props.center ? "center" : "normal"};
+  max-width: ${props => props.project ? "calc(100vw - 40px)" : "100vw"};
+  min-height: 100vh;
 
   ${Above.sm`
-    max-width: calc(100vw - 120px);
+    max-width: ${props => props.project ? "calc(100vw - 60px)" : "100vw"};
   `}
 
   ${Above.lg`
-    max-width: calc(100vw - 300px);
+    max-width: ${props => props.project ? "calc(100vw - 100px)" : "100vw"};
   `}
-`
+`;
 
 export const Wrapper = styled.div`
   background: ${PEBBLE};
