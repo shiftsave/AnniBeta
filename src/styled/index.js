@@ -8,7 +8,7 @@ export { Above } from "./components/MediaTemplates";
 export { Button, ButtonLink, ButtonGroup, Hyperlink } from "./components/Buttons";
 
 /* Card */
-export { Card, CardDetails, CardControls } from "./components/Card";
+export { Card, CardDetails, CardControls, DraggableCard } from "./components/Card";
 
 /* Grid */
 export { Grid } from "./components/Grid";

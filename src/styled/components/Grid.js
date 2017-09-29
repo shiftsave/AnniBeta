@@ -9,6 +9,14 @@ export const Grid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   width: 100%;
 
+  .draggable {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    position: relative;
+    width: 100%;
+  }
+
   .long {
     ${Above.md`
       grid-column-end: span 2;

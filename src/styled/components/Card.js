@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {ImageControls} from 'styled';
 import { CONCRETE, PAPER, FLINT, EASE_OUT_BACK } from "./Variables";
 
 
@@ -24,19 +23,15 @@ export const Card = styled.div`
   cursor: ${props => props.active ? "pointer" : "default"};
   display: flex;
   flex-direction: column;
-  height: auto;
+  height: 100%;
   transition: 320ms ${EASE_OUT_BACK};
+  overflow: visible;
   position: relative;
   width: 100%;
 
   &:hover {
     box-shadow: ${props => props.active ? `4px 12px 24px 0 ${CONCRETE}` : "none"};
     transform: scale(${props => props.active ? 1.016 : 1});
-
-    .disableDnD {
-      opacity: 1;
-      transform: scale(1);
-    }
 
     ${CardControls} {
       height: auto;
@@ -45,4 +40,22 @@ export const Card = styled.div`
   }
 `;
 
-CardControls.displayName = "CardControls";
+export const DraggableCard = styled.div`
+
+  .disableDnD {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &:hover {
+    > div {
+      box-shadow: ${props => props.active ? `4px 12px 24px 0 ${CONCRETE}` : "none"};
+      transform: scale(${props => props.active ? 1.016 : 1});
+
+      ${CardControls} {
+        height: auto;
+        padding: 8px 24px 24px 24px;
+      }
+    }
+  }
+`;

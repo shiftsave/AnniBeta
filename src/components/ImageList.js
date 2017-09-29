@@ -4,8 +4,9 @@ import { ImageViewer } from "./ImageViewer";
 import { ImageElement } from "./Image";
 import {
   Button,
-  Card,
   Container,
+  Card,
+  DraggableCard,
   Grid,
   Image,
   ImageControls,
@@ -64,7 +65,8 @@ export const ImageListItem = SortableElement(({
   );
 
   return (
-    <Card className={styles} key={index} active>
+    <DraggableCard className={styles} key={index} active>
+      <Card>
       <ImageElement src={src} className="image">
         <Image src={src} alt={name} />
       </ImageElement>
@@ -107,6 +109,7 @@ export const ImageListItem = SortableElement(({
         <Button icon="delete" onClick={onImageRemove} iconStroke={4} noBorder />
       </ImageControls>
     </Card>
+    </DraggableCard>
   );
 });
 
