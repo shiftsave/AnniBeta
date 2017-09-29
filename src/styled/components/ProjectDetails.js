@@ -26,7 +26,7 @@ export const ProjectNav = styled.div`
   `}
 
   ${Above.lg`
-    width: 200px;
+    width: 240px;
   `}
 `;
 
