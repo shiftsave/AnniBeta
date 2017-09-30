@@ -37,7 +37,7 @@ export const ProjectSectionNavItem = (
       onClick={onClick}
     >
       <Label className={styles}>
-        <Subheading micro>{name}</Subheading>
+        <Subheading capitalize micro>{name}</Subheading>
         {checked ? <ProjectNavId checked /> : <ProjectNavId />}
         <Radio checked={checked} readOnly value={name} hidden />
       </Label>

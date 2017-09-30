@@ -1,6 +1,7 @@
 import styled, { injectGlobal } from "styled-components";
 import { Above } from "./MediaTemplates";
 import { Utils } from "./Utils";
+import { COPPER, CHARCOAL } from "./Variables";
 
 /*
  * Font Definitions
@@ -41,7 +42,7 @@ export const Heading = styled.h1`
   font-size: 32px;
   margin: 0 0 4px 0;
   text-transform: ${props => props.capitalize ? "uppercase" : "default"};
-  ${ Utils.margin };
+  ${Utils.margin};
 
   ${Above.sm`
     font-size: 48px;
@@ -49,17 +50,21 @@ export const Heading = styled.h1`
 `;
 
 export const Subheading = styled.h2`
+  color: ${props => props.color ? `${COPPER}` : `${CHARCOAL}`};
   font-family: 'Apercu Bold', sans-serif;
+  font-size: 24px;
   font-size: ${props => props.tiny && "15px"};
   font-size: ${props => props.micro && "12px"};
   margin: 0;
   letter-spacing: .75px;
-  text-transform: uppercase;
+  text-align: ${props => props.center ? "center" : "left"};
+  text-transform: ${props => props.capitalize ? "uppercase" : "default"};
 `;
 
 export const Paragraph = styled.p`
   font-family: ${props => props.strong ? "Apercu Medium" : "Apercu"}, sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  ${ Utils.margin };
+  text-align: ${props => props.center ? "center" : "left"};
+  ${Utils.margin};
 `;

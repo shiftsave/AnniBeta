@@ -3,23 +3,26 @@ import { Above } from "./MediaTemplates";
 import { PEBBLE } from "./Variables";
 
 export const Container = styled.div`
-  height: 100%;
+  align-items: center;
   width: 100%;
+  display: ${props => props.center ? 'flex' : 'auto'};
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const Content = styled.div`
   border: ${props => props.upload && `2px dashed black`};
   padding: ${props => props.full ? "0" : "10px"};
-  padding: ${props => props.project ? "10px 0 10px 10px" : ""};
+  padding: ${props => props.project && "16px 0 16px 16px"};
 
   ${Above.sm`
     padding: ${props => props.full ? "0" : "48px"};
-    padding: ${props => props.project ? "48px 0 48px 48px" : ""};
+    padding: ${props => props.project && "48px 0 48px 48px"};
   `}
 
   ${Above.lg`
     padding: ${props => props.full ? "0" : "120px"};
-    padding: ${props => props.project ? "120px 0 120px 120px" : ""};
+    padding: ${props => props.project && "100px 0 120px 120px"};
   `}
 `;
 
@@ -42,4 +45,5 @@ export const Section = styled.div`
 
 export const Wrapper = styled.div`
   background: ${PEBBLE};
+  margin-top: 80px;
 `;
