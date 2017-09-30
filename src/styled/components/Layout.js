@@ -6,7 +6,8 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   display: ${props => props.center ? 'flex' : 'auto'};
-  flex-direction: column;
+  display: ${props => props.stacked ? 'flex' : 'auto'};
+  flex-direction: ${props => props.stacked && 'column'};
   justify-content: center;
 `;
 

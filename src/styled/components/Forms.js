@@ -20,8 +20,10 @@ export const TextArea = styled(BaseTextArea)`
   font-family: ${props => props.subheading ? "Apercu Bold" : "Apercu"};
   font-size: ${props => props.subheading ? "24px" : "16px"};
   height: 30px;
+  position: relative;
   resize: none;
   transition: 200ms ${EASE_OUT_EXPO};
+  width: 100%;
 
   &:hover {
     border-color: ${HAZEL};
@@ -38,7 +40,7 @@ export const TextArea = styled(BaseTextArea)`
 
   &.imageItem {
     background: ${PAPER};
-    line-height: 2;
+    line-height: 2.2;
     min-height: 0;
     max-height: 50px;
     padding: 12px 16px 16px 16px;
@@ -55,9 +57,29 @@ export const TextArea = styled(BaseTextArea)`
   }
 `;
 
-export const FormGroup = styled.form`
-  background: red;
-`;
+export const FormGroup = styled.div`
+  align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  ${'' /* Styles for text areas with icons */}
+  svg {
+    left: 8px;
+    position: absolute;
+    z-index: 2;
+  }
+
+  .imageItem {
+    padding-left: ${props => props.icon && "40px"};
+
+    &.imageItem:focus,
+    &.imageItem:hover {
+      padding-left: ${props => props.icon && "40px"};
+    }
+  }
+`
 
 export const Label = styled.label`
   align-items: center;

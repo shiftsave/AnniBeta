@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { FormGroup, OutlineIcon } from "styled";
 
 export const TextArea = props => {
   const {
@@ -7,7 +8,8 @@ export const TextArea = props => {
     onChange,
     placeholder,
     value,
-    imageItem
+    imageItem,
+    icon
   } = props;
 
   const styles = classNames({
@@ -16,12 +18,15 @@ export const TextArea = props => {
   });
 
   return (
-    <textarea
-      className={styles}
-      onChange={onChange}
-      placeholder={placeholder}
-      value={value}
-    />
+    <FormGroup icon>
+      {icon && <OutlineIcon color name={icon} size={24} />}
+      <textarea
+        className={styles}
+        onChange={onChange}
+        placeholder={placeholder}
+        value={value}
+      />
+    </FormGroup>
   );
 };
 
