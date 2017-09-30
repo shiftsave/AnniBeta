@@ -7,12 +7,12 @@ export const ProjectNav = styled.div`
   align-items: center;
   display: flex;
   justify-content: flex-end;
-  width: 80px;
   min-height: 100vh;
   padding-right: 24px;
   position: fixed;
   right: 0;
   top: 0;
+  width: 80px;
 
   > div {
     display: inline-flex;

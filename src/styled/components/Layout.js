@@ -13,16 +13,16 @@ export const Container = styled.div`
 export const Content = styled.div`
   border: ${props => props.upload && `2px dashed black`};
   padding: ${props => props.full ? "0" : "10px"};
-  padding: ${props => props.project && "16px 0 16px 16px"};
+  padding: ${props => props.project && "100px 0 24px 24px"};
 
   ${Above.sm`
     padding: ${props => props.full ? "0" : "48px"};
-    padding: ${props => props.project && "48px 0 48px 48px"};
+    padding: ${props => props.project && "120px 0 48px 48px"};
   `}
 
   ${Above.lg`
     padding: ${props => props.full ? "0" : "120px"};
-    padding: ${props => props.project && "100px 0 120px 120px"};
+    padding: ${props => props.project && "180px 0 120px 120px"};
   `}
 `;
 
@@ -45,5 +45,4 @@ export const Section = styled.div`
 
 export const Wrapper = styled.div`
   background: ${PEBBLE};
-  margin-top: 80px;
 `;

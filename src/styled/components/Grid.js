@@ -35,4 +35,12 @@ export const Grid = styled.div`
       grid-row-end: span 2;
     `}
   }
+
+  &.storyboards {
+    grid-auto-rows: 400px;
+
+    ${Above.md`
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    `}
+  }
 `;
