@@ -32,7 +32,8 @@ export { Heading, Subheading, Paragraph } from "./components/Typography";
 export { FormGroup, Input, Label, Radio, TextArea } from "./components/Forms";
 
 /* Component Specific */
-export { NavBar, Nav, NavItem } from "./components/Navigation";
 export { ProjectList } from "./components/Dashboard";
 export { ProjectNav, ProjectNavItem, ProjectNavId } from "./components/ProjectDetails";
+export { Viewer, ViewerContainer, Toolbar, Controls, PreviousImage, NextImage, CloseViewer, Backdrop } from "./components/ImageViewer";
+export { NavBar, Nav, NavItem } from "./components/Navigation";
 export { UploadArea } from "./components/UploadArea";

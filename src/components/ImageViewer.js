@@ -1,13 +1,23 @@
 import React, { Component } from "react";
-import classNames from "classnames";
-import { Button } from "styled";
+import {
+  Backdrop,
+  Button,
+  Controls,
+  CloseViewer,
+  NextImage,
+  Paragraph,
+  PreviousImage,
+  Toolbar,
+  Viewer,
+  ViewerContainer,
+} from "styled";
 
 export class ImageViewer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       currentImage: props.content.indexOf(props.content[props.selection])
-    }
+    };
   }
 
   // Mount and dismount the Event Listener for keyboard events
@@ -71,7 +81,6 @@ export class ImageViewer extends Component {
 
   render() {
     const {
-      className,
       content,
       show,
       children
@@ -81,44 +90,42 @@ export class ImageViewer extends Component {
       currentImage
     } = this.state;
 
-    const styles = classNames({
-      ImageViewer: true,
-      className
-    });
-
     const nextArrow = (
-      <div className="nextImage" onClick={this.nextImage}>
-          <Button link> Next </Button>
-          <p className="hint">right-arrow</p>
-      </div>
+      <NextImage onClick={this.nextImage}>
+        <Button noBorder> Next </Button>
+        <Paragraph micro capitalize>right-arrow</Paragraph>
+      </NextImage>
     );
 
     const prevArrow = (
-      <div className="previousImage" onClick={this.prevImage}>
-        <Button link>Prev</Button>
-        <p className="hint">left-arrow</p>
-      </div>
+      <PreviousImage onClick={this.prevImage}>
+        <Button noBorder>Prev</Button>
+        <Paragraph micro capitalize>left-arrow</Paragraph>
+      </PreviousImage>
     );
 
     if (show) {
       return (
-        <div className={styles}>
-          <div className="ImageViewer-backdrop" onClick={this.closeViewer} />
-          <div className="container">
-            <img src={content[currentImage].url} alt={content[currentImage].name} />
-          </div>
-          <div className="toolbar">
+        <Viewer>
+          <Backdrop onClick={this.closeViewer} />
+          <ViewerContainer>
+            <img
+              src={content[currentImage].url}
+              alt={content[currentImage].name}
+            />
+          </ViewerContainer>
+          <Toolbar>
             {children}
-          </div>
-          <div className="controls">
+          </Toolbar>
+          <Controls>
             {nextArrow}
             {prevArrow}
-            <div className="close" onClick={this.closeViewer}>
-              <Button link>Close</Button>
-              <p className="hint">esc</p>
-            </div>
-          </div>
-        </div>
+            <CloseViewer onClick={this.closeViewer}>
+              <Button noBorder>Close</Button>
+              <Paragraph micro capitalize>esc</Paragraph>
+            </CloseViewer>
+          </Controls>
+        </Viewer>
       );
     } else {
       return null;

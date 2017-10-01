@@ -21,7 +21,7 @@ export const ImageControls = styled.div`
   transition: 240ms ${EASE_OUT_BACK};
   overflow: hidden;
   opacity: .25;
-  z-index: 99;
+  z-index: 2;
 
   button {
     padding: 8px;

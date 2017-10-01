@@ -64,7 +64,10 @@ export const Subheading = styled.h2`
 export const Paragraph = styled.p`
   font-family: ${props => props.strong ? "Apercu Medium" : "Apercu"}, sans-serif;
   font-size: 16px;
+  font-size: ${props => props.tiny && "15px"};
+  font-size: ${props => props.micro && "12px"};
   line-height: 1.6;
   text-align: ${props => props.center ? "center" : "left"};
+  text-transform: ${props => props.capitalize ? "uppercase" : "default"};
   ${Utils.margin};
 `;
