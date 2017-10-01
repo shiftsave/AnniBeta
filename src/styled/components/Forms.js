@@ -66,17 +66,17 @@ export const FormGroup = styled.div`
 
   ${'' /* Styles for text areas with icons */}
   svg {
-    left: 8px;
+    left: 16px;
     position: absolute;
     z-index: 2;
   }
 
   .imageItem {
-    padding-left: ${props => props.icon && "40px"};
+    padding-left: ${props => props.icon && "56px"};
 
     &.imageItem:focus,
     &.imageItem:hover {
-      padding-left: ${props => props.icon && "40px"};
+      padding-left: ${props => props.icon && "56px"};
     }
   }
 `
