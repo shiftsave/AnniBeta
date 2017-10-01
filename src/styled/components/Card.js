@@ -41,13 +41,12 @@ export const Card = styled.div`
 `;
 
 export const DraggableCard = styled.div`
-
-  .disableDnD {
-    opacity: 1;
-    transform: scale(1);
-  }
-
   &:hover {
+    .disableDnD {
+      opacity: 1;
+      transform: scale(1);
+    }
+
     > div {
       box-shadow: ${props => props.active ? `4px 12px 24px 0 ${CONCRETE}` : "none"};
       transform: scale(${props => props.active ? 1.016 : 1});

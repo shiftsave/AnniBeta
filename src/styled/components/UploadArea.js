@@ -8,14 +8,16 @@ export const UploadArea = styled.div`
     outline: 2px dashed ${CONCRETE};
     outline-offset: -6px;
     padding: 24px;
-    transition: 300ms ${EASE_OUT_EXPO}
+    transition: 300ms ${EASE_OUT_EXPO};
   }
 
   .FileUploader.active {
     outline-color: ${COPPER};
     outline-offset: 0;
+    transition: 300ms ${EASE_OUT_EXPO};
 
     .ImageList {
+      transition: 300ms ${EASE_OUT_EXPO};
       opacity: .3
     }
   }
