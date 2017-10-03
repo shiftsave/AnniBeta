@@ -41,7 +41,7 @@ export default class ProjectForm extends Component {
   render() {
     const { validationMessage } = this.state;
     return (
-      <Overlay>
+      <Overlay showNav>
         <Dialog>
           <FormGroup onSubmit={this.submit} stacked>
             <Heading mb={12}>Add New Project</Heading>

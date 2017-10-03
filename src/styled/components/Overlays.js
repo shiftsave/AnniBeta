@@ -12,7 +12,7 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0;
   width: 100vw;
-  z-index: 3;
+  z-index: ${props => props.showNav ? 2 : 4};
 `;
 
 export const Backdrop = styled.div`
@@ -26,7 +26,6 @@ export const Backdrop = styled.div`
 
 export const Dialog = styled.div`
   display: inline-flex;
-  height: calc(100% - 40vh);
   flex-direction: column;
   position: relative;
   width: auto;

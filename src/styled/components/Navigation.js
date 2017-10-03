@@ -11,7 +11,7 @@ export const NavBar = styled.div`
   min-width: 100vw;
   position: fixed;
   top: 0;
-  z-index: 99;
+  z-index: 3;
 `;
 
 export const NavItem = styled.div`
