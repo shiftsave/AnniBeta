@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import constants from "constants";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { getAuthUrl, login, logoutSession } from "adapters";
@@ -54,7 +55,7 @@ class Navigation extends Component {
     const loggedInNav = (
       <NavItemGroup right>
         <NavItem>
-          <Button stacked>
+          <Button to={`/edit/projects/${constants.project.newProject}`} stacked>
             <OutlineIcon name="add" mb={6} />
             <Subheading capitalize micro>Add Project</Subheading>
           </Button>
