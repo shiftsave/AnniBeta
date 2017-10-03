@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { FormGroup, OutlineIcon } from "styled";
+import { FieldGroup, OutlineIcon } from "styled";
 
 export const TextArea = props => {
   const {
@@ -18,7 +18,7 @@ export const TextArea = props => {
   });
 
   return (
-    <FormGroup icon>
+    <FieldGroup icon>
       {icon && <OutlineIcon color name={icon} size={24} />}
       <textarea
         className={styles}
@@ -26,7 +26,7 @@ export const TextArea = props => {
         placeholder={placeholder}
         value={value}
       />
-    </FormGroup>
+    </FieldGroup>
   );
 };
 

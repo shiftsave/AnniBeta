@@ -7,7 +7,7 @@ import {
   Container,
   Card,
   DraggableCard,
-  FormGroup,
+  FieldGroup,
   Grid,
   Image,
   ImageControls,
@@ -73,7 +73,7 @@ export const ImageListItem = SortableElement(({
         </ImageElement>
 
         {reference &&
-          <FormGroup>
+          <FieldGroup>
             <TextArea
               placeholder="Enter description..."
               onChange={({ target }) =>
@@ -81,10 +81,10 @@ export const ImageListItem = SortableElement(({
               value={caption}
               imageItem
             />
-          </FormGroup>}
+          </FieldGroup>}
 
         {storyboard &&
-          <FormGroup stacked>
+          <FieldGroup stacked>
             <TextArea
               icon="audio"
               placeholder="Audio"
@@ -101,7 +101,7 @@ export const ImageListItem = SortableElement(({
               value={video}
               imageItem
             />
-          </FormGroup>}
+          </FieldGroup>}
 
         <ImageControls className="disableDnD">
           {reference && resizeButton}

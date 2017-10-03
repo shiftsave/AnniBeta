@@ -87,7 +87,10 @@ export const TextArea = styled(BaseTextArea)`
   }
 `;
 
-export const FormGroup = styled.form`
+export const FormGroup = styled.form``;
+
+
+export const FieldGroup = styled.div`
   align-items: center;
   width: 100%;
   display: flex;
