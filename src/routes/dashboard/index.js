@@ -49,9 +49,11 @@ class Dashboard extends Component {
     return (
       <Section>
         <Content>
-          <Heading>Welcome Back {userInfo ? userInfo.name.familiar_name : "Mika"}!</Heading>
+          <Heading>
+            Welcome Back {userInfo && userInfo.name.familiar_name}!
+          </Heading>
           <Paragraph mb={32} strong>You have 12 unread notifications</Paragraph>
-          <Paragraph mb={24} strong >Your Projects</Paragraph>
+          <Paragraph mb={24} strong>Your Projects</Paragraph>
           <Content full>
             {loading ? <Loader fullPage /> : renderProjects}
           </Content>

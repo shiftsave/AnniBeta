@@ -48,7 +48,6 @@ export const TextArea = styled(BaseTextArea)`
   font-family: ${props => props.subheading ? "Apercu Bold" : "Apercu"};
   font-size: ${props => props.subheading ? "24px" : "16px"};
   height: 30px;
-  padding-left: ${props => props.icon && "56px"};
   position: relative;
   resize: none;
   transition: 200ms ${EASE_OUT_EXPO};
