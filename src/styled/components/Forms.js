@@ -44,16 +44,18 @@ export const TextArea = styled(BaseTextArea)`
     min-height: 0;
     max-height: 50px;
     padding: 12px 16px 16px 16px;
+    padding-left: ${props => props.icon && "56px"};
     position: relative;
     transition: min-height 200ms ${EASE_OUT_BACK};
     transform: translate3d(0, 0, 0);
   }
 
-  &.imageItem:focus,
-  &.imageItem:hover {
+  &:focus,
+  &:hover {
     line-height: 1.6;
     min-height: 50px;
     padding: 16px;
+    padding-left: ${props => props.icon && "56px"};
   }
 `;
 
@@ -61,6 +63,7 @@ export const FormGroup = styled.div`
   align-items: center;
   width: 100%;
   display: flex;
+  flex-direction: ${props => props.stacked && "column"};
   justify-content: center;
   position: relative;
 
@@ -69,15 +72,6 @@ export const FormGroup = styled.div`
     left: 16px;
     position: absolute;
     z-index: 2;
-  }
-
-  .imageItem {
-    padding-left: ${props => props.icon && "56px"};
-
-    &.imageItem:focus,
-    &.imageItem:hover {
-      padding-left: ${props => props.icon && "56px"};
-    }
   }
 `
 

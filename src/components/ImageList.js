@@ -7,6 +7,7 @@ import {
   Container,
   Card,
   DraggableCard,
+  FormGroup,
   Grid,
   Image,
   ImageControls,
@@ -67,48 +68,58 @@ export const ImageListItem = SortableElement(({
   return (
     <DraggableCard className={styles} key={index} active>
       <Card>
-      <ImageElement src={src} className="image">
-        <Image src={src} alt={name} />
-      </ImageElement>
+        <ImageElement src={src} className="image">
+          <Image src={src} alt={name} />
+        </ImageElement>
 
-      {reference &&
-        <TextArea
-          placeholder="Enter description..."
-          onChange={({ target }) => onCaptionUpdate({ caption: target.value })}
-          value={caption}
-          imageItem
-        />}
+        {reference &&
+          <FormGroup>
+            <TextArea
+              placeholder="Enter description..."
+              onChange={({ target }) =>
+                onCaptionUpdate({ caption: target.value })}
+              value={caption}
+              imageItem
+            />
+          </FormGroup>}
 
-      {storyboard &&
-        <div>
-          <TextArea
-            icon="audio"
-            placeholder="Audio"
-            onChange={({ target }) => onCaptionUpdate({ audio: target.value })}
-            value={audio}
-            imageItem
+        {storyboard &&
+          <FormGroup stacked>
+            <TextArea
+              icon="audio"
+              placeholder="Audio"
+              onChange={({ target }) =>
+                onCaptionUpdate({ audio: target.value })}
+              value={audio}
+              imageItem
+            />
+            <TextArea
+              icon="video"
+              placeholder="Video"
+              onChange={({ target }) =>
+                onCaptionUpdate({ video: target.value })}
+              value={video}
+              imageItem
+            />
+          </FormGroup>}
+
+        <ImageControls className="disableDnD">
+          {reference && resizeButton}
+          <Button
+            icon="popout"
+            onClick={handleClick}
+            iconStroke={4}
+            noBorder
+            iconSize={18}
           />
-          <TextArea
-            icon="video"
-            placeholder="Video"
-            onChange={({ target }) => onCaptionUpdate({ video: target.value })}
-            value={video}
-            imageItem
+          <Button
+            icon="delete"
+            onClick={onImageRemove}
+            iconStroke={4}
+            noBorder
           />
-        </div>}
-
-      <ImageControls className="disableDnD">
-        {reference && resizeButton}
-        <Button
-          icon="popout"
-          onClick={handleClick}
-          iconStroke={4}
-          noBorder
-          iconSize={18}
-        />
-        <Button icon="delete" onClick={onImageRemove} iconStroke={4} noBorder />
-      </ImageControls>
-    </Card>
+        </ImageControls>
+      </Card>
     </DraggableCard>
   );
 });
