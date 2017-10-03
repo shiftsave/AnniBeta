@@ -13,17 +13,17 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   border: ${props => props.upload && `2px dashed black`};
-  padding: ${props => props.full ? "0" : "10px"};
-  padding: ${props => props.project && "100px 0 24px 24px"};
+  padding: 100px 0 24px 24px;
+  padding: ${props => props.full && "0"};
 
   ${Above.sm`
-    padding: ${props => props.full ? "0" : "48px"};
-    padding: ${props => props.project && "120px 0 48px 48px"};
+    padding: 120px 0 48px 48px;
+    padding: ${props => props.full && "0"};
   `}
 
   ${Above.lg`
-    padding: ${props => props.full ? "0" : "120px"};
-    padding: ${props => props.project && "180px 0 120px 120px"};
+    padding: 180px 0 120px 120px;
+    padding: ${props => props.full && "0"};
   `}
 `;
 

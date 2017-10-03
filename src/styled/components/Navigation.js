@@ -1,18 +1,29 @@
 import styled from "styled-components";
-// import { PAPER } from "./Variables";
+import { FLINT, PAPER } from "./Variables";
 
 export const NavBar = styled.div`
+  background: ${PAPER};
   align-items: center;
   display: flex;
-  height: 80px;
+  height: 72px;
   left: 0;
   min-width: 100vw;
   position: fixed;
   top: 0;
 `;
 
-export const Nav = styled.div`
+export const NavItem = styled.div`
+  align-items: center;
+  border-left: 1px solid ${FLINT};
+  display: flex;
+  height: 100%;
+  margin-left: ${props => props.right && "auto"};
+  padding: 0 8px;
 `;
 
-export const NavItem = styled.div`
+export const NavItemGroup = styled.div`
+  align-items: center;
+  display: flex;
+  height: 100%;
+  margin-left: ${props => props.right && "auto"};
 `;

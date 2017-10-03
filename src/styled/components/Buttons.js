@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { BaseButton } from "components/Button";
 import { Utils } from "./Utils";
 
-import { CHARCOAL, COPPER, EASE_OUT_EXPO, EASE_OUT_BACK } from "./Variables";
+import { CHARCOAL, COPPER, PAPER, EASE_OUT_EXPO, EASE_OUT_BACK } from "./Variables";
 
 export const ButtonGroup = styled.div`
   ${Utils.margin};
@@ -12,10 +12,12 @@ export const Button = styled(BaseButton)`
   align-items: center;
   background: none;
   border: ${props => props.noBorder ? "none" : `2px solid ${COPPER}`};
+  border: ${props => props.stacked && "none"};
   border-radius: 80px;
   color: ${CHARCOAL};
   cursor: pointer;
   display: inline-flex;
+  flex-direction: ${props => props.stacked && "column"};
   font-family: 'Apercu Bold', sans-serif;
   font-size: 13px;
   letter-spacing: 1px;
@@ -26,12 +28,15 @@ export const Button = styled(BaseButton)`
   text-transform: uppercase;
   transition: 400ms ${EASE_OUT_EXPO};
   z-index: 2;
+  ${Utils.margin};
 
   svg {
     fill: ${props => props.iconStroke ? "transparent" : `${CHARCOAL}`};
     height: ${props => props.iconSize ? `${props.iconSize}px` : "18px"};
     stroke: ${props => props.iconStroke ? `${CHARCOAL}` : "transparent"};
+    stroke: ${props => props.stacked && `${CHARCOAL}`};
     stroke-width: ${props => props.iconStroke ? `${props.iconStroke}px` : "0"};
+    stroke-width: ${props => props.stacked && "6px"};
     transition: 400ms ${EASE_OUT_EXPO};
     transition: transform 400ms ${EASE_OUT_BACK};
     width: ${props => props.iconSize ? `${props.iconSize}px` : "18px"};
@@ -57,12 +62,29 @@ export const Button = styled(BaseButton)`
   }
 
   :hover {
-    transform: scale(1.025);
+    transform: ${props => props.noHover ? "scale(1)" : "scale(1.025)"};
 
     svg {
       fill: ${props => props.iconStroke ? "transparent" : `${COPPER}`};
       stroke: ${props => props.iconStroke ? `${COPPER}` : "transparent"};
-      transform: scale(1.2);
+      stroke: ${props => props.stacked && `${COPPER}`};
+      transform: ${props => props.noHover ? "scale(1)" : "scale(1.2)"};
     }
   }
 `;
+
+export const Avatar = Button.extend`
+  background: ${COPPER};
+  color: ${PAPER};
+  font-size: 18px;
+  height: 40px;
+  text-align: center;
+  position: relative;
+  width: 40px;
+
+  span {
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+  }
+`

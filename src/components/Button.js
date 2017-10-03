@@ -9,25 +9,32 @@ export const BaseButton = props => {
     href,
     icon,
     to,
-    onClick
+    onClick,
+    initial
   } = props;
 
   if (to) {
     return (
       <Link to={to} className={className} onClick={onClick}>
-        {icon && <Icons name={icon} />}{children}
+        {icon && <Icons name={icon} />}
+        {initial && <span>{initial}</span>}
+        {children}
       </Link>
     );
   } else if (href) {
     return (
-      <a href={href} className={className} onClick={onClick}>
-        {icon && <Icons name={icon} />}{children}
+      <a href={href} className={className} onClick={onClick} >
+        {icon && <Icons name={icon} />}
+        {initial && <span>{initial}</span>}
+        {children}
       </a>
     );
   } else {
     return (
       <button className={className} onClick={onClick}>
-        {icon && <Icons name={icon} />}{children}
+        {icon && <Icons name={icon} />}
+        {initial && <span>{initial}</span>}
+        {children}
       </button>
     );
   }
