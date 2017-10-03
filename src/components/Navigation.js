@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import constants from "constants";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { getAuthUrl, login, logoutSession } from "adapters";
 import { addAuthToken, logout } from "actions";
+import CreateForm from "components/CreateForm";
 
 import {
   Avatar,
@@ -16,6 +16,8 @@ import {
 } from "styled";
 
 class Navigation extends Component {
+  state = { showOverlay: false };
+
   componentDidMount() {
     const { dispatch, auth } = this.props;
 
@@ -43,6 +45,8 @@ class Navigation extends Component {
     this.props.router.push("/");
   }
 
+  handleClick = () => this.setState({ showOverlay: true });
+
   render() {
     const login = (
       <NavItem right>
@@ -55,21 +59,37 @@ class Navigation extends Component {
     const loggedInNav = (
       <NavItemGroup right>
         <NavItem>
-          <Button to={`/edit/projects/${constants.project.newProject}`} stacked>
+          <Button onClick={this.handleClick} stacked>
             <OutlineIcon name="add" />
             <Subheading mt={6} capitalize micro>Add Project</Subheading>
           </Button>
         </NavItem>
         <NavItem>
           <Button icon="notification" iconSize={32} noBorder />
-          <Avatar initial={firstInitial} mr={16} onClick={this.logout.bind(this)} />
+          <Avatar
+            initial={firstInitial}
+            mr={16}
+            onClick={this.logout.bind(this)}
+          />
         </NavItem>
       </NavItemGroup>
     );
+
+    const projectForm = this.state.showOverlay
+      ? <CreateForm
+          show={this.state.showOverlay}
+          onClose={() => {
+            this.setState({
+              showOverlay: false
+            });
+          }}
+        />
+      : null;
     return (
       <NavBar>
         <Button icon="logo" to="/dashboard" noBorder noHover />
         {this.props.auth.toJS().isAuthenticated ? loggedInNav : login}
+        {projectForm}
       </NavBar>
     );
   }

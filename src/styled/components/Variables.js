@@ -7,7 +7,7 @@ export const HAZEL    = "#FFE5CA"
 
 export const CHARCOAL = "#1B1D1E"
 export const CONCRETE = "#DBDBDB"
-export const FLINT    = "#EBEBEB"
+export const FLINT    = "#F5F5F5"
 export const PEBBLE   = "#FBFBFB"
 export const PAPER    = "#FFFFFF"
 
