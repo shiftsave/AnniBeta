@@ -11,7 +11,6 @@ export const Overlay = styled.div`
   left: 0;
   position: fixed;
   top: 0;
-  transition: 400ms ${EASE_OUT_EXPO}
   width: 100vw;
   z-index: ${props => props.showNav ? 2 : 4};
 `;
@@ -26,16 +25,28 @@ export const Backdrop = styled.div`
 `;
 
 export const Dialog = styled.div`
+  animation: slideIn 600ms ${EASE_OUT_EXPO};
   display: inline-flex;
   flex-direction: column;
   position: relative;
   width: auto;
   max-width: calc(100% - 96px);
+  transform: translate3d(0, 0, 0);
 
   img {
     height: 100%;
     object-fit: contain;
     width: auto;
+  }
+
+  @keyframes slideIn {
+    0% {
+      transform: translateY(100vh);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
   }
 `;
 
