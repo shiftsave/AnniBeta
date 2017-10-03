@@ -61,7 +61,7 @@ export default class ProjectForm extends Component {
                   {validationMessage}
                 </Paragraph>
               : null}
-            <Button icon="add">Add Project</Button>
+            <Button>Add Project</Button>
           </FormGroup>
         </Dialog>
       </Overlay>
