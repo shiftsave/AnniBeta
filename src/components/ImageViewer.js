@@ -2,14 +2,11 @@ import React, { Component } from "react";
 import {
   Backdrop,
   Button,
-  Controls,
-  CloseViewer,
-  NextImage,
+  Dialog,
   Paragraph,
-  PreviousImage,
-  Toolbar,
-  Viewer,
-  ViewerContainer,
+  Overlay,
+  OverlayButton,
+  OverlayToolbar
 } from "styled";
 
 export class ImageViewer extends Component {
@@ -90,42 +87,34 @@ export class ImageViewer extends Component {
       currentImage
     } = this.state;
 
-    const nextArrow = (
-      <NextImage onClick={this.nextImage}>
-        <Button noBorder> Next </Button>
-        <Paragraph micro capitalize>right-arrow</Paragraph>
-      </NextImage>
-    );
-
-    const prevArrow = (
-      <PreviousImage onClick={this.prevImage}>
-        <Button noBorder>Prev</Button>
-        <Paragraph micro capitalize>left-arrow</Paragraph>
-      </PreviousImage>
-    );
-
     if (show) {
       return (
-        <Viewer>
+        <Overlay>
           <Backdrop onClick={this.closeViewer} />
-          <ViewerContainer>
+          <Dialog>
             <img
               src={content[currentImage].url}
               alt={content[currentImage].name}
             />
-          </ViewerContainer>
-          <Toolbar>
+          </Dialog>
+
+          {/* This is an area for buttons and actions related to the specific item. */}
+          <OverlayToolbar>
             {children}
-          </Toolbar>
-          <Controls>
-            {nextArrow}
-            {prevArrow}
-            <CloseViewer onClick={this.closeViewer}>
-              <Button noBorder>Close</Button>
-              <Paragraph micro capitalize>esc</Paragraph>
-            </CloseViewer>
-          </Controls>
-        </Viewer>
+          </OverlayToolbar>
+          <OverlayButton right onClick={this.nextImage}>
+            <Button noBorder> Next </Button>
+            <Paragraph micro capitalize>right-arrow</Paragraph>
+          </OverlayButton>
+          <OverlayButton left onClick={this.prevImage}>
+            <Button noBorder>Prev</Button>
+            <Paragraph micro capitalize>left-arrow</Paragraph>
+          </OverlayButton>
+          <OverlayButton top onClick={this.closeViewer}>
+            <Button noBorder>Close</Button>
+            <Paragraph micro capitalize>esc</Paragraph>
+          </OverlayButton>
+        </Overlay>
       );
     } else {
       return null;

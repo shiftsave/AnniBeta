@@ -25,8 +25,11 @@ export { Container, Content, Section, Wrapper } from "./components/Layout";
 /* Loader */
 export { Loader } from "./components/Loader";
 
-/* Typography */
+/* Overlays */
 export { Heading, Subheading, Paragraph } from "./components/Typography";
+
+/* Typography */
+export { Backdrop, Dialog, Overlay, OverlayToolbar, OverlayControls, OverlayButton } from "./components/Overlays";
 
 /* Form */
 export { FormGroup, Input, Label, Radio, TextArea } from "./components/Forms";
@@ -34,6 +37,5 @@ export { FormGroup, Input, Label, Radio, TextArea } from "./components/Forms";
 /* Component Specific */
 export { ProjectList } from "./components/Dashboard";
 export { ProjectNav, ProjectNavItem, ProjectNavId } from "./components/ProjectDetails";
-export { Viewer, ViewerContainer, Toolbar, Controls, PreviousImage, NextImage, CloseViewer, Backdrop } from "./components/ImageViewer";
 export { NavBar, Nav, NavItem } from "./components/Navigation";
 export { UploadArea } from "./components/UploadArea";

@@ -13,7 +13,7 @@ import {
   Paragraph
 } from "styled";
 
-import tempImage from "media/adidas.png";
+import tempImage from "media/placeholder.png";
 
 import { removeProject, deleteFile } from "actions";
 import { removeFolder } from "adapters";
