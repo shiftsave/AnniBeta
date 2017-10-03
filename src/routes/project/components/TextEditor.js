@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import classNames from "classnames";
-import { Container, Content, Heading } from "styled";
+
+import {
+  Container,
+  Content,
+  ContextualToolbar,
+  Heading,
+  Toolbar,
+  ToolbarGroup,
+  ToolbarItem
+} from "styled";
 
 import Editor from "draft-js-plugins-editor";
 import {
@@ -29,9 +38,9 @@ class StyleButton extends Component {
     });
 
     return (
-      <div className={toolbarItem} onClick={this.onToggle}>
+      <ToolbarItem className={toolbarItem} onClick={this.onToggle}>
         {this.props.label}
-      </div>
+      </ToolbarItem>
     );
   }
 }
@@ -48,7 +57,7 @@ const InlineStyleControls = props => {
   const { condensed } = props;
 
   return (
-    <div className="InlineStyleControls">
+    <ToolbarGroup noBorder={condensed}>
       {styleTypes.map(type => (
         <StyleButton
           key={type.label}
@@ -56,9 +65,10 @@ const InlineStyleControls = props => {
           label={condensed ? type.initial : type.label}
           onToggle={props.onToggle}
           style={type.style}
+          noBorder
         />
       ))}
-    </div>
+    </ToolbarGroup>
   );
 };
 
@@ -105,8 +115,8 @@ export default class TextEditor extends Component {
 
   displayContextualMenu = () => {
     const selectedText = getVisibleSelectionRect(window);
-    const toolbar = this.refs.toolbar.getBoundingClientRect();
-    const toolbarParent = this.refs.toolbarParent.getBoundingClientRect();
+    const toolbar = this.toolbar.getBoundingClientRect();
+    const toolbarParent = this.toolbarParent.getBoundingClientRect();
 
     if (selectedText !== null && selectedText.width > 2) {
       this.setState({
@@ -141,49 +151,47 @@ export default class TextEditor extends Component {
   render() {
     const { editorState, styles } = this.state;
 
-    const Editorstyles = classNames({
-      TextEditor: true,
-      [this.props.className]: this.props.className
-    });
-
     return (
-      <Container className={Editorstyles} ref="toolbarParent">
-        <div className="ContextualToolbar" style={styles} ref="toolbar">
+      <Container innerRef={ref => this.toolbarParent = ref}>
+        <ContextualToolbar style={styles} innerRef={ref => this.toolbar = ref}>
           <InlineStyleControls
             condensed
             editorState={editorState}
             onToggle={this.toggleInlineStyle}
           />
-        </div>
-        <Content project onMouseUp={this.displayContextualMenu}>
+        </ContextualToolbar>
+        <Content
+          project
+          onMouseUp={this.displayContextualMenu}
+          onClick={this.focus}
+        >
           <Heading>SCRIPT</Heading>
-          <div className="Editor" onClick={this.focus}>
-            <Editor
-              editorState={editorState}
-              handleKeyCommand={this.handleKeyCommand}
-              onChange={this.onChange}
-              placeholder="Start writing here..."
-              plugins={plugins}
-              ref="editor"
-              spellCheck={true}
-            />
-          </div>
+          <Editor
+            editorState={editorState}
+            handleKeyCommand={this.handleKeyCommand}
+            onChange={this.onChange}
+            onClick={this.focus}
+            placeholder="Start writing here..."
+            plugins={plugins}
+            ref="editor"
+            spellCheck={true}
+          />
         </Content>
-        <div className="Toolbar">
+        <Toolbar>
           <InlineStyleControls
             editorState={editorState}
             onToggle={this.toggleInlineStyle}
           />
-          <div className="stats">
-            <div><CharCounter /> characters</div>
-            <div><WordCounter /> words</div>
-            <div>
+          <ToolbarGroup>
+            <ToolbarItem><CharCounter /> characters</ToolbarItem>
+            <ToolbarItem><WordCounter /> words</ToolbarItem>
+            <ToolbarItem noBorder>
               Reading time
               {" "}
               <CustomCounter countFunction={this.averageReadingTime} />
-            </div>
-          </div>
-        </div>
+            </ToolbarItem>
+          </ToolbarGroup>
+        </Toolbar>
       </Container>
     );
   }

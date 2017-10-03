@@ -59,6 +59,7 @@ export const Subheading = styled.h2`
   letter-spacing: .75px;
   text-align: ${props => props.center ? "center" : "left"};
   text-transform: ${props => props.capitalize ? "uppercase" : "default"};
+  ${Utils.margin};
 `;
 
 export const Paragraph = styled.p`

@@ -5,9 +5,9 @@ import { PEBBLE } from "./Variables";
 export const Container = styled.div`
   align-items: center;
   width: 100%;
-  display: ${props => props.center ? 'flex' : 'auto'};
-  display: ${props => props.stacked ? 'flex' : 'auto'};
-  flex-direction: ${props => props.stacked && 'column'};
+  display: ${props => props.center ? "flex" : "auto"};
+  display: ${props => props.stacked ? "flex" : "auto"};
+  flex-direction: ${props => props.stacked && "column"};
   justify-content: center;
 `;
 

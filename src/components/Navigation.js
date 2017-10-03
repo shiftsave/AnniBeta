@@ -56,8 +56,8 @@ class Navigation extends Component {
       <NavItemGroup right>
         <NavItem>
           <Button to={`/edit/projects/${constants.project.newProject}`} stacked>
-            <OutlineIcon name="add" mb={6} />
-            <Subheading capitalize micro>Add Project</Subheading>
+            <OutlineIcon name="add" />
+            <Subheading mt={6} capitalize micro>Add Project</Subheading>
           </Button>
         </NavItem>
         <NavItem>
