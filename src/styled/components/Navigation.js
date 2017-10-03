@@ -3,6 +3,7 @@ import { FLINT, PAPER } from "./Variables";
 
 export const NavBar = styled.div`
   background: ${PAPER};
+  border-bottom: 1px solid ${FLINT};
   align-items: center;
   display: flex;
   height: 72px;

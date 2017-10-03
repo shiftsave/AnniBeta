@@ -9,8 +9,36 @@ import {
   EASE_OUT_BACK,
   EASE_OUT_EXPO
 } from "./Variables";
-
 import { TextArea as BaseTextArea } from "components/Forms";
+import { Utils } from "./Utils";
+
+export const Input = styled.input`
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid ${FLINT};
+  color: ${CHARCOAL};
+  font-family: ${props => props.subheading ? "Apercu Bold" : "Apercu"};
+  font-size: ${props => props.subheading ? "24px" : "16px"};
+  height: 30px;
+  padding-left: ${props => props.icon && "56px"};
+  position: relative;
+  transition: 200ms ${EASE_OUT_EXPO};
+  width: 100%;
+  ${Utils.margin};
+
+  &:hover {
+    border-color: ${HAZEL};
+  }
+
+  &:focus {
+    border-color: ${COPPER};
+    outline: none;
+  }
+
+  ::placeholder {
+    color: ${CONCRETE}
+  }
+`;
 
 export const TextArea = styled(BaseTextArea)`
   background: transparent;
@@ -60,7 +88,7 @@ export const TextArea = styled(BaseTextArea)`
   }
 `;
 
-export const FormGroup = styled.div`
+export const FormGroup = styled.form`
   align-items: center;
   width: 100%;
   display: flex;
@@ -68,13 +96,13 @@ export const FormGroup = styled.div`
   justify-content: center;
   position: relative;
 
-  ${'' /* Styles for text areas with icons */}
+  ${/* Styles for text areas with icons */ ""}
   svg {
     left: 16px;
     position: absolute;
     z-index: 2;
   }
-`
+`;
 
 export const Label = styled.label`
   align-items: center;

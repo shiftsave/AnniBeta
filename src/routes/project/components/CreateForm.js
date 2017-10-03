@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { createFolder } from "adapters";
 import { addProject } from "actions";
-import { Button } from "styled";
+import { Button, Dialog, Heading, FormGroup, Input, Overlay, Paragraph } from "styled";
 
 export default class ProjectForm extends Component {
   constructor() {
@@ -41,28 +41,30 @@ export default class ProjectForm extends Component {
   render() {
     const { validationMessage } = this.state;
     return (
-      <div className="ProjectForm">
-        <form onSubmit={this.submit} className="addProject">
-          <h3>Add New Project</h3>
-          <div className="Form">
-            <input
+      <Overlay>
+        <Dialog>
+          <FormGroup onSubmit={this.submit} stacked>
+            <Heading mb={12}>Add New Project</Heading>
+            <Input
               placeholder="Enter You Project Name"
               autoFocus={true}
               onChange={({ target }) => this.setState({ name: target.value })}
-              className="large"
+              mb={12}
             />
-            <input
+            <Input
               placeholder="Enter your client name"
               onChange={({ target }) => this.setState({ client: target.value })}
-              className="large"
+              mb={24}
             />
-          </div>
-          {validationMessage
-            ? <p className="ValidationErrorMessage">{validationMessage}</p>
-            : null}
-          <Button icon="add">Add Project</Button>
-        </form>
-      </div>
+            {validationMessage
+              ? <Paragraph className="ValidationErrorMessage">
+                  {validationMessage}
+                </Paragraph>
+              : null}
+            <Button icon="add">Add Project</Button>
+          </FormGroup>
+        </Dialog>
+      </Overlay>
     );
   }
 }
