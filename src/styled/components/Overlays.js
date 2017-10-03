@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PAPER } from "./Variables";
+import { PAPER, EASE_OUT_EXPO } from "./Variables";
 
 export const Overlay = styled.div`
   background: rgba(255,255,255,0.9);
@@ -11,6 +11,7 @@ export const Overlay = styled.div`
   left: 0;
   position: fixed;
   top: 0;
+  transition: 400ms ${EASE_OUT_EXPO}
   width: 100vw;
   z-index: ${props => props.showNav ? 2 : 4};
 `;
