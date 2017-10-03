@@ -102,7 +102,7 @@ export const FieldGroup = styled.div`
   width: 100%;
   display: flex;
   flex-direction: ${props => props.stacked && "column"};
-  justify-content: center;
+  justify-content: ${props => props.center && "center"};
   position: relative;
 
   ${/* Styles for text areas with icons */ ""}

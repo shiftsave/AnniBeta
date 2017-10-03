@@ -10,6 +10,7 @@ import { COPPER, CHARCOAL } from "./Variables";
 import ApercuRegular from "fonts/ApercuTrial-Regular.ttf";
 import ApercuMedium from "fonts/ApercuTrial-Medium.ttf";
 import ApercuBold from "fonts/ApercuTrial-Bold.ttf";
+import ApercuMono from "fonts/ApercuTrial-Mono.ttf";
 
 export const GlobalStyles = injectGlobal`
   @font-face {
@@ -26,6 +27,11 @@ export const GlobalStyles = injectGlobal`
     font-family: 'Apercu Bold';
     src: url(${ApercuBold});
     weight: 800;
+  }
+
+  @font-face {
+    font-family: 'Apercu Mono';
+    src: url(${ApercuMono});
   }
 
   html {

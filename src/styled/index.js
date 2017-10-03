@@ -42,3 +42,4 @@ export { ProjectList } from "./components/Dashboard";
 export { ProjectNav, ProjectNavItem, ProjectNavId } from "./components/ProjectDetails";
 export { NavBar, NavItem, NavItemGroup } from "./components/Navigation";
 export { UploadArea } from "./components/UploadArea";
+export { EditorContainer } from "./components/TextEditor";

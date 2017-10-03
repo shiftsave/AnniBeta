@@ -5,6 +5,7 @@ import {
   Container,
   Content,
   ContextualToolbar,
+  EditorContainer,
   Heading,
   Toolbar,
   ToolbarGroup,
@@ -165,17 +166,19 @@ export default class TextEditor extends Component {
           onMouseUp={this.displayContextualMenu}
           onClick={this.focus}
         >
-          <Heading>SCRIPT</Heading>
-          <Editor
-            editorState={editorState}
-            handleKeyCommand={this.handleKeyCommand}
-            onChange={this.onChange}
-            onClick={this.focus}
-            placeholder="Start writing here..."
-            plugins={plugins}
-            ref="editor"
-            spellCheck={true}
-          />
+          <Heading mb={16}>SCRIPT</Heading>
+          <EditorContainer>
+            <Editor
+              editorState={editorState}
+              handleKeyCommand={this.handleKeyCommand}
+              onChange={this.onChange}
+              onClick={this.focus}
+              placeholder="Start writing here..."
+              plugins={plugins}
+              ref="editor"
+              spellCheck={true}
+            />
+          </EditorContainer>
         </Content>
         <Toolbar>
           <InlineStyleControls

@@ -46,7 +46,7 @@ class Collection extends Component {
       <Section>
         <Content project>
           <UploadArea>
-            <Heading mb={24}>{title}</Heading>
+            <Heading mb={16}>{title}</Heading>
             <FileUploader path={projectPath} collection={collectionId}>
               {list}
               {!project && <Loader />}

@@ -6,7 +6,7 @@ export const Toolbar = styled.div`
   bottom: 0;
   display: flex;
   left: 0;
-  position: absolute;
+  position: fixed;
   width: 100%;
 `;
 
