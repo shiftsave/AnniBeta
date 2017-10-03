@@ -50,6 +50,7 @@ export const ProjectNavId = styled.div`
   border: 2px solid ${COPPER};
   border-radius: 10px;
   height: 8px;
+  margin-left: 8px;
   padding: 0;
   transition: 200ms ${EASE_OUT_EXPO};
   width: 8px;

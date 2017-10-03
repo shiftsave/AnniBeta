@@ -96,7 +96,6 @@ export const FormGroup = styled.form`
   position: relative;
 `;
 
-
 export const FieldGroup = styled.div`
   align-items: center;
   width: 100%;
@@ -118,13 +117,17 @@ export const Label = styled.label`
   color: ${CONCRETE};
   cursor: pointer;
   display: flex;
+  font-family: "Apercu Bold";
+  font-size: ${props => props.micro && "12px"};
   justify-content: flex-end;
+  letter-spacing: 1px;
   transition: 400ms ${EASE_OUT_EXPO};
+  text-transform: ${props => props.capitalize ? "uppercase" : "default"};
   transform-origin: right;
-  translate3d( 0, 0, 0);
+  ${Utils.margin};
 
-  :hover {
-    transform: scale(1.048);
+  &:hover {
+    transform: scale(1.05);
   }
 
   &.checked {
@@ -136,4 +139,5 @@ export const Radio = styled.input.attrs({
   type: "radio"
 })`
   position: ${props => props.hide ? "hidden" : "inherit"};
+  ${Utils.margin};
 `;

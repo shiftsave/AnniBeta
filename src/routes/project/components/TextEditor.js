@@ -119,7 +119,7 @@ export default class TextEditor extends Component {
     const toolbar = this.toolbar.getBoundingClientRect();
     const toolbarParent = this.toolbarParent.getBoundingClientRect();
 
-    if (selectedText !== null && selectedText.width > 2) {
+    if (selectedText !== null && selectedText.width > 1) {
       this.setState({
         styles: {
           opacity: 1,

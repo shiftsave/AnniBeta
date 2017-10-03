@@ -7,7 +7,6 @@ import {
   ProjectNavItem,
   ProjectNavId,
   Radio,
-  Subheading
 } from "styled";
 
 export const ProjectControls = ({ children }) => {
@@ -29,17 +28,16 @@ export const ProjectSectionNavItem = (
 
   return (
     <ProjectNavItem
-      className="ProjectSectionNavItem"
       to={{
         pathname: projectPath,
         query: { section: name }
       }}
       onClick={onClick}
     >
-      <Label className={styles}>
-        <Subheading capitalize micro>{name}</Subheading>
+      <Label className={styles} capitalize micro>
+        {name}
         {checked ? <ProjectNavId checked /> : <ProjectNavId />}
-        <Radio checked={checked} readOnly value={name} hidden />
+        <Radio checked={checked} readOnly value={name} hidden ml={8} />
       </Label>
     </ProjectNavItem>
   );

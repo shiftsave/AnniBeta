@@ -30,6 +30,11 @@ export const ToolbarItem = styled.div`
   letter-spacing: 1px;
   padding: 16px;
   text-transform: uppercase;
+  text-align: center;
+
+  &.active {
+    color: ${COPPER};
+  }
 `;
 
 export const ContextualToolbar = styled.div`
