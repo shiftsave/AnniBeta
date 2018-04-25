@@ -14,6 +14,7 @@
     "history": "^4.5.1",
     "immutable": "^3.8.1",
     "jest": "15.1.1",
+    "jest-styled-components": "^5.0.1",
     "json-loader": "0.5.4",
     "lodash.filter": "^4.6.0",
     "moment": "^2.18.1",
@@ -35,10 +36,10 @@
     "styled-normalize": "^2.0.1"
   },
   "scripts": {
-    "start": "npm-run-all dev",
-    "build": "react-scripts build",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
     "dev": "react-scripts start",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build -b master -o production"
