@@ -19,7 +19,6 @@ export const Button = styled(BaseButton)`
   background: ${props => !props.primary || props.link ? "none" : `${COPPER}`};
   border: ${props => props.noBorder || props.link ? "none" : `2px solid ${COPPER}`};
   border: ${props => props.stacked && "none"};
-  border-radius: 80px;
   color: ${CHARCOAL};
   cursor: pointer;
   display: inline-flex;

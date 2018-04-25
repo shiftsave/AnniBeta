@@ -737,7 +737,7 @@ babel-plugin-jest-hoist@^20.0.3:
   version "20.0.3"
   resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-20.0.3.tgz#afedc853bd3f8dc3548ea671fbe69d03cc2c1767"
 
-babel-plugin-styled-components@^1.1.4:
+babel-plugin-styled-components@^1.1.4, babel-plugin-styled-components@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-styled-components/-/babel-plugin-styled-components-1.5.1.tgz#31dbeb696d1354d1585e60d66c7905f5e474afcd"
   dependencies:
@@ -5078,7 +5078,7 @@ loader-utils@^0.2.11, loader-utils@^0.2.16:
     json5 "^0.5.0"
     object-assign "^4.0.1"
 
-loader-utils@^1.0.2, loader-utils@^1.1.0:
+loader-utils@^1.0.2, loader-utils@^1.1.0, loader-utils@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.1.0.tgz#c98aef488bcceda2ffb5e2de646d6a754429f5cd"
   dependencies:
@@ -8077,6 +8077,12 @@ stylelint-config-recommended@^2.1.0:
 stylelint-config-styled-components@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/stylelint-config-styled-components/-/stylelint-config-styled-components-0.1.1.tgz#b408388d7c687833ab4be4c4e6522d97d2827ede"
+
+stylelint-custom-processor-loader@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/stylelint-custom-processor-loader/-/stylelint-custom-processor-loader-0.5.0.tgz#304d13e0c995b9f8a68da1a8d899700e2deacad8"
+  dependencies:
+    loader-utils "~1.1.0"
 
 stylelint-processor-styled-components@^1.3.1:
   version "1.3.1"
