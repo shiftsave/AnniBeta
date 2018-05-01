@@ -1,8 +1,11 @@
 /* Alert */
 export { Alert, AlertControls, AlertMessage } from "./components/Alert";
 
+/* Avatar */
+export { Avatar } from "./components/Avatar";
+
 /* Button */
-export { Avatar, Button, ButtonLink, ButtonGroup, Hyperlink } from "./components/Buttons";
+export { Button, ButtonLink, ButtonGroup, Hyperlink } from "./components/Buttons";
 
 /* Card */
 export { Card, CardDetails, CardControls, DraggableCard } from "./components/Card";
@@ -47,3 +50,5 @@ export { ProjectNav, ProjectNavItem, ProjectNavId } from "./components/ProjectDe
 export { NavBar, NavItem, NavItemGroup } from "./components/Navigation";
 export { UploadArea } from "./components/UploadArea";
 export { EditorContainer } from "./components/TextEditor";
+/* Form */
+export { FeedbackItem } from "./components/Feedback";
