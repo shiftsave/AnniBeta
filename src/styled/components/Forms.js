@@ -97,6 +97,7 @@ export const TextArea = styled(BaseTextArea)`
   min-height: 0;
   position: relative;
   padding-left: ${props => props.icon && "56px"};
+  padding: ${props => props.full && "0"};
   resize: none;
   transition: 200ms ${EASE_OUT_EXPO};
   transition: min-height 200ms ${EASE_OUT_BACK};
@@ -129,6 +130,20 @@ export const TextArea = styled(BaseTextArea)`
       line-height: 1.6;
       padding: 16px;
       padding-left: ${props => props.icon && "56px"};
+    }
+  }
+
+  &.feedback {
+    background: ${PEBBLE};
+    border-color: transparent;
+    max-height: 50px;
+    padding: 16px;
+    transform: translate3d(0, 0, 0);
+
+    &:focus,
+    &:hover {
+      line-height: 1.6;
+      padding: 16px;
     }
   }
 

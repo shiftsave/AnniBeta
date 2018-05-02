@@ -13,6 +13,8 @@ export const FLINT    = "#F5F5F5";
 export const PEBBLE   = "#FBFBFB";
 export const PAPER    = "#FFFFFF";
 
+export const SHADE    = "rgba(0,0,0,.08)"
+
  /*
   * Easing
   */

@@ -5,8 +5,6 @@ import { COPPER, PAPER } from "./Variables";
 
 export const Avatar = styled(_Avatar)`
   align-items: center;
-
-    break;
   background: ${COPPER};
   border-radius: 100px;
   color: ${PAPER};

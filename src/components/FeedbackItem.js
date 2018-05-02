@@ -4,6 +4,7 @@ import { Avatar, Paragraph, TextArea } from "styled";
 
 const _FeedbackItem = (
   {
+    arrow,
     author,
     avatar,
     content,
@@ -14,10 +15,10 @@ const _FeedbackItem = (
   }
 ) => {
   return (
-    <div>
-      <div className={className}>
-        {contextual && <div className="arrow" />}
-        <Avatar initial="I" mr={12} />
+    <div className={className}>
+      {contextual && <div className={`arrow ${arrow}`} />}
+      <div className="container">
+        <Avatar initial={author.charAt(0)} mr={12} />
         <div className="content">
           <Paragraph color strong>{author}</Paragraph>
           <Paragraph>{feedback}</Paragraph>
@@ -26,13 +27,16 @@ const _FeedbackItem = (
           </Paragraph>
         </div>
       </div>
-      {contextual && <TextArea />}
+      {contextual &&
+          <TextArea placeholder="Enter comment..." feedback />
+      }
     </div>
   );
 };
 
 // Define Prop Types
 _FeedbackItem.propTypes = {
+  arrow: PropTypes.oneOf(["top", "right", "bottom", "left"]),
   author: PropTypes.string.isRequired,
   avatar: PropTypes.string,
   className: PropTypes.string,

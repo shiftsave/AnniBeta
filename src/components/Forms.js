@@ -6,6 +6,7 @@ import { FieldGroup, OutlineIcon } from "styled";
 export const TextArea = props => {
   const {
     className,
+    feedback,
     onChange,
     placeholder,
     value,
@@ -16,6 +17,7 @@ export const TextArea = props => {
 
   const styles = classNames({
     imageItem: imageItem,
+    feedback: feedback,
     [className]: className
   });
 
@@ -34,7 +36,7 @@ export const TextArea = props => {
 };
 
 export const Input = props => {
-  
+
   const {
     className,
     onBlur,
@@ -62,7 +64,7 @@ export const Input = props => {
       onBlur(e.target.value);
     }
   }
-  
+
   return (
     <FieldGroup icon>
       {icon && <OutlineIcon color name={icon} size={24} />}

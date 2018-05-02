@@ -12,6 +12,15 @@ const Buttons = () => (
       time="4 min ago"
     />
 
+    <Subheading capitalize color micro mt={24} mb={16}>Contextual Feedback Item</Subheading>
+    <FeedbackItem
+      arrow="bottom"
+      author="Jonathan Hudak"
+      feedback="Apples Butter Charlie Duff Edward Freddy George Harry Ink Johnnie King London Monkey."
+      time="4 min ago"
+      contextual
+    />
+
     <CodeBlock>
 {`import {} from "styled";
 

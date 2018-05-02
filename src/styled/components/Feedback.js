@@ -1,21 +1,55 @@
 import styled from "styled-components";
 import _FeedbackItem from "components/FeedbackItem";
-import {PAPER, CONCRETE } from "./Variables";
+import { FLINT, PAPER, PEBBLE, SHADE } from "./Variables";
 
 export const FeedbackItem = styled(_FeedbackItem)`
-  box-shadow: ${props => props.contextual && `4px 4px 24px 0 ${CONCRETE}`};
-  display: flex;
-  max-width: 400px;
-  padding: 16px;
+  border: ${props => !props.contextual && `1px solid ${FLINT}`};
+  box-shadow: ${props => props.contextual && `3px 3px 24px 0 ${SHADE}`};
+  box-sizing: border-box;
+  max-width: 600px;
+  position: relative;
   width: auto;
 
-  .arrow {
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
+  .container {
+    background: ${PAPER};
+    display: flex;
+    padding: 24px;
+  }
 
-    border-right:10px solid ${PAPER};
+  .arrow {
+    background: ${PAPER};
+    height: 20px;
+    position: absolute;
+    transform: rotate(45deg);
+    width: 20px;
+
+    &.top {
+      box-shadow: -1.5px -1.5px 4px 0 rgba(0,0,0,.04);
+      left: calc(50% - 10px);
+      top: -10px;
+    }
+
+    &.left {
+      box-shadow: -1.5px -1.5px 4px 0 rgba(0,0,0,.04);
+      left: -10px;
+      top: 36px;
+      transform: rotate(-45deg);
+    }
+
+    &.bottom {
+      background: ${PEBBLE};
+      box-shadow: -3px -3px 4px 0 rgba(0,0,0,.04);
+      bottom: -10px;
+      left: calc(50% - 10px);
+      transform: rotate(224deg);
+    }
+
+    &.right {
+      box-shadow: -1.5px -1.5px 4px 0 rgba(0,0,0,.06);
+      right: -10px;
+      top: 36px;
+      transform: rotate(135deg);
+    }
   }
 
 `;
