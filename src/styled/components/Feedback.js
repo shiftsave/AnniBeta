@@ -7,7 +7,7 @@ export const FeedbackItem = styled(_FeedbackItem)`
   box-shadow: ${props => props.contextual && `3px 3px 24px 0 ${SHADE}`};
   box-sizing: border-box;
   margin-top: -2px;
-  max-width: 600px;
+  max-width: 400px;
   position: relative;
   width: auto;
 
@@ -15,7 +15,7 @@ export const FeedbackItem = styled(_FeedbackItem)`
     background: ${PAPER};
     border-bottom: 1px solid ${FLINT};
     display: flex;
-    padding: 24px;
+    padding: 16px;
   }
 
   .arrow {
@@ -34,7 +34,7 @@ export const FeedbackItem = styled(_FeedbackItem)`
     &.left {
       box-shadow: -1.5px -1.5px 4px 0 rgba(0,0,0,.04);
       left: -10px;
-      top: 36px;
+      top: 26px;
       transform: rotate(-45deg);
     }
 
@@ -49,7 +49,7 @@ export const FeedbackItem = styled(_FeedbackItem)`
     &.right {
       box-shadow: -1.5px -1.5px 4px 0 rgba(0,0,0,.06);
       right: -10px;
-      top: 36px;
+      top: 26px;
       transform: rotate(135deg);
     }
   }

@@ -8,7 +8,7 @@ const Buttons = () => (
     <Subheading capitalize color micro mb={8}>Feedback Item</Subheading>
     <FeedbackItem
       author="Ivan Cruz"
-      feedback="Apples Butter Charlie Duff Edward Freddy George Harry Ink Johnnie King London Monkey."
+      feedback="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
       time="4 min ago"
     />
     <FeedbackItem
@@ -21,7 +21,7 @@ const Buttons = () => (
     <FeedbackItem
       arrow="left"
       author="Jonathan Hudak"
-      feedback="Apples Butter Charlie Duff Edward Freddy George Harry Ink Johnnie King London Monkey."
+      feedback="Apples Butter Charlie Duff Edward Freddy George Harry Ink Johnnie King London."
       time="4 min ago"
       contextual
     />

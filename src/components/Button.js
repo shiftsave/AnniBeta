@@ -39,10 +39,3 @@ export const BaseButton = props => {
     );
   }
 };
-
-BaseButton.defaultProps = {
-  children: null,
-  href: null,
-  Icons: null,
-  to: null
-};
