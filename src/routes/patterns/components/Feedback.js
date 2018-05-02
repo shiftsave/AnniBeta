@@ -11,10 +11,15 @@ const Buttons = () => (
       feedback="Apples Butter Charlie Duff Edward Freddy George Harry Ink Johnnie King London Monkey."
       time="4 min ago"
     />
+    <FeedbackItem
+      author="Mika Cruz"
+      feedback="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
+      time="8 min ago"
+    />
 
     <Subheading capitalize color micro mt={24} mb={16}>Contextual Feedback Item</Subheading>
     <FeedbackItem
-      arrow="bottom"
+      arrow="left"
       author="Jonathan Hudak"
       feedback="Apples Butter Charlie Duff Edward Freddy George Harry Ink Johnnie King London Monkey."
       time="4 min ago"

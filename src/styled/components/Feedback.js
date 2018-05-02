@@ -6,12 +6,14 @@ export const FeedbackItem = styled(_FeedbackItem)`
   border: ${props => !props.contextual && `1px solid ${FLINT}`};
   box-shadow: ${props => props.contextual && `3px 3px 24px 0 ${SHADE}`};
   box-sizing: border-box;
+  margin-top: -2px;
   max-width: 600px;
   position: relative;
   width: auto;
 
   .container {
     background: ${PAPER};
+    border-bottom: 1px solid ${FLINT};
     display: flex;
     padding: 24px;
   }
