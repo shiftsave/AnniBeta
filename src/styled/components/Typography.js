@@ -2,7 +2,7 @@ import styled, { injectGlobal } from "styled-components";
 import Highlight from 'react-highlight';
 import { Above } from "./MediaTemplates";
 import { Utils } from "./Utils";
-import { CONCRETE, COPPER, CHARCOAL, FLINT, PEBBLE } from "./Variables";
+import { COPPER, CHARCOAL, FLINT, PEBBLE } from "./Variables";
 
 /*
  * Font Definitions
