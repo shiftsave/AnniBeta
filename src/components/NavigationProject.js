@@ -46,11 +46,10 @@ class Navigation extends Component {
     this.props.router.push("/");
   }
 
-  handleClick = () => this.setState({ showOverlay: true });
-
   render() {
     const userInfo = this.props.auth.toJS().userInfo;
     const firstInitial = userInfo ? userInfo.name.given_name[0] : null;
+
     const loggedInNav = (
       <NavBar>
         <Button icon="logo" to="/dashboard" noBorder noHover />
@@ -100,10 +99,5 @@ class Navigation extends Component {
 const mapStateToProps = ({ auth }) => ({
   auth
 });
-
-Navigation.contextTypes = {
-  router: React.PropTypes.object,
-  location: React.PropTypes.object
-};
 
 export default connect(mapStateToProps)(withRouter(Navigation));
