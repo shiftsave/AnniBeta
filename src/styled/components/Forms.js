@@ -144,6 +144,7 @@ export const TextArea = styled(BaseTextArea)`
     &:focus,
     &:hover {
       line-height: 1.6;
+      padding: 17px 16px;
     }
   }
 
