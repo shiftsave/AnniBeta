@@ -22,14 +22,12 @@ const _FeedbackItem = (
         <div className="content">
           <Paragraph color strong>{author}</Paragraph>
           <Paragraph>{feedback}</Paragraph>
-          <Paragraph subtle small>
+          <Paragraph subtle small mt={8}>
             {time}
           </Paragraph>
         </div>
       </div>
-      {contextual &&
-          <TextArea placeholder="Enter comment..." feedback />
-      }
+      {contextual && <TextArea placeholder="Enter comment..." feedback />}
     </div>
   );
 };

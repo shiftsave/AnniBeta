@@ -137,13 +137,12 @@ export const TextArea = styled(BaseTextArea)`
     background: ${PEBBLE};
     border-color: transparent;
     max-height: 50px;
-    padding: 16px;
+    padding: 16px 24px;
     transform: translate3d(0, 0, 0);
 
     &:focus,
     &:hover {
       line-height: 1.6;
-      padding: 16px;
     }
   }
 
