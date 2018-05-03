@@ -96,6 +96,7 @@ export const Subheading = styled.h2`
 
 export const Paragraph = styled.p`
   color: ${props => props.color ? `${COPPER}` : `${CHARCOAL}`};
+  display: ${props => props.inline && "inline-block"};
   font-family: ${props => props.strong ? "Apercu Medium" : "Apercu"}, sans-serif;
   font-size: 16px;
   font-size: ${props => props.large && "18px"};
