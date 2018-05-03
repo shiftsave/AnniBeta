@@ -13,11 +13,13 @@ export const TextArea = props => {
     imageItem,
     icon,
     readOnly,
+    sidebar
   } = props;
 
   const styles = classNames({
     imageItem: imageItem,
     feedback: feedback,
+    sidebar: sidebar,
     [className]: className
   });
 

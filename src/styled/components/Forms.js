@@ -148,6 +148,13 @@ export const TextArea = styled(BaseTextArea)`
     }
   }
 
+  &.sidebar {
+    background: ${PEBBLE};
+    height: 60px;
+    position: absolute;
+    bottom: 0;
+  }
+
   &:focus,
   &:hover {
     min-height: 50px;

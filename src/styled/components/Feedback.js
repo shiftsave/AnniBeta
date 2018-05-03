@@ -26,13 +26,13 @@ export const FeedbackItem = styled(_FeedbackItem)`
     width: 20px;
 
     &.top {
-      box-shadow: -1.5px -1.5px 4px 0 rgba(0,0,0,.04);
+      box-shadow: -1.5px -1.5px 4px 0 rgba(0, 0, 0, 0.04);
       left: calc(50% - 10px);
       top: -10px;
     }
 
     &.left {
-      box-shadow: -1.5px -1.5px 4px 0 rgba(0,0,0,.04);
+      box-shadow: -1.5px -1.5px 4px 0 rgba(0, 0, 0, 0.04);
       left: -10px;
       top: 26px;
       transform: rotate(-45deg);
@@ -40,18 +40,27 @@ export const FeedbackItem = styled(_FeedbackItem)`
 
     &.bottom {
       background: ${PEBBLE};
-      box-shadow: -3px -3px 4px 0 rgba(0,0,0,.04);
+      box-shadow: -3px -3px 4px 0 rgba(0, 0, 0, 0.04);
       bottom: -10px;
       left: calc(50% - 10px);
       transform: rotate(224deg);
     }
 
     &.right {
-      box-shadow: -1.5px -1.5px 4px 0 rgba(0,0,0,.06);
+      box-shadow: -1.5px -1.5px 4px 0 rgba(0, 0, 0, 0.06);
       right: -10px;
       top: 26px;
       transform: rotate(135deg);
     }
   }
-
 `;
+
+export const FeedbackList = styled.div`
+  background: ${PAPER};
+  border-left: 1px solid ${FLINT};
+  min-height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 72px;
+  width: auto;
+`
