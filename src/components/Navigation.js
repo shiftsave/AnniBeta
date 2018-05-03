@@ -45,7 +45,7 @@ class Navigation extends Component {
     logoutSession();
     this.props.dispatch(logout());
     this.props.router.push("/");
-  }
+  };
 
   handleNewProjectForm = () => this.setState({ showNewProjectForm: true });
 
@@ -69,7 +69,7 @@ class Navigation extends Component {
                 <NavItem>
                   <Button
                     icon="more"
-                    iconSize={28}
+                    iconSize={24}
                     onClick={this.handleNewProjectForm}
                     stacked
                   >
@@ -91,16 +91,16 @@ class Navigation extends Component {
               Create New Project Form
             */}
 
-            {showNewProjectForm
-              ? <CreateForm
-                  show={this.state.showNewProjectForm}
-                  onClose={() => {
-                    this.setState({
-                      showNewProjectForm: false
-                    });
-                  }}
-                />
-              : null}
+            {showNewProjectForm ? (
+              <CreateForm
+                show={this.state.showNewProjectForm}
+                onClose={() => {
+                  this.setState({
+                    showNewProjectForm: false
+                  });
+                }}
+              />
+            ) : null}
           </Content>
         );
       } else {
@@ -109,12 +109,22 @@ class Navigation extends Component {
             <Button icon="logo" to="/dashboard" noBorder noHover />
             <NavItemGroup right>
               <NavItem>
-                <Button icon="todo" iconSize={28} fill stacked>
+                <Button icon="view" iconSize={24} strokeWidth={3} stacked>
+                  Preview
+                </Button>
+              </NavItem>
+              <NavItem>
+                <Button icon="share" iconSize={24} fill stacked>
+                  Share
+                </Button>
+              </NavItem>
+              <NavItem>
+                <Button icon="todo" iconSize={24} fill stacked>
                   Tasks
                 </Button>
               </NavItem>
               <NavItem>
-                <Button icon="notification" fill iconSize={32} noBorder />
+                <Button icon="notification" iconSize={32} fill noBorder />
                 <Avatar
                   initial={firstInitial}
                   mr={16}
@@ -126,7 +136,7 @@ class Navigation extends Component {
         );
       }
     } else {
-      return <Content>{login}</Content>;
+      return <Content full>{login}</Content>;
     }
   }
 }
