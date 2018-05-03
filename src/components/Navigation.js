@@ -1,14 +1,15 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { login, logoutSession, getAccountInfo } from "adapters";
 import { addAuthToken, logout, addUserInfo } from "actions";
 import CreateForm from "components/CreateForm";
 
-import { Avatar, Button, NavBar, NavItem, NavItemGroup } from "styled";
+import { Avatar, Button, Content, NavBar, NavItem, NavItemGroup } from "styled";
 
 class Navigation extends Component {
-  state = { showOverlay: false };
+  state = { showNewProjectForm: false };
 
   componentDidMount() {
     const { dispatch, auth } = this.props;
@@ -40,60 +41,93 @@ class Navigation extends Component {
     }
   }
 
-  logout() {
+  handleLogout = () => {
     logoutSession();
     this.props.dispatch(logout());
     this.props.router.push("/");
   }
 
-  handleClick = () => this.setState({ showOverlay: true });
+  handleNewProjectForm = () => this.setState({ showNewProjectForm: true });
 
   render() {
     const userInfo = this.props.auth.toJS().userInfo;
     const firstInitial = userInfo ? userInfo.name.given_name[0] : null;
-    const loggedInNav = (
-      <NavBar>
-        <Button icon="logo" to="/dashboard" noBorder noHover />
+    const showNewProjectForm = this.state;
+    /*
+      We need to replace this when we switch to RR4
+    */
+    const currentPath = this.context.location.pathname;
 
-        <NavItemGroup right>
-          <NavItem>
-            <Button
-              icon="more"
-              iconSize={28}
-              onClick={this.handleClick}
-              stacked
-            >
-              Add Project
-            </Button>
-          </NavItem>
-          <NavItem>
-            <Button icon="notification" fill iconSize={32} noBorder />
-            <Avatar
-              initial={firstInitial}
-              mr={16}
-              onClick={this.logout.bind(this)}
-            />
-          </NavItem>
-        </NavItemGroup>
-      </NavBar>
-    );
+    if (this.props.auth.toJS().isAuthenticated) {
+      if (currentPath === "/dashboard") {
+        return (
+          <Content full>
+            <NavBar>
+              <Button icon="logo" to="/dashboard" noBorder noHover />
 
-    const projectForm = this.state.showOverlay
-      ? <CreateForm
-          show={this.state.showOverlay}
-          onClose={() => {
-            this.setState({
-              showOverlay: false
-            });
-          }}
-        />
-      : null;
-    return (
-      <div>
-        {this.props.auth.toJS().isAuthenticated ? loggedInNav : login}
-        {projectForm}
-      </div>
-    );
+              <NavItemGroup right>
+                <NavItem>
+                  <Button
+                    icon="more"
+                    iconSize={28}
+                    onClick={this.handleNewProjectForm}
+                    stacked
+                  >
+                    Add Project
+                  </Button>
+                </NavItem>
+                <NavItem>
+                  <Button icon="notification" fill iconSize={32} noBorder />
+                  <Avatar
+                    initial={firstInitial}
+                    mr={16}
+                    onClick={this.handleLogout}
+                  />
+                </NavItem>
+              </NavItemGroup>
+            </NavBar>
+
+            {/*
+              Create New Project Form
+            */}
+
+            {showNewProjectForm
+              ? <CreateForm
+                  show={this.state.showNewProjectForm}
+                  onClose={() => {
+                    this.setState({
+                      showNewProjectForm: false
+                    });
+                  }}
+                />
+              : null}
+          </Content>
+        );
+      } else {
+        return (
+          <NavBar>
+            <Button icon="logo" to="/dashboard" noBorder noHover />
+            <NavItemGroup right>
+              <NavItem>
+                <Button icon="todo" iconSize={28} fill stacked>
+                  Tasks
+                </Button>
+              </NavItem>
+              <NavItem>
+                <Button icon="notification" fill iconSize={32} noBorder />
+                <Avatar
+                  initial={firstInitial}
+                  mr={16}
+                  onClick={this.handleLogout}
+                />
+              </NavItem>
+            </NavItemGroup>
+          </NavBar>
+        );
+      }
+    } else {
+      return <Content>{login}</Content>;
+    }
   }
 }
 
@@ -101,9 +135,13 @@ const mapStateToProps = ({ auth }) => ({
   auth
 });
 
+/*
+  We need to replace this when we switch to RR4
+*/
+
 Navigation.contextTypes = {
-  router: React.PropTypes.object,
-  location: React.PropTypes.object
+  router: PropTypes.object,
+  location: PropTypes.object
 };
 
 export default connect(mapStateToProps)(withRouter(Navigation));

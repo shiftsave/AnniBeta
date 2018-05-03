@@ -49,7 +49,6 @@ export const Button = styled(BaseButton)`
     margin-right: ${props => props.stacked ? "0" : "6px"};
     margin-bottom: ${props => props.stacked ? "6px" : "0"};
     stroke: ${props => props.fill ? "transparent" : `${CHARCOAL}`};
-    stroke: ${props => props.stacked && `${CHARCOAL}`};
     stroke-width: ${props => props.strokeWidth ? `${props.strokeWidth}px` : "6px"};
     stroke-width: ${props => props.fill && "6px"};
     transition: 400ms ${EASE_OUT_EXPO};
