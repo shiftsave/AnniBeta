@@ -63,4 +63,4 @@ export const FeedbackList = styled.div`
   right: 0;
   top: 72px;
   width: auto;
-`
+`;

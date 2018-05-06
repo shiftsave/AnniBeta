@@ -20,7 +20,7 @@ export const TextArea = props => {
     imageItem: imageItem,
     feedback: feedback,
     sidebar: sidebar,
-    [className]: className
+    [className]: className,
   });
 
   return (
@@ -38,7 +38,6 @@ export const TextArea = props => {
 };
 
 export const Input = props => {
-
   const {
     className,
     onBlur,
@@ -47,15 +46,18 @@ export const Input = props => {
     readOnly,
     value,
     icon,
+    type,
   } = props;
 
   const styles = classNames({
-    [className]: className
+    [className]: className,
   });
 
   const allowedProps = Object.keys(props).reduce((acc, prop) => {
-    const filteredProps = {...acc};
-    if (!!['onKeyPress', 'onKeyDown', 'onKeyUp', 'onFocus'].find(p => p === prop)) {
+    const filteredProps = { ...acc };
+    if (
+      !!["onKeyPress", "onKeyDown", "onKeyUp", "onFocus"].find(p => p === prop)
+    ) {
       filteredProps[prop] = props[prop];
     }
     return filteredProps;
@@ -78,6 +80,7 @@ export const Input = props => {
         value={value}
         readOnly={readOnly}
         onBlur={handleBlur}
+        type={type}
       />
     </FieldGroup>
   );
