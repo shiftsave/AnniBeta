@@ -65,6 +65,7 @@ export const FeedbackSidebar = styled.div`
   right: 0;
   top: 72px;
   width: auto;
+  z-index: 99;
 `;
 
 export const FeedbackList = styled.div`

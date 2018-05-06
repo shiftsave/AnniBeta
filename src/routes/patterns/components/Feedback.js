@@ -1,12 +1,8 @@
 import React from "react";
-import { Button, FeedbackItem, Card, CodeBlock, Subheading } from "styled";
-import FeedbackSidebar from "components/FeedbackSidebar";
+import { FeedbackItem, Card, CodeBlock, Subheading } from "styled";
 
-const Buttons = () => (
+const FeedbackArea = () => (
   <Card mb={24} padded>
-    <Subheading mb={24}>Feedback List</Subheading>
-    <Button>Show Sidebar</Button>
-    <FeedbackSidebar show={true} />
     <Subheading mb={24}>Feedback Item</Subheading>
 
     <Subheading capitalize color micro mb={8}>Feedback Item</Subheading>
@@ -42,4 +38,4 @@ const Buttons = () => (
     </CodeBlock>
   </Card>
 )
-export default Buttons;
+export default FeedbackArea;
