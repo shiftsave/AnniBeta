@@ -150,8 +150,7 @@ export const TextArea = styled(BaseTextArea)`
   &.sidebar {
     background: ${PEBBLE};
     height: 60px;
-    position: absolute;
-    bottom: 0;
+    padding: 16px;
   }
 
   &:focus,

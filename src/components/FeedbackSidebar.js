@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Button, FeedbackItem, FeedbackList, TextArea } from "styled";
+import { FeedbackSidebar, FeedbackItem, FeedbackList, TextArea } from "styled";
 
-class FeedbackSidebar extends Component {
+class FeedbackArea extends Component {
   constructor() {
     super();
     this.state = {
-      isFeedbackListOpen: false
+      isFeedbackListOpen: false,
     };
   }
 
@@ -50,19 +50,51 @@ class FeedbackSidebar extends Component {
 
     if (show) {
       return (
-        <FeedbackList>
-          <FeedbackItem
-            author="Ivan Cruz"
-            feedback="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
-            time="4 min ago"
-          />
-          <FeedbackItem
-            author="Mika Cruz"
-            feedback="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
-            time="8 min ago"
-          />
+        <FeedbackSidebar>
+          <FeedbackList>
+            <FeedbackItem
+              author="Ivan Cruz"
+              feedback="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
+              time="4 min ago"
+            />
+            <FeedbackItem
+              author="Mika Cruz"
+              feedback="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
+              time="8 min ago"
+            />
+            <FeedbackItem
+              author="Ivan Cruz"
+              feedback="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
+              time="4 min ago"
+            />
+            <FeedbackItem
+              author="Mika Cruz"
+              feedback="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
+              time="8 min ago"
+            />
+            <FeedbackItem
+              author="Ivan Cruz"
+              feedback="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
+              time="4 min ago"
+            />
+            <FeedbackItem
+              author="Mika Cruz"
+              feedback="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
+              time="8 min ago"
+            />
+            <FeedbackItem
+              author="Ivan Cruz"
+              feedback="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
+              time="4 min ago"
+            />
+            <FeedbackItem
+              author="Mika Cruz"
+              feedback="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
+              time="8 min ago"
+            />
+          </FeedbackList>
           <TextArea placeholder="Enter comment..." sidebar />
-        </FeedbackList>
+        </FeedbackSidebar>
       );
     } else {
       return null;
@@ -70,4 +102,4 @@ class FeedbackSidebar extends Component {
   }
 }
 
-export default FeedbackSidebar;
+export default FeedbackArea;

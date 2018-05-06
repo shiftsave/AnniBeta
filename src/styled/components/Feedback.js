@@ -3,10 +3,10 @@ import _FeedbackItem from "components/FeedbackItem";
 import { FLINT, PAPER, PEBBLE, SHADE } from "./Variables";
 
 export const FeedbackItem = styled(_FeedbackItem)`
-  border: ${props => !props.contextual && `1px solid ${FLINT}`};
+  border-bottom: ${props => !props.contextual && `1px solid ${FLINT}`};
   box-shadow: ${props => props.contextual && `3px 3px 24px 0 ${SHADE}`};
   box-sizing: border-box;
-  margin-top: -2px;
+  margin-top: -1px;
   max-width: 400px;
   position: relative;
   width: auto;
@@ -55,12 +55,20 @@ export const FeedbackItem = styled(_FeedbackItem)`
   }
 `;
 
-export const FeedbackList = styled.div`
+export const FeedbackSidebar = styled.div`
   background: ${PAPER};
   border-left: 1px solid ${FLINT};
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 72px);
   position: fixed;
   right: 0;
   top: 72px;
   width: auto;
+`;
+
+export const FeedbackList = styled.div`
+  flex-grow: 1;
+  height: 100%;
+  overflow-y: scroll;
 `;

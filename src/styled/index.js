@@ -51,4 +51,4 @@ export { NavBar, NavItem, NavItemGroup } from "./components/Navigation";
 export { UploadArea } from "./components/UploadArea";
 export { EditorContainer } from "./components/TextEditor";
 /* Form */
-export { FeedbackItem, FeedbackList } from "./components/Feedback";
+export { FeedbackItem, FeedbackList, FeedbackSidebar } from "./components/Feedback";
