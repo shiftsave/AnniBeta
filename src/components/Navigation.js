@@ -64,7 +64,7 @@ class Navigation extends Component {
     const currentPath = this.context.location.pathname;
 
     if (this.props.auth.toJS().isAuthenticated) {
-      if (currentPath !== "/dashboard") {
+      if (currentPath === "/dashboard") {
         return (
           <Content full>
             <NavBar>
