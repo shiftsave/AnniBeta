@@ -123,8 +123,9 @@ class Navigation extends Component {
                 icon="todo"
                 onClick={this.handleNotes}
                 iconSize={24}
-                fill
+                active={showNotes}
                 stacked
+                fill
               >
                 Notes
               </Button>

@@ -58,7 +58,7 @@ export const FeedbackSidebar = styled.div`
   border-left: 1px solid ${FLINT};
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 73px);
   position: fixed;
   top: 73px;
   transition: right 500ms ${EASE_OUT_EXPO};
