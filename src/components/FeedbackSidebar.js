@@ -5,7 +5,7 @@ class FeedbackArea extends Component {
   constructor() {
     super();
     this.state = {
-      isFeedbackListOpen: false,
+      show: false,
     };
   }
 
@@ -50,6 +50,7 @@ class FeedbackArea extends Component {
 
     if (show) {
       return (
+        // NEED TO ADD THIS TO THE MAIN VIEW
         <FeedbackSidebar>
           <FeedbackList>
             <FeedbackItem

@@ -5,11 +5,15 @@ import { withRouter } from "react-router";
 import { login, logoutSession, getAccountInfo } from "adapters";
 import { addAuthToken, logout, addUserInfo } from "actions";
 import CreateForm from "components/CreateForm";
+import FeedbackSidebar from "components/FeedbackSidebar";
 
 import { Avatar, Button, Content, NavBar, NavItem, NavItemGroup } from "styled";
 
 class Navigation extends Component {
-  state = { showNewProjectForm: false };
+  state = {
+    showNewProjectForm: false,
+    showNotes: false,
+  };
 
   componentDidMount() {
     const { dispatch, auth } = this.props;
@@ -36,7 +40,7 @@ class Navigation extends Component {
         },
         err => {
           if (err) console.log(err);
-        }
+        },
       );
     }
   }
@@ -49,10 +53,12 @@ class Navigation extends Component {
 
   handleNewProjectForm = () => this.setState({ showNewProjectForm: true });
 
+  handleNotes = () => this.setState({ showNotes: !this.state.showNotes });
+
   render() {
     const userInfo = this.props.auth.toJS().userInfo;
     const firstInitial = userInfo ? userInfo.name.given_name[0] : null;
-    const showNewProjectForm = this.state;
+    const { showNewProjectForm, showNotes } = this.state;
     /*
       We need to replace this when we switch to RR4
     */
@@ -96,7 +102,7 @@ class Navigation extends Component {
                 show={this.state.showNewProjectForm}
                 onClose={() => {
                   this.setState({
-                    showNewProjectForm: false
+                    showNewProjectForm: false,
                   });
                 }}
               />
@@ -108,8 +114,8 @@ class Navigation extends Component {
           <NavBar>
             <Button icon="logo" to="/dashboard" noBorder noHover />
             <NavItemGroup right>
-              <NavItem>
-                <Button icon="view" iconSize={24} strokeWidth={3} stacked>
+              <NavItem noBorder>
+                <Button icon="play" iconSize={24} fill stacked>
                   Preview
                 </Button>
               </NavItem>
@@ -119,8 +125,14 @@ class Navigation extends Component {
                 </Button>
               </NavItem>
               <NavItem>
-                <Button icon="todo" iconSize={24} fill stacked>
-                  Tasks
+                <Button
+                  icon="todo"
+                  onClick={this.handleNotes}
+                  iconSize={24}
+                  fill
+                  stacked
+                >
+                  Notes
                 </Button>
               </NavItem>
               <NavItem>
@@ -132,6 +144,7 @@ class Navigation extends Component {
                 />
               </NavItem>
             </NavItemGroup>
+            <FeedbackSidebar show={showNotes} />
           </NavBar>
         );
       }
@@ -142,7 +155,7 @@ class Navigation extends Component {
 }
 
 const mapStateToProps = ({ auth }) => ({
-  auth
+  auth,
 });
 
 /*
@@ -151,7 +164,7 @@ const mapStateToProps = ({ auth }) => ({
 
 Navigation.contextTypes = {
   router: PropTypes.object,
-  location: PropTypes.object
+  location: PropTypes.object,
 };
 
 export default connect(mapStateToProps)(withRouter(Navigation));

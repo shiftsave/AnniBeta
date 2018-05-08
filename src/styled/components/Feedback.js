@@ -6,14 +6,12 @@ export const FeedbackItem = styled(_FeedbackItem)`
   border-bottom: ${props => !props.contextual && `1px solid ${FLINT}`};
   box-shadow: ${props => props.contextual && `3px 3px 24px 0 ${SHADE}`};
   box-sizing: border-box;
-  margin-top: -1px;
   max-width: 400px;
   position: relative;
   width: auto;
 
   .container {
     background: ${PAPER};
-    border-bottom: 1px solid ${FLINT};
     display: flex;
     padding: 16px;
   }
@@ -63,7 +61,7 @@ export const FeedbackSidebar = styled.div`
   height: calc(100vh - 72px);
   position: fixed;
   right: 0;
-  top: 72px;
+  top: 73px;
   width: auto;
   z-index: 99;
 `;
@@ -71,5 +69,5 @@ export const FeedbackSidebar = styled.div`
 export const FeedbackList = styled.div`
   flex-grow: 1;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;

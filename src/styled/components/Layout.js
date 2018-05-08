@@ -81,7 +81,7 @@ export const Header = styled.div`
 
   ${Above.sm`
     left: 24px;
-    top: 60px;
+    top: 24px;
   `}
 
   ${Above.md`
