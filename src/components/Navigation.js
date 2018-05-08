@@ -6,7 +6,6 @@ import { login, logoutSession, getAccountInfo } from "adapters";
 import { addAuthToken, logout, addUserInfo } from "actions";
 import CreateForm from "components/CreateForm";
 import FeedbackSidebar from "components/FeedbackSidebar";
-
 import { Avatar, Button, Content, NavBar, NavItem, NavItemGroup } from "styled";
 
 class Navigation extends Component {
@@ -65,7 +64,7 @@ class Navigation extends Component {
     const currentPath = this.context.location.pathname;
 
     if (this.props.auth.toJS().isAuthenticated) {
-      if (currentPath === "/dashboard") {
+      if (currentPath !== "/dashboard") {
         return (
           <Content full>
             <NavBar>
@@ -114,36 +113,30 @@ class Navigation extends Component {
           <NavBar>
             <Button icon="logo" to="/dashboard" noBorder noHover />
             <NavItemGroup right>
-              <NavItem noBorder>
-                <Button icon="play" iconSize={24} fill stacked>
-                  Preview
-                </Button>
-              </NavItem>
-              <NavItem>
-                <Button icon="share" iconSize={24} fill stacked>
-                  Share
-                </Button>
-              </NavItem>
-              <NavItem>
-                <Button
-                  icon="todo"
-                  onClick={this.handleNotes}
-                  iconSize={24}
-                  fill
-                  stacked
-                >
-                  Notes
-                </Button>
-              </NavItem>
-              <NavItem>
-                <Button icon="notification" iconSize={32} fill noBorder />
-                <Avatar
-                  initial={firstInitial}
-                  mr={16}
-                  onClick={this.handleLogout}
-                />
-              </NavItem>
+              <Button icon="play" iconSize={24} fill stacked>
+                Preview
+              </Button>
+              <Button icon="share" iconSize={24} fill stacked>
+                Share
+              </Button>
+              <Button
+                icon="todo"
+                onClick={this.handleNotes}
+                iconSize={24}
+                fill
+                stacked
+              >
+                Notes
+              </Button>
             </NavItemGroup>
+            <NavItem>
+              <Button icon="notification" iconSize={32} fill noBorder />
+              <Avatar
+                initial={firstInitial}
+                mr={16}
+                onClick={this.handleLogout}
+              />
+            </NavItem>
             <FeedbackSidebar show={showNotes} />
           </NavBar>
         );

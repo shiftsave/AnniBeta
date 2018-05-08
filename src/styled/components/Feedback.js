@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import _FeedbackItem from "components/FeedbackItem";
-import { FLINT, PAPER, PEBBLE, SHADE } from "./Variables";
+import { FLINT, PAPER, PEBBLE, SHADE, EASE_OUT_EXPO } from "./Variables";
 
 export const FeedbackItem = styled(_FeedbackItem)`
   border-bottom: ${props => !props.contextual && `1px solid ${FLINT}`};
@@ -60,10 +60,19 @@ export const FeedbackSidebar = styled.div`
   flex-direction: column;
   height: calc(100vh - 72px);
   position: fixed;
-  right: 0;
   top: 73px;
+  transition: right 500ms ${EASE_OUT_EXPO};
   width: auto;
   z-index: 99;
+
+  &.entered {
+    right: 0;
+  }
+
+  &.entering,
+  &.exiting {
+    right: -400px;
+  }
 `;
 
 export const FeedbackList = styled.div`

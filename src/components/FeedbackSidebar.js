@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Transition from "react-transition-group/Transition";
+
 import { FeedbackSidebar, FeedbackItem, FeedbackList, TextArea } from "styled";
 
 class FeedbackArea extends Component {
@@ -48,58 +50,57 @@ class FeedbackArea extends Component {
   render() {
     const { show } = this.props;
 
-    if (show) {
-      return (
-        // NEED TO ADD THIS TO THE MAIN VIEW
-        <FeedbackSidebar>
-          <FeedbackList>
-            <FeedbackItem
-              author="Ivan Cruz"
-              feedback="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
-              time="4 min ago"
-            />
-            <FeedbackItem
-              author="Mika Cruz"
-              feedback="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
-              time="8 min ago"
-            />
-            <FeedbackItem
-              author="Ivan Cruz"
-              feedback="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
-              time="4 min ago"
-            />
-            <FeedbackItem
-              author="Mika Cruz"
-              feedback="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
-              time="8 min ago"
-            />
-            <FeedbackItem
-              author="Ivan Cruz"
-              feedback="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
-              time="4 min ago"
-            />
-            <FeedbackItem
-              author="Mika Cruz"
-              feedback="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
-              time="8 min ago"
-            />
-            <FeedbackItem
-              author="Ivan Cruz"
-              feedback="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
-              time="4 min ago"
-            />
-            <FeedbackItem
-              author="Mika Cruz"
-              feedback="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
-              time="8 min ago"
-            />
-          </FeedbackList>
-          <TextArea placeholder="Enter comment..." sidebar />
-        </FeedbackSidebar>
-      );
-    } else {
-      return null;
-    }
+    return (
+      <Transition in={show} timeout={200} unmountOnExit>
+        {state => (
+          <FeedbackSidebar className={state}>
+            <FeedbackList>
+              <FeedbackItem
+                author="Ivan Cruz"
+                feedback="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
+                time="4 min ago"
+              />
+              <FeedbackItem
+                author="Mika Cruz"
+                feedback="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
+                time="8 min ago"
+              />
+              <FeedbackItem
+                author="Ivan Cruz"
+                feedback="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
+                time="4 min ago"
+              />
+              <FeedbackItem
+                author="Mika Cruz"
+                feedback="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
+                time="8 min ago"
+              />
+              <FeedbackItem
+                author="Ivan Cruz"
+                feedback="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
+                time="4 min ago"
+              />
+              <FeedbackItem
+                author="Mika Cruz"
+                feedback="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
+                time="8 min ago"
+              />
+              <FeedbackItem
+                author="Ivan Cruz"
+                feedback="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
+                time="4 min ago"
+              />
+              <FeedbackItem
+                author="Mika Cruz"
+                feedback="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
+                time="8 min ago"
+              />
+            </FeedbackList>
+            <TextArea placeholder="Enter comment..." sidebar />
+          </FeedbackSidebar>
+        )}
+      </Transition>
+    );
   }
 }
 
