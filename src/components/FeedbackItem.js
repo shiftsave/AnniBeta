@@ -9,7 +9,7 @@ const _FeedbackItem = ({
   content,
   className,
   contextual,
-  feedback,
+  message,
   time
 }) => {
   return (
@@ -24,7 +24,7 @@ const _FeedbackItem = ({
           <Paragraph subtle small ml={16} inline>
             {time}
           </Paragraph>
-          <Paragraph>{feedback}</Paragraph>
+          <Paragraph>{message}</Paragraph>
         </div>
       </div>
       {contextual && <TextArea placeholder="Enter comment..." feedback />}

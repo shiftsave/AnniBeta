@@ -6,12 +6,22 @@ import { login, logoutSession, getAccountInfo } from "adapters";
 import { addAuthToken, logout, addUserInfo } from "actions";
 import CreateForm from "components/CreateForm";
 import FeedbackSidebar from "components/FeedbackSidebar";
-import { Avatar, Button, Content, NavBar, NavItem, NavItemGroup } from "styled";
+import Notifications from "components/Notifications";
+import {
+  Avatar,
+  Button,
+  Content,
+  FeedbackItem,
+  NavBar,
+  NavItem,
+  NavItemGroup,
+} from "styled";
 
 class Navigation extends Component {
   state = {
     showNewProjectForm: false,
     showNotes: false,
+    showNotifications: false,
   };
 
   componentDidMount() {
@@ -44,6 +54,36 @@ class Navigation extends Component {
     }
   }
 
+  componentWillMount() {
+    window.addEventListener("keyup", this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("keyup", this.handleKeyDown);
+  }
+
+  closeViewer = () => {
+    this.setState({
+      showNewProjectForm: false,
+      showNotes: false,
+      showNotifications: false,
+    });
+  };
+
+  handleKeyDown = e => {
+    e.preventDefault();
+    // TODO these should be keycodes
+    // or at least use constants
+    switch (e.key) {
+      case "Escape":
+        this.closeViewer();
+        break;
+
+      default:
+        break;
+    }
+  };
+
   handleLogout = () => {
     logoutSession();
     this.props.dispatch(logout());
@@ -54,10 +94,13 @@ class Navigation extends Component {
 
   handleNotes = () => this.setState({ showNotes: !this.state.showNotes });
 
+  handleNotifications = () =>
+    this.setState({ showNotifications: !this.state.showNotifications });
+
   render() {
     const userInfo = this.props.auth.toJS().userInfo;
     const firstInitial = userInfo ? userInfo.name.given_name[0] : null;
-    const { showNewProjectForm, showNotes } = this.state;
+    const { showNewProjectForm, showNotes, showNotifications } = this.state;
     /*
       We need to replace this when we switch to RR4
     */
@@ -82,12 +125,20 @@ class Navigation extends Component {
                   </Button>
                 </NavItem>
                 <NavItem>
-                  <Button icon="notification" fill iconSize={32} noBorder />
+                  <Button
+                    active={showNotifications}
+                    icon="notification"
+                    iconSize={32}
+                    onClick={this.handleNotifications}
+                    fill
+                    noBorder
+                  />
                   <Avatar
                     initial={firstInitial}
                     mr={16}
                     onClick={this.handleLogout}
                   />
+                  <Notifications show={showNotifications} />
                 </NavItem>
               </NavItemGroup>
             </NavBar>
@@ -138,7 +189,27 @@ class Navigation extends Component {
                 onClick={this.handleLogout}
               />
             </NavItem>
-            <FeedbackSidebar show={showNotes} />
+
+            {/*
+              This needs to be replaced with real content
+              */}
+            <FeedbackSidebar show={showNotes}>
+              <FeedbackItem
+                author="Ivan Cruz"
+                message="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
+                time="4 min ago"
+              />
+              <FeedbackItem
+                author="Mika Cruz"
+                message="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
+                time="8 min ago"
+              />
+              <FeedbackItem
+                author="Ivan Cruz"
+                message="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
+                time="4 min ago"
+              />
+            </FeedbackSidebar>
           </NavBar>
         );
       }

@@ -104,6 +104,7 @@ export const Paragraph = styled.p`
   line-height: 1.6;
   max-width: ${props => props.width && `${props.width}px`};
   opacity: ${props => props.subtle && `.5`};
+  padding: ${props => props.padded && "24px"};
   text-align: ${props => props.center ? "center" : "left"};
   text-transform: ${props => props.capitalize ? "uppercase" : "default"};
   ${Utils.margin};

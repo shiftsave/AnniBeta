@@ -10,6 +10,9 @@ export { Button, ButtonLink, ButtonGroup, Hyperlink } from "./components/Buttons
 /* Card */
 export { Card, CardDetails, CardControls, DraggableCard } from "./components/Card";
 
+/* Card */
+export { ContextualMenu, ContextualMenuItem } from "./components/ContextualMenu";
+
 /* Form */
 export { FieldGroup, FormGroup, Input, Label, Radio, TextArea, SelectOption, Select, SelectOptions } from "./components/Forms";
 

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Transition from "react-transition-group/Transition";
 
-import { FeedbackSidebar, FeedbackList, Paragraph, TextArea } from "styled";
+import { ContextualMenu } from "styled";
 
-class FeedbackArea extends Component {
+class Notifications extends Component {
   constructor() {
     super();
     this.state = {
@@ -21,23 +21,16 @@ class FeedbackArea extends Component {
   }
 
   render() {
-    const { show, children } = this.props;
+    const { show } = this.props;
 
     return (
       <Transition in={show} timeout={200} unmountOnExit>
         {state => (
-          <FeedbackSidebar className={state}>
-            <FeedbackList>
-              {children ||
-              <Paragraph padded>There are no notifications at this time!"
-              </Paragraph>}
-            </FeedbackList>
-            <TextArea placeholder="Enter comment..." sidebar />
-          </FeedbackSidebar>
+          <ContextualMenu arrowOffset={74} className={state} />
         )}
       </Transition>
     );
   }
 }
 
-export default FeedbackArea;
+export default Notifications;
