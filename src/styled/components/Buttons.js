@@ -92,19 +92,3 @@ export const Button = styled(BaseButton)`
     }
   }
 `;
-
-export const Avatar = Button.extend`
-  background: ${COPPER};
-  color: ${PAPER};
-  font-size: 18px;
-  height: 40px;
-  padding: 0;
-  position: relative;
-  width: 40px;
-
-  span {
-    left: 50%;
-    position: absolute;
-    transform: translateX(-50%);
-  }
-`;

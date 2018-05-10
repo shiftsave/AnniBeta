@@ -8,6 +8,7 @@ export const Avatar = styled(_Avatar)`
   background: ${COPPER};
   border-radius: 100px;
   color: ${PAPER};
+  cursor: pointer;
   display: flex;
   font-family: 'Apercu Bold', sans-serif;
   justify-content: center;
