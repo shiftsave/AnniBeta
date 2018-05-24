@@ -3,53 +3,115 @@ import _FeedbackItem from "components/FeedbackItem";
 import { FLINT, PAPER, PEBBLE, SHADE, EASE_OUT_EXPO } from "./Variables";
 
 export const FeedbackItem = styled(_FeedbackItem)`
-  border-bottom: ${props => !props.contextual && `1px solid ${FLINT}`};
-  box-shadow: ${props => props.contextual && `3px 3px 24px 0 ${SHADE}`};
-  box-sizing: border-box;
-  max-width: 400px;
-  position: relative;
-  width: auto;
+  display: flex;
+  max-width: 460px;
 
-  .container {
-    background: ${PAPER};
-    display: flex;
-    padding: 16px;
+  .badge {
+    height: 32px;
+    position: relative;
+    width: 32px;
+
+    .content {
+      align-items: center;
+      background: ${PAPER};
+      border: 1px solid ${PEBBLE};
+      border-radius: 99px;
+      display: flex;
+      height: 32px;
+      justify-content: center;
+      position: relative;
+      width: 32px;
+      z-index: 99;
+    }
+
+    .pulsatingRings {
+      &:before,
+      &:after {
+        content: "";
+        border-radius: 99px;
+        height: 32px;
+        background: ${FLINT};
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 32px;
+        opacity: 0.2;
+      }
+
+      &::before {
+        animation: pulse 1600ms linear infinite;
+      }
+
+      &::after {
+        animation: pulse 1600ms 800ms linear infinite;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 0.4;
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(4);
+      }
+    }
   }
 
-  .arrow {
-    background: ${PAPER};
-    height: 20px;
-    position: absolute;
-    transform: rotate(45deg);
-    width: 20px;
+  .note {
+    border-bottom: ${props => !props.contextual && `1px solid ${FLINT}`};
+    box-shadow: ${props => props.contextual && `3px 3px 24px 0 ${SHADE}`};
+    box-sizing: border-box;
+    margin: -20px 18px 0 18px;
+    position: relative;
+    width: auto;
 
-    &.top {
-      box-shadow: -1.5px -1.5px 4px 0 rgba(0, 0, 0, 0.04);
-      left: calc(50% - 10px);
-      top: -10px;
+    .container {
+      background: ${PAPER};
+      display: flex;
+      padding: 16px;
     }
 
-    &.left {
-      box-shadow: -1.5px -1.5px 4px 0 rgba(0, 0, 0, 0.04);
-      left: -10px;
-      top: 26px;
-      transform: rotate(-45deg);
-    }
+    .arrow {
+      background: ${PAPER};
+      height: 20px;
+      position: absolute;
+      transform: rotate(45deg);
+      width: 20px;
 
-    &.bottom {
-      background: ${PEBBLE};
-      box-shadow: -3px -3px 4px 0 rgba(0, 0, 0, 0.04);
-      bottom: -10px;
-      left: calc(50% - 10px);
-      transform: rotate(224deg);
-    }
+      &.top {
+        box-shadow: -1.5px -1.5px 4px 0 rgba(0, 0, 0, 0.04);
+        left: calc(50% - 10px);
+        top: -10px;
+      }
 
-    &.right {
-      box-shadow: -1.5px -1.5px 4px 0 rgba(0, 0, 0, 0.06);
-      right: -10px;
-      top: 26px;
-      transform: rotate(135deg);
+      &.left {
+        box-shadow: -1.5px -1.5px 4px 0 rgba(0, 0, 0, 0.04);
+        left: -10px;
+        top: 26px;
+        transform: rotate(-45deg);
+      }
+
+      &.bottom {
+        background: ${PEBBLE};
+        box-shadow: -3px -3px 4px 0 rgba(0, 0, 0, 0.04);
+        bottom: -10px;
+        left: calc(50% - 10px);
+        transform: rotate(224deg);
+      }
+
+      &.right {
+        box-shadow: -1.5px -1.5px 4px 0 rgba(0, 0, 0, 0.06);
+        right: -10px;
+        top: 26px;
+        transform: rotate(135deg);
+      }
     }
+  }
+
+  &.right {
+    flex-direction: row-reverse;
   }
 `;
 

@@ -19,7 +19,15 @@ const FeedbackArea = () => (
 
     <Subheading capitalize color micro mt={24} mb={16}>Contextual Feedback Item</Subheading>
     <FeedbackItem
-      arrow="left"
+      direction="left"
+      author="Jonathan Hudak"
+      message="Apples Butter Charlie Duff Edward Freddy George Harry Ink Johnnie King London."
+      time="4 min ago"
+      contextual
+    />
+
+    <FeedbackItem
+      direction="right"
       author="Jonathan Hudak"
       message="Apples Butter Charlie Duff Edward Freddy George Harry Ink Johnnie King London."
       time="4 min ago"
