@@ -1,15 +1,25 @@
 import styled from "styled-components";
 import _FeedbackItem from "components/FeedbackItem";
-import { FLINT, PAPER, PEBBLE, SHADE, EASE_OUT_EXPO } from "./Variables";
+import { FLINT, PAPER, PEBBLE, SHADE, EASE_OUT_EXPO, EASE_OUT_BACK } from "./Variables";
 
 export const FeedbackItem = styled(_FeedbackItem)`
   display: flex;
   max-width: 460px;
 
   .badge {
+    cursor: pointer;
     height: 32px;
     position: relative;
+    transition: 400ms ${EASE_OUT_EXPO};
     width: 32px;
+
+    &:hover,
+    &:focus {
+      transform: scale(1.1);
+    }
+    &:active {
+      transform: scale(0.9);
+    }
 
     .content {
       align-items: center;
@@ -65,6 +75,9 @@ export const FeedbackItem = styled(_FeedbackItem)`
     box-sizing: border-box;
     margin: -20px 18px 0 18px;
     position: relative;
+    transform-origin: -16px 32px;
+    transform: scale(0);
+    transition: 440ms ${EASE_OUT_BACK};
     width: auto;
 
     .container {
@@ -108,10 +121,25 @@ export const FeedbackItem = styled(_FeedbackItem)`
         transform: rotate(135deg);
       }
     }
+
+    &.entered {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    &.entering,
+    &.exiting {
+      transform: scale(0);
+      opacity: 0;
+    }
   }
 
   &.right {
     flex-direction: row-reverse;
+
+    .note {
+      transform-origin: calc(100% + 16px) 32px;
+    }
   }
 `;
 
