@@ -8,12 +8,12 @@ const FeedbackArea = () => (
     <Subheading capitalize color micro mb={8}>Feedback Item</Subheading>
     <FeedbackItem
       author="Ivan Cruz"
-      feedback="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
+      message="Apples Butter Charlie Duff Edward Harry Ink Johnnie King London Monkey."
       time="4 min ago"
     />
     <FeedbackItem
       author="Mika Cruz"
-      feedback="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
+      message="Duff Edward Freddy George Harry Ink Johnnie King Apples Butter Charlie."
       time="8 min ago"
     />
 
@@ -21,7 +21,7 @@ const FeedbackArea = () => (
     <FeedbackItem
       arrow="left"
       author="Jonathan Hudak"
-      feedback="Apples Butter Charlie Duff Edward Freddy George Harry Ink Johnnie King London."
+      message="Apples Butter Charlie Duff Edward Freddy George Harry Ink Johnnie King London."
       time="4 min ago"
       contextual
     />
