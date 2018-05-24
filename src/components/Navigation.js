@@ -136,7 +136,6 @@ class Navigation extends Component {
                   <Avatar
                     initial={firstInitial}
                     mr={16}
-                    onClick={this.handleLogout}
                   />
                   <Notifications show={showNotifications} />
                 </NavItem>

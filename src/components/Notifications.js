@@ -24,7 +24,7 @@ class Notifications extends Component {
     const { show } = this.props;
 
     return (
-      <Transition in={show} timeout={200} unmountOnExit>
+      <Transition in={show} timeout={100} unmountOnExit>
         {state => (
           <ContextualMenu arrowOffset={74} className={state} />
         )}

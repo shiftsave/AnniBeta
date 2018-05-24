@@ -9,7 +9,7 @@ export const ContextualMenu = styled(_ContextualMenu)`
   max-width: 400px;
   position: fixed;
   right: 16px;
-  top: 96px;
+  top: 90px;
   transform-origin: 50% -10px;
   transition: 280ms ${EASE_OUT_BACK};
 
