@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Button, ContextualMenu } from "styled";
 import Transition from "react-transition-group/Transition";
 
@@ -10,7 +11,7 @@ class _Avatar extends Component {
   handleContextualMenu = () => this.setState({ show: !this.state.show });
 
   render() {
-    const { className, initial, onClick } = this.props;
+    const { className, initial, onClick, logOut } = this.props;
 
     return (
       <div onClick={this.handleContextualMenu}>
@@ -20,7 +21,7 @@ class _Avatar extends Component {
         <Transition in={this.state.show} timeout={100} unmountOnExit>
           {state => (
             <ContextualMenu arrowOffset={12} className={state}>
-              <Button link>Logout</Button>
+              <Button link onClick={logOut}>Logout</Button>
             </ContextualMenu>
           )}
         </Transition>
@@ -28,6 +29,10 @@ class _Avatar extends Component {
     );
   }
 }
+
+_Avatar.propTypes = {
+  logOut: PropTypes.func.isRequired,
+};
 
 _Avatar.defaultProps = {
   children: null,

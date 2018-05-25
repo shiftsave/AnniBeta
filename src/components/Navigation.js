@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { login, logoutSession, getAccountInfo } from "adapters";
+import { login, logoutSession, getAccountInfo, getAuthUrl } from "adapters";
 import { addAuthToken, logout, addUserInfo } from "actions";
 import CreateForm from "components/CreateForm";
 import FeedbackSidebar from "components/FeedbackSidebar";
 import Notifications from "components/Notifications";
+import * as KeyCodes from 'constants/keyCodes';
 import {
   Avatar,
   Button,
@@ -70,17 +71,26 @@ class Navigation extends Component {
     });
   };
 
-  handleKeyDown = e => {
-    e.preventDefault();
-    // TODO these should be keycodes
-    // or at least use constants
-    switch (e.key) {
-      case "Escape":
-        this.closeViewer();
-        break;
+  handleKeyDown = ({ which, ctrlKey }) => {
 
-      default:
-        break;
+    if (ctrlKey) {
+      switch (which) {
+        case KeyCodes.L:
+          window.location.href = getAuthUrl();
+          break;
+  
+        default:
+          break;
+      }
+    } else {
+      switch (which) {
+        case KeyCodes.Escape:
+          this.closeViewer();
+          break;
+  
+        default:
+          break;
+      }
     }
   };
 
@@ -135,6 +145,7 @@ class Navigation extends Component {
                   />
                   <Avatar
                     initial={firstInitial}
+                    logOut={this.handleLogout}
                     mr={16}
                   />
                   <Notifications show={showNotifications} />
@@ -186,6 +197,7 @@ class Navigation extends Component {
                 initial={firstInitial}
                 mr={16}
                 onClick={this.handleLogout}
+                logOut={this.handleLogout}
               />
             </NavItem>
 
@@ -213,7 +225,7 @@ class Navigation extends Component {
         );
       }
     } else {
-      return <Content full>{login}</Content>;
+      return <Content full />;
     }
   }
 }
