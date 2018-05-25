@@ -1,6 +1,16 @@
 import styled from "styled-components";
 import _FeedbackItem from "components/FeedbackItem";
-import { FLINT, PAPER, PEBBLE, SHADE, EASE_OUT_EXPO, EASE_OUT_BACK } from "./Variables";
+import {
+  FLINT,
+  PAPER,
+  PEBBLE,
+  SHADE,
+  EASE_OUT_EXPO,
+  EASE_OUT_BACK,
+} from "./Variables";
+
+const arrowDisplacementX = "10px";
+const arrowDisplacementY = "26px";
 
 export const FeedbackItem = styled(_FeedbackItem)`
   display: flex;
@@ -10,8 +20,10 @@ export const FeedbackItem = styled(_FeedbackItem)`
     cursor: pointer;
     height: 32px;
     position: relative;
-    transition: 400ms ${EASE_OUT_EXPO};
+    transition: transform 440ms ${EASE_OUT_BACK},
+      opacity 440ms ${EASE_OUT_EXPO};
     width: 32px;
+    will-change: transform, opacity;
 
     &:hover,
     &:focus {
@@ -35,17 +47,18 @@ export const FeedbackItem = styled(_FeedbackItem)`
     }
 
     .pulsatingRings {
-      &:before,
-      &:after {
+      &::before,
+      &::after {
         content: "";
         border-radius: 99px;
         height: 32px;
         background: ${FLINT};
         left: 0;
+        opacity: 0.2;
         position: absolute;
         top: 0;
         width: 32px;
-        opacity: 0.2;
+        will-change: transform, opacity;
       }
 
       &::before {
@@ -69,6 +82,14 @@ export const FeedbackItem = styled(_FeedbackItem)`
     }
   }
 
+  &.right {
+    flex-direction: row-reverse;
+
+    .note {
+      transform-origin: calc(100% + 16px) 32px;
+    }
+  }
+
   .note {
     border-bottom: ${props => !props.contextual && `1px solid ${FLINT}`};
     box-shadow: ${props => props.contextual && `3px 3px 24px 0 ${SHADE}`};
@@ -77,8 +98,10 @@ export const FeedbackItem = styled(_FeedbackItem)`
     position: relative;
     transform-origin: -16px 32px;
     transform: scale(0);
-    transition: 440ms ${EASE_OUT_BACK};
+    transition: transform 440ms ${EASE_OUT_BACK},
+      opacity 440ms ${EASE_OUT_EXPO};
     width: auto;
+    will-change: transform, opacity;
 
     .container {
       background: ${PAPER};
@@ -95,29 +118,29 @@ export const FeedbackItem = styled(_FeedbackItem)`
 
       &.top {
         box-shadow: -1.5px -1.5px 4px 0 rgba(0, 0, 0, 0.04);
-        left: calc(50% - 10px);
-        top: -10px;
+        left: calc(50% - ${arrowDisplacementX});
+        top: -${arrowDisplacementX};
       }
 
       &.left {
         box-shadow: -1.5px -1.5px 4px 0 rgba(0, 0, 0, 0.04);
-        left: -10px;
-        top: 26px;
+        left: -${arrowDisplacementX};
+        top: ${arrowDisplacementY};
         transform: rotate(-45deg);
       }
 
       &.bottom {
         background: ${PEBBLE};
         box-shadow: -3px -3px 4px 0 rgba(0, 0, 0, 0.04);
-        bottom: -10px;
-        left: calc(50% - 10px);
+        bottom: -${arrowDisplacementX};
+        left: calc(50% - ${arrowDisplacementX});
         transform: rotate(224deg);
       }
 
       &.right {
         box-shadow: -1.5px -1.5px 4px 0 rgba(0, 0, 0, 0.06);
-        right: -10px;
-        top: 26px;
+        right: -${arrowDisplacementX};
+        top: ${arrowDisplacementY};
         transform: rotate(135deg);
       }
     }
@@ -131,14 +154,6 @@ export const FeedbackItem = styled(_FeedbackItem)`
     &.exiting {
       transform: scale(0);
       opacity: 0;
-    }
-  }
-
-  &.right {
-    flex-direction: row-reverse;
-
-    .note {
-      transform-origin: calc(100% + 16px) 32px;
     }
   }
 `;

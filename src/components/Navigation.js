@@ -78,7 +78,7 @@ class Navigation extends Component {
         case KeyCodes.L:
           window.location.href = getAuthUrl();
           break;
-  
+
         default:
           break;
       }
@@ -87,7 +87,7 @@ class Navigation extends Component {
         case KeyCodes.Escape:
           this.closeViewer();
           break;
-  
+
         default:
           break;
       }
@@ -152,10 +152,6 @@ class Navigation extends Component {
                 </NavItem>
               </NavItemGroup>
             </NavBar>
-
-            {/*
-              Create New Project Form
-            */}
 
             {showNewProjectForm ? (
               <CreateForm

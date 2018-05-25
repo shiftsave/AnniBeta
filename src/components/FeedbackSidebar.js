@@ -29,7 +29,7 @@ class FeedbackArea extends Component {
           <FeedbackSidebar className={state}>
             <FeedbackList>
               {children ||
-              <Paragraph padded>There are no notifications at this time!"
+              <Paragraph padded>There are no notifications at this time!
               </Paragraph>}
             </FeedbackList>
             <TextArea placeholder="Enter comment..." sidebar />
