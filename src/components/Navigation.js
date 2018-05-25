@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { login, logoutSession, getAccountInfo } from "adapters";
+import { login, logoutSession, getAccountInfo, getAuthUrl } from "adapters";
 import { addAuthToken, logout, addUserInfo } from "actions";
 import CreateForm from "components/CreateForm";
 
@@ -19,10 +19,15 @@ class Navigation extends Component {
   componentDidMount() {
     const { dispatch, auth } = this.props;
 
+    window.loginAnni = () => window.location.href = getAuthUrl();
+
     if (!window.sessionStorage) {
       return;
     }
 
+    // referencing window.location breaks HMR for some reason..
+    // const unAuthenticatedRoutes = ['/patterns'];
+    // const routeNeedsAuthentication = !unAuthenticatedRoutes.find(r => r === window.location.pathname);
     if (!auth.toJS().isAuthenticated) {
       login().then(
         token => {

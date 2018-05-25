@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import classNames from "classnames";
 import { FieldGroup, OutlineIcon } from "styled";
 
@@ -35,6 +36,7 @@ export const TextArea = props => {
 export const Input = props => {
   const {
     className,
+    onBlur,
     onChange,
     placeholder,
     readOnly,
@@ -57,6 +59,12 @@ export const Input = props => {
     return filteredProps;
   }, {});
 
+  const handleBlur = e => {
+    if (onBlur) {
+      onBlur(e.target.value);
+    }
+  }
+  
   return (
     <FieldGroup icon>
       {icon && <OutlineIcon color name={icon} size={24} />}
@@ -67,8 +75,13 @@ export const Input = props => {
         placeholder={placeholder}
         value={value}
         readOnly={readOnly}
+        onBlur={handleBlur}
         type={type}
       />
     </FieldGroup>
   );
+};
+
+Input.propTypes = {
+  onBlur: PropTypes.func,
 };
