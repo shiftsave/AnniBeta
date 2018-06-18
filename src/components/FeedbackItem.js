@@ -47,7 +47,7 @@ class _FeedbackItem extends Component {
             )}
           </div>
         )}
-        <Transition in={isOpen} timeout={100} unmountOnExit>
+        <Transition in={contextual ? isOpen : true} timeout={100} unmountOnExit>
           {state => (
             <div className={`note ${state}`}>
               {contextual && <div className={`arrow ${direction}`} />}

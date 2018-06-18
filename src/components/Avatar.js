@@ -31,7 +31,7 @@ class _Avatar extends Component {
 }
 
 _Avatar.propTypes = {
-  logOut: PropTypes.func.isRequired,
+  logOut: PropTypes.func,
 };
 
 _Avatar.defaultProps = {

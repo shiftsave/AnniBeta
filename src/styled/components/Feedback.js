@@ -94,7 +94,7 @@ export const FeedbackItem = styled(_FeedbackItem)`
     border-bottom: ${props => !props.contextual && `1px solid ${FLINT}`};
     box-shadow: ${props => props.contextual && `3px 3px 24px 0 ${SHADE}`};
     box-sizing: border-box;
-    margin: -20px 18px 0 18px;
+    margin: ${props => props.contextual && "-20px 18px 0 18px"};
     position: relative;
     transform-origin: -16px 32px;
     transform: scale(0);
